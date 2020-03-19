@@ -6,10 +6,8 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Insightgram</Text>
-        <View style={styles.formContainer}>
-          <LoginForm />
-        </View>
+        <Text style={styles.title}>INSIGHTGRAM</Text>
+        <LoginForm />
       </View>
     );
   }
@@ -18,13 +16,14 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#cecece"
+    justifyContent: "center",
+    alignItems: "center"
   },
   title: {
-    color: "#fff",
-    fontSize: "23px",
-    textAlign: center,
-    width: 160
+    color: "#000000",
+    fontSize: 30,
+    fontWeight: "700",
+    paddingBottom: 10
   },
   formContainer: {}
 });
