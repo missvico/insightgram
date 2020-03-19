@@ -1,6 +1,6 @@
 "use strict";
 
-const sequelize = require("../db/db");
+const sequelize = require("../config/db");
 const S = require("sequelize");
 const crypto = require("crypto");
 
