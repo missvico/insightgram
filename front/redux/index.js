@@ -1,22 +1,9 @@
-// import {
-//     createStore,
-//     applyMiddleware,
-//     compose
-// } from 'redux';
-// import {
-//     createLogger
-// } from 'redux-logger';
-// import thunkMiddleware from 'redux-thunk';
-// import reducer from './reducers';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import reducers from "./reducers/index";
+import thunkMiddleware from "redux-thunk";
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-// export default createStore(reducer, composeEnhancers(applyMiddleware(createLogger(), thunkMiddleware)));
-
-import { createStore, combineReducers } from "redux";
-import feedsReducer from "./reducers/feedsReducer";
-const rootReducer = combineReducers({ feedsReducer: feedsReducer });
+const rootReducer = combineReducers({ reducers });
 const configureStore = () => {
-  return createStore(rootReducer);
+  return createStore(rootReducer, applyMiddleware(thunkMiddleware));
 };
 export default configureStore;
