@@ -3,133 +3,52 @@ import {
   Text,
   StyleSheet,
   View,
-  TextInput,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
+  FlatList
 } from "react-native";
+
+import{
+  Title,
+  Search
+} from "./style"
+
 import { Divider } from "react-native-elements";
-export default ({ onChange, inputValue }) => {
+import FeedList from "../Common/FeedList/FeedList"
+import Constants from 'expo-constants';
+
+
+function Item({ title }) {
+  return (
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  );
+}
+
+
+export default ({ onChange, inputValue, feeds }) => {
   return (
     <View>
-      <ScrollView>
-        <Text style={styles.title}>insightgram</Text>
-        <Divider style={{ height: 1, backgroundColor: "grey" }} />
-        <TextInput
-          style={styles.textInput}
+          <Title>insightgram</Title>
+          <Divider style={{ height: 1, backgroundColor: "grey" }} />
+          <Search
           placeholder='Search'
           onChange={e => onChange(e)}
           value={inputValue}
         />
-        <Text style={styles.subtitle}>Cross units</Text>
-        <ScrollView style={{ margin: 10 }} horizontal={true}>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-        </ScrollView>
-        <Text style={styles.subtitle}>Marketplace</Text>
-        <ScrollView style={{ margin: 10 }} horizontal={true}>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-        </ScrollView>
-        <Text style={styles.subtitle}>Mercadoenvios</Text>
-        <ScrollView style={{ margin: 10 }} horizontal={true}>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-          <SafeAreaView style={styles.images}>
-            <Text>Aca van las feeds</Text>
-          </SafeAreaView>
-        </ScrollView>
-      </ScrollView>
+      <SafeAreaView>
+      <FlatList
+        data={feeds}
+        renderItem={({ item }) => <FeedList title={item.group} feeds={item.feeds} />}
+        keyExtractor={item => item.id}
+      />
+      </SafeAreaView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  title: {
-    paddingTop: 60,
-    paddingBottom: 20,
-    textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold"
-  },
-  subtitle: {
-    paddingTop: 5,
-    paddingBottom: 2,
-    fontSize: 15,
-    fontWeight: "bold",
-    paddingLeft: 10
-  },
   images: {
     display: "flex",
     borderRadius: 10,
