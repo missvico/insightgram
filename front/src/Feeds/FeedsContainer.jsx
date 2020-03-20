@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import Feeds from "../components/Feeds";
+import Feeds from "./Feeds";
 import { fetchFeeds } from "../store/actions/feeds";
 
 const FeedsContainer = props => {

@@ -1,5 +1,5 @@
 import React from "react"
-import FeedIcon from "../components/FeedIcon"
+import FeedIcon from "./FeedIcon"
 
 export default class FeedIconContainer extends React.Component {
     constructor(props){
