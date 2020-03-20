@@ -4,11 +4,12 @@ import {RED} from "../../../styles"
 
 export const IconCard = styled.View`
     height: ${props=> props.height}px;
-    width: ${props=> props.width}px;
+    width: ${props=> props.height*0.70}px;
     border-radius: ${props=> props.height*0.1}px;
     background-color: ${LIGHT_GREY};
     flex-direction:column;
-    justify-content: space-between
+    justify-content: space-between;
+    margin: ${props=> props.height*0.02}px
 `
 
 export const Avatar = styled.Image`
