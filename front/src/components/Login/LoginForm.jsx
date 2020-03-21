@@ -19,9 +19,10 @@ const LoginForm = ({ loginUser }) => {
 
   const buttonPressed = () => {
     if (email && password) {
-      loginUser(email, password).then(response =>
-        console.log("FUNCIONA", response)
-      );
+      loginUser(email, password)
+      .then((response)=>{
+        console.log("Token", response);
+      })
     } else {
       Alert.alert("¡ERROR! Completá todos los campos");
     }
