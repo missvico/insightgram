@@ -27,6 +27,16 @@ const FeedsContainer = props => {
             id: "27",
             name: "Pelotita 2",
             is_suscribed: true
+          },
+          {
+            id: "30",
+            name: "Pelotita 3",
+            is_suscribed: true
+          },
+          {
+            id: "31",
+            name: "Pelotita 4",
+            is_suscribed: true
           }
         ]
       },
