@@ -27,13 +27,13 @@ export default ({
       <Title>INSIGHTGRAM</Title>
       <Input
         autoCapitalize="none"
-        onChangeText={email => changeEmail(email)}
+        onChangeText={emailVal => changeEmail(emailVal)}
         placeholder="Email"
         value={email}
       />
       <Input
         secureTextEntry={true}
-        onChangeText={password => changePassword(password)}
+        onChangeText={passwordVal => changePassword(passwordVal)}
         placeholder="Contraseña"
         value={password}
       />
