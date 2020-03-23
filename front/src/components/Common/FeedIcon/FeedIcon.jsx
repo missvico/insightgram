@@ -29,36 +29,3 @@ export default function FeedIcon({handlePress, tick, name}) {
   );
 }
 
-
-// const styles = StyleSheet.create({
-//   container: {
-//     height: iconDimensions.height,
-//     width: iconDimensions.width,
-//     borderRadius: iconDimensions.height*0.1,
-//     backgroundColor: '#757575',
-//     flexDirection: 'column',
-//     justifyContent: 'space-between'
-//   },
-//   avatar: {
-//     height: iconDimensions.height*0.18,
-//     width: iconDimensions.height*0.18,
-//     borderRadius: iconDimensions.height*0.18/2
-//   },
-//   avatarBorder: {
-//     height: iconDimensions.height*0.23,
-//     width: iconDimensions.height*0.23,
-//     borderRadius: iconDimensions.height*0.23/2,
-//     borderWidth: 2,
-//     borderColor:"#FF87A2",
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     marginLeft: 10,
-//     marginTop: 10
-//   },
-//   tick:{
-//     flexDirection: 'row',
-//     justifyContent: 'flex-end',
-//     marginBottom: 10,
-//     marginRight: 10
-//   }
-// });

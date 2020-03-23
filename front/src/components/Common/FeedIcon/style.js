@@ -31,6 +31,6 @@ export const AvatarBorder = styled.View`
 
 export const TickContainer = styled.View`
     flex-direction: row; 
-    margin-top: ${props=> props.height*(0.5-0.08)}px;
-    margin-left: ${props=> props.height*(0.5-0.06)}px;
+    margin-top: ${props=> props.height*(0.3)}px;
+    margin-left: ${props=> props.height*(0.4)}px;
 `
