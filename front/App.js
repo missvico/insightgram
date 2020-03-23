@@ -5,11 +5,13 @@ import { Provider } from "react-redux";
 import configureStore from "./redux/index";
 const store = configureStore();
 
+import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer.jsx"
+
 export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-        <Text> Aca va la navigation</Text>
+        <HomescreenContainer/>
       </View>
     </Provider>
   );
@@ -21,6 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20
   },
 });
 
