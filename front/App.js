@@ -4,14 +4,14 @@ import { AppRegistry } from "react-native";
 import { Provider } from "react-redux";
 import configureStore from "./redux/index";
 const store = configureStore();
-import FeedsContainer from './src/components/Feeds/FeedsContainer'
-import LoginForm from './src/components/Login/LoginForm'
+import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
+import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 
 export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-       <FeedsContainer />
+        <HomescreenContainer />
       </View>
     </Provider>
   );
