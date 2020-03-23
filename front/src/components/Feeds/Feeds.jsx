@@ -48,30 +48,30 @@ export default ({ onChange, inputValue, feeds }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  images: {
-    display: "flex",
-    borderRadius: 10,
-    padding: 15,
-    backgroundColor: "#a8e063",
-    height: 150,
-    width: 100,
-    alignContent: "center",
-    justifyContent: "center",
-    margin: 3
-  },
-  textInput: {
-    borderTopColor: "grey",
-    borderBottomColor: "grey",
-    borderLeftColor: "grey",
-    borderRightColor: "grey",
-    paddingLeft: 10,
-    margin: 10,
-    borderRadius: 10,
-    height: 35,
-    width: 300,
-    borderColor: "black",
-    borderWidth: 1
-    // paddingLeft: "2" cuando uso esto, se rompe, por que? NO SE
-  }
-});
+// const styles = StyleSheet.create({
+//   images: {
+//     display: "flex",
+//     borderRadius: 10,
+//     padding: 15,
+//     backgroundColor: "#a8e063",
+//     height: 150,
+//     width: 100,
+//     alignContent: "center",
+//     justifyContent: "center",
+//     margin: 3
+//   },
+//   textInput: {
+//     borderTopColor: "grey",
+//     borderBottomColor: "grey",
+//     borderLeftColor: "grey",
+//     borderRightColor: "grey",
+//     paddingLeft: 10,
+//     margin: 10,
+//     borderRadius: 10,
+//     height: 35,
+//     width: 300,
+//     borderColor: "black",
+//     borderWidth: 1
+//     // paddingLeft: "2" cuando uso esto, se rompe, por que? NO SE
+//   }
+// });

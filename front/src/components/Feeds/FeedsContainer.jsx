@@ -22,9 +22,8 @@ const FeedsContainer = props => {
     setInputValue(search);
     //props.fetchFeeds(search); en espera de la data
   };
-
+  
   return <Feeds onChange={onChange} inputValue={inputValue} feeds={allFeeds.feeds}/>;
-};
 
 const mapStateToProps = function(state, ownProps) {
   return {};
