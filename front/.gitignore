@@ -1,4 +1,9 @@
-node_modules/**/*
+node_modules/
+jspm_packages/
+
+.npm
+*.log
+
 .expo/*
 npm-debug.*
 *.jks
