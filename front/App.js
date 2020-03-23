@@ -10,6 +10,8 @@ import LoginForm from "./src/components/Login/LoginForm";
 import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer.jsx";
 const store = configureStore();
 const Stack = createStackNavigator();
+import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
+import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 
 export default function App() {
   return (
