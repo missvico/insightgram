@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Feeds from "./Feeds";
-import { fetchFeeds } from "../../../redux/actions/feeds";
+import { fetchAllFeeds } from "../../../redux/actions/feeds";
 
 const FeedsContainer = props => {
   const [inputValue, setInputValue] = useState("");
+  const [allFeeds, setAllFeeds] = useState({})
+
+  useEffect(() => {
+    console.log("Feeds", Object.keys(allFeeds).length);
+    if(Object.keys(allFeeds).length == 0){
+      props.fetchAllFeeds().then(feeds => setAllFeeds(feeds))
+    }else{
+      return;
+    }
+  }, [setAllFeeds])
 
   const onChange = event => {
     let search = event.nativeEvent.text;
@@ -12,54 +22,8 @@ const FeedsContainer = props => {
     setInputValue(search);
     //props.fetchFeeds(search); en espera de la data
   };
-
-  const feedData = {
-    feeds: [
-      {
-        group: "Marketplace",
-        feeds: [
-          {
-            id: "40",
-            name: "Pelotita 1",
-            is_suscribed: false
-          },
-          {
-            id: "27",
-            name: "Pelotita 2",
-            is_suscribed: true
-          },
-          {
-            id: "30",
-            name: "Pelotita 3",
-            is_suscribed: true
-          },
-          {
-            id: "31",
-            name: "Pelotita 4",
-            is_suscribed: true
-          }
-        ]
-      },
-      {
-        group: "MercadoPago",
-        feeds: [
-          {
-            id: "28",
-            name: "Pelotita 3",
-            is_suscribed: false
-          },
-          {
-            id: "29",
-            name: "Pelotita 4",
-            is_suscribed: true
-          }
-        ]
-      }
-    ]
-  };
-
-  return <Feeds onChange={onChange} inputValue={inputValue} feeds={feedData.feeds}/>;
-};
+  
+  return <Feeds onChange={onChange} inputValue={inputValue} feeds={allFeeds.feeds}/>;
 
 const mapStateToProps = function(state, ownProps) {
   return {};
@@ -67,7 +31,8 @@ const mapStateToProps = function(state, ownProps) {
 
 const mapDispatchToProps = function(dispatch, ownProps) {
   return {
-    fetchFeeds: search => dispatch(fetchFeeds(search))
+    fetchFeeds: search => dispatch(fetchFeeds(search)),
+    fetchAllFeeds: () => dispatch(fetchAllFeeds())
   };
 };
 

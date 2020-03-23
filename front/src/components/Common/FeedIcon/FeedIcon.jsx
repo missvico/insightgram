@@ -12,20 +12,19 @@ export default function FeedIcon({handlePress, tick, name}) {
     <TouchableWithoutFeedback onPress={handlePress}>
     <IconCard height={iconDimensions.height} width={iconDimensions.width} >
         <AvatarBorder height={iconDimensions.height} width={iconDimensions.width}>
-            <Avatar 
-            height={iconDimensions.height} 
+            <Avatar
+            height={iconDimensions.height}
             width={iconDimensions.width}
-            source={{uri:'https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2'}}/> 
+            source={{uri:'https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2'}}/>
         </AvatarBorder>
         <Text> {name}</Text>
         {tick? (
         <TickContainer height={iconDimensions.height} width={iconDimensions.width}>
             <AntDesign name="checkcircle" size={35} color="#01ADED"/>
         </TickContainer>
-        ): null      
-        } 
+        ): null
+        }
     </IconCard>
     </TouchableWithoutFeedback>
   );
 }
-
