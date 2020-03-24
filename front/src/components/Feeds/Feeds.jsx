@@ -35,10 +35,10 @@ export default ({ onChange, inputValue, feeds }) => {
       <SafeAreaView>
         <FlatList
           data={feeds}
+          keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <FeedList title={item.group} feeds={item.feeds} />
           )}
-          keyExtractor={item => item.id}
         />
       </SafeAreaView>
     </View>

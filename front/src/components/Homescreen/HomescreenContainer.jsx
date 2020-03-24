@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchFeedsByUser } from "../../../redux/actions/feeds";
 import Homescreen from "./Homescreen";
 
-const HomescreenContainer = ({ navigation }) => {
+const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
   const handlePress = () => {
     navigation.navigate("Feeds");
   };
@@ -12,12 +12,12 @@ const HomescreenContainer = ({ navigation }) => {
 
   useEffect(() => {
     if (Object.keys(userHome).length == 0) {
-      props.fetchFeedsByUser().then(data => setUserHome(data));
+      fetchFeedsByUser().then(data => setUserHome(data));
     } else {
       return;
     }
   }, [setUserHome]);
-return <Homescreen handlePress={handlePress} />;
+  return <Homescreen handlePress={handlePress} />;
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

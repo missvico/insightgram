@@ -1,7 +1,7 @@
 // import axios from "axios";
 import { SET_FEEDS, SET_HOME_USER } from "../constants";
 import axios from "axios";
-import { allFeedsUrl, ip, feedsUser } from "../../config";
+import { allFeedsUrl, ip, feedsUserUrl } from "../../config";
 
 const setFeeds = feeds => ({
   type: SET_FEEDS,
@@ -14,9 +14,10 @@ const setHomeUser = data => ({
 });
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4NDk5Mzk2OSwiZXhwIjoxNTg3NTg1OTY5fQ.u2tAW5yI-6NNv4s8uCw3OOOno9_EA1nFZ5hfnas_IYY";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTU4NTA2MDcyOSwiZXhwIjoxNTg3NjUyNzI5fQ.fNXbyb5KEV9pvgK8cd-ozH9e3tfbXiFZBwEiY1cPw0A";
 
 export const fetchAllFeeds = () => dispatch => {
+  console.log("AXIOS ENTRO");
   return axios({
     method: "GET",
     url: `http://${ip + allFeedsUrl}`,
@@ -27,6 +28,7 @@ export const fetchAllFeeds = () => dispatch => {
   })
     .then(response => response.data)
     .then(feeds => {
+      console.log(feeds, "FEEDS");
       dispatch(setFeeds(feeds));
       return feeds;
     })
@@ -36,7 +38,7 @@ export const fetchAllFeeds = () => dispatch => {
 export const fetchFeedsByUser = () => dispatch => {
   return axios({
     method: "GET",
-    url: `http://${ip + feedsUser}`,
+    url: `http://${ip + feedsUserUrl}`,
     headers: {
       "Content-Type": "application/json",
       token: token
