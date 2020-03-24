@@ -5,11 +5,11 @@ import { Provider } from "react-redux";
 import configureStore from "./redux/index";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 import LoginForm from "./src/components/Login/LoginForm";
-import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer.jsx";
 const store = configureStore();
 const Stack = createStackNavigator();
+import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
+import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 
 export default function App() {
   return (
