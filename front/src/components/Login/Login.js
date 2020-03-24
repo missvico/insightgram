@@ -1,29 +1,45 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import LoginForm from "./LoginForm";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight
+} from "react-native";
+import {
+  InputText,
+  Input,
+  Button,
+  ButtonText,
+  ContainerForm,
+  Title
+} from "./styles";
 
-export default class Login extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>INSIGHTGRAM</Text>
-        <LoginForm />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  title: {
-    color: "#000000",
-    fontSize: 30,
-    fontWeight: "700",
-    paddingBottom: 10
-  },
-  formContainer: {}
-});
+export default ({
+  changeEmail,
+  changePassword,
+  buttonPressed,
+  email,
+  password
+}) => {
+  return (
+    <ContainerForm>
+      <Title>INSIGHTGRAM</Title>
+      <Input
+        autoCapitalize="none"
+        onChangeText={emailVal => changeEmail(emailVal)}
+        placeholder="Email"
+        value={email}
+      />
+      <Input
+        secureTextEntry={true}
+        onChangeText={passwordVal => changePassword(passwordVal)}
+        placeholder="Contraseña"
+        value={password}
+      />
+      <Button onPress={() => buttonPressed()}>
+        <ButtonText>Confirmar</ButtonText>
+      </Button>
+    </ContainerForm>
+  );
+};

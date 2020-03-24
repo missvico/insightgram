@@ -11,5 +11,5 @@ export default FeedIconContainer = ({name, isSuscribed}) => {
     return (
         <FeedIcon handlePress={handlePress} tick={selected} name={name}/>
     )
-    
+
 }

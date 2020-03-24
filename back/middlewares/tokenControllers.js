@@ -7,7 +7,7 @@ function crearToken(user) {
     sub: user.id,
     iat: moment().unix(),
     exp: moment()
-      .add(30, "s")
+      .add(30, "d")
       .unix()
   };
   const secret = process.env.TOKEN_SECRET;
