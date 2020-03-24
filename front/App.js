@@ -10,16 +10,18 @@ const store = configureStore();
 const Stack = createStackNavigator();
 import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
 import FeedsContainer from "./src/components/Feeds/FeedsContainer";
+import DiscoverContainer from "./src/components/Discover/DiscoverContainer";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <DiscoverContainer />
+      {/* <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomescreenContainer} />
           <Stack.Screen name="Feeds" component={FeedsContainer} />
         </Stack.Navigator>
-      </NavigationContainer>
+      </NavigationContainer> */}
     </Provider>
   );
 }
