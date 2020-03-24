@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.View`
-  padding: 20px;
+  padding-top: 100%;
+  justify-content: center;
 `;
 
 export const InputText = styled.TextInput`
@@ -12,7 +13,7 @@ export const InputText = styled.TextInput`
 
 export const Input = styled.TextInput`
   height: 40px;
-  background-color: #ecf0f1;
+  background-color: #ffffff;
   margin-bottom: 20px;
   color: #2c3e50;
   width: 280px;
@@ -21,9 +22,8 @@ export const Input = styled.TextInput`
 `;
 
 export const Button = styled.TouchableHighlight`
-  padding-top: 12px;
-  padding-bottom: 12px;
-
+  padding-top: 18px;
+  padding-bottom: 18px;
   background-color: #27ae60;
   margin-bottom: 20px;
   width: 280px;
@@ -32,8 +32,8 @@ export const Button = styled.TouchableHighlight`
 `;
 
 export const ButtonText = styled.Text`
-  color: #ecf0f1;
-  font-size: 16px;
+  color: #ffffff;
+  font-size: 35px;
   text-align: center;
 `;
 export const ContainerForm = styled.View`
@@ -46,5 +46,5 @@ export const Title = styled.Text`
   color: #000000;
   font-size: 30px;
   font-weight: 700;
-  padding-bottom: 10px;
+  padding-bottom: 50px;
 `;
