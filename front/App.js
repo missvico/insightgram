@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { AppRegistry } from "react-native";
 import { Provider } from "react-redux";
 import configureStore from "./redux/index";
 import { NavigationContainer } from "@react-navigation/native";
@@ -7,11 +8,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginForm from "./src/components/Login/LoginForm";
 import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
 import FeedsContainer from "./src/components/Feeds/FeedsContainer";
-import DiscoverContainer from "./src/components/Discover/DiscoverContainer"
 
 const store = configureStore();
 const Stack = createStackNavigator();
-const RootStack = createStackNavigator();
 
 function FeedsStack() {
   return (
@@ -21,23 +20,25 @@ function FeedsStack() {
     </Stack.Navigator>
   );
 }
+
 export default function App() {
   return (
     <Provider store={store}>
-      <DiscoverContainer/>
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <RootStack.Navigator headerMode="none" initialRouteName="Login">
           <RootStack.Screen name="Login" component={LoginForm} />
           <RootStack.Screen name="FeedsStack" component={FeedsStack} />
         </RootStack.Navigator>
-      </NavigationContainer> */}
+      </NavigationContainer>
     </Provider>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20
   }
 });

@@ -28,10 +28,11 @@ export default ({ onChange, inputValue, feeds }) => {
       <Title>insightgram</Title>
       <Divider style={{ height: 1, backgroundColor: "grey" }} />
       <Search
-        placeholder="Search"
+        placeholder='Search'
         onChange={e => onChange(e)}
         value={inputValue}
       />
+
       <SafeAreaView>
         <FlatList
           data={feeds}

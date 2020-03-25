@@ -17,7 +17,6 @@ const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTU4NTA2MDcyOSwiZXhwIjoxNTg3NjUyNzI5fQ.fNXbyb5KEV9pvgK8cd-ozH9e3tfbXiFZBwEiY1cPw0A";
 
 export const fetchAllFeeds = () => dispatch => {
-  console.log("AXIOS ENTRO");
   return axios({
     method: "GET",
     url: `http://${ip + allFeedsUrl}`,
@@ -28,7 +27,6 @@ export const fetchAllFeeds = () => dispatch => {
   })
     .then(response => response.data)
     .then(feeds => {
-      console.log(feeds, "FEEDS");
       dispatch(setFeeds(feeds));
       return feeds;
     })
