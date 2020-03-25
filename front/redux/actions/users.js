@@ -16,10 +16,13 @@ export const loginUser = (email, password) => dispatch => {
     }
   })
     .then(response => {
-      dispatch(setUser(response.data));
-      return response.data;
+      if (response.data && response.data.err) {
+        dispatch(setUser(""));
+        return response.data;
+      } else {
+        dispatch(setUser(response.data));
+        return response.data;
+      }
     })
-    .catch(error => {
-      console.error("Error:", error);
-    });
+    .catch(error => error);
 };
