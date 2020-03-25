@@ -17,14 +17,12 @@ import { Title, Search } from "./style";
 import { Divider } from "react-native-elements";
 import FeedList from "../Common/FeedList/FeedList";
 import Constants from "expo-constants";
+import DiscoverContainer from "../Discover/DiscoverContainer";
 
 export default ({ handlePress, feeds }) => {
   return (
     <View>
-      <Title>insightgram</Title>
-      <Divider style={{ height: 1, backgroundColor: "grey" }} />
-
-      <SafeAreaView>
+      {/* <SafeAreaView>
         <FlatList
           data={feeds ? feeds : {}}
           keyExtractor={item => (item.id ? item.id : {})}
@@ -35,7 +33,7 @@ export default ({ handlePress, feeds }) => {
             />
           )}
         />
-      </SafeAreaView>
+      </SafeAreaView>*/}
       <View
         style={{
           display: "flex",
@@ -43,8 +41,9 @@ export default ({ handlePress, feeds }) => {
           justifyContent: "flex-end"
         }}
       >
+        <DiscoverContainer discover={feeds.discover} />
         <TouchableWithoutFeedback onPress={handlePress}>
-          <AntDesign name="pluscircle" size={35} color="#01ADED" />
+          <AntDesign name='pluscircle' size={35} color='#01ADED' />
         </TouchableWithoutFeedback>
       </View>
     </View>
