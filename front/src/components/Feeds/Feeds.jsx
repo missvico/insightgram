@@ -1,32 +1,14 @@
 import React from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  ScrollView,
-  SafeAreaView,
-  FlatList
-} from "react-native";
+import { View, SafeAreaView, FlatList } from "react-native";
 
-import { Title, Search } from "./style";
-
-import { Divider } from "react-native-elements";
+import { Search } from "./style";
 import FeedList from "../Common/FeedList/FeedList";
-import Constants from "expo-constants";
-
-function Item({ title }) {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-}
 
 export default ({ onChange, inputValue, feeds }) => {
   return (
     <View>
       <Search
-        placeholder='Search'
+        placeholder="Search"
         onChange={e => onChange(e)}
         value={inputValue}
       />
