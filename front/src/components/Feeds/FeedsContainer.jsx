@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Feeds from "./Feeds";
-// import { fetchAllFeeds } from "../../../redux/actions/feeds";
+import { fetchAllFeeds } from "../../../redux/actions/feeds";
 
 const FeedsContainer = props => {
   const [inputValue, setInputValue] = useState("");
@@ -11,7 +11,7 @@ const FeedsContainer = props => {
     if (Object.keys(allFeeds).length == 0) {
       props.fetchAllFeeds().then(feeds => setAllFeeds(feeds));
     } else {
-      return;
+      return; 
     }
   }, [setAllFeeds]);
 
@@ -28,8 +28,8 @@ const mapStateToProps = function(state, ownProps) {
 
 const mapDispatchToProps = function(dispatch, ownProps) {
   return {
-    // fetchFeeds: search => dispatch(fetchFeeds(search)),
-    // fetchAllFeeds: () => dispatch(fetchAllFeeds())
+    fetchFeeds: search => dispatch(fetchFeeds(search)),
+    fetchAllFeeds: () => dispatch(fetchAllFeeds())
   };
 };
 

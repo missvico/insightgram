@@ -17,7 +17,7 @@ export default function FeedList({ feeds, title }) {
         keyExtractor={(item, index) => item.id}
         renderItem={item => (
           <FeedIconContainer
-            isSuscribed={item.is_suscribed ? item.is_suscribed : false}
+            isSuscribed={item.is_suscribed}
           />
         )}
       />

@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { AppRegistry } from "react-native";
 import { Provider } from "react-redux";
 import configureStore from "./redux/index";
 import { NavigationContainer } from "@react-navigation/native";
@@ -11,6 +10,7 @@ import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 
 const store = configureStore();
 const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
 
 function FeedsStack() {
   return (
@@ -20,7 +20,6 @@ function FeedsStack() {
     </Stack.Navigator>
   );
 }
-
 export default function App() {
   return (
     <Provider store={store}>
@@ -33,12 +32,10 @@ export default function App() {
     </Provider>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20
+    backgroundColor: "#fff"
   }
 });

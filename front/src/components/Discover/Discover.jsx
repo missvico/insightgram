@@ -7,8 +7,9 @@ import {
   SafeAreaView,
   FlatList
 } from "react-native";
+import {Title} from "./style"
 
-import { Title, Search } from "../Feeds/style";
+// import { Title, Search } from "../Feeds/style";
 
 import { Divider } from "react-native-elements";
 import FeedList from "../Common/FeedList/FeedList";
@@ -19,12 +20,12 @@ export default ({ feeds }) => {
 
   return (
     <View>
-      <Text>Discover</Text>
+      <Title>Discover</Title>
       <ScrollView>
         <SafeAreaView>
           <FlatList
             style={{ marginLeft: 10, marginBottom: 10 }}
-            numColumns={4}
+            numColumns={3}
             data={feeds}
             keyExtractor={item => item.id}
             renderItem={({ item }) => <FeedIconContainer />}

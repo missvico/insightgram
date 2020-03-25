@@ -28,3 +28,6 @@ export default function FeedIcon({handlePress, tick, name}) {
     </TouchableWithoutFeedback>
   );
 }
+
+
+<AntDesign name="pluscircle" size={35} color="#01ADED"/>

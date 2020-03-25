@@ -175,25 +175,6 @@ const data = {
             status: "seen"
           }
         ]
-      },
-      {
-        id: 28,
-        name: "Pelotita 4",
-        has_pending_stories: true,
-        stories: [
-          {
-            id: 36,
-            status: "not_seen"
-          },
-          {
-            id: 37,
-            status: "not_seen"
-          },
-          {
-            id: 38,
-            status: "seen"
-          }
-        ]
       }
     ]
   }

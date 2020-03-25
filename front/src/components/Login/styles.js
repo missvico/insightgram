@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.View`
-  padding: 20px;
+  padding-top: 100%;
 `;
 
 export const InputText = styled.TextInput`
@@ -46,5 +46,5 @@ export const Title = styled.Text`
   color: #000000;
   font-size: 30px;
   font-weight: 700;
-  padding-bottom: 10px;
+  padding-bottom: 50px;
 `;
