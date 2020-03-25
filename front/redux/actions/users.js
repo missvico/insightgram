@@ -7,7 +7,6 @@ const setUser = token => {
 };
 
 export const loginUser = (email, password) => dispatch => {
-  console.log(`${ip + loginUrl}`);
   return axios({
     method: "POST",
     url: `http://${ip + loginUrl}`,

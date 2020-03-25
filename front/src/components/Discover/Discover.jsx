@@ -16,7 +16,6 @@ import FeedList from "../Common/FeedList/FeedList";
 import Constants from "expo-constants";
 import FeedIconContainer from "../Common/FeedIcon/FeedIconContainer";
 export default ({ feeds }) => {
-  console.log("COMPONENTE DISCOVER", feeds);
 
   return (
     <View>
@@ -28,7 +27,10 @@ export default ({ feeds }) => {
             numColumns={3}
             data={feeds}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => <FeedIconContainer />}
+            renderItem={( feed ) => {
+              console.log(feed)
+            return <FeedIconContainer hasPendingStories={feed.item.has_pending_stories} disableTick={true} />
+          }}
           />
         </SafeAreaView>
       </ScrollView>

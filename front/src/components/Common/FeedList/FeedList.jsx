@@ -1,13 +1,13 @@
 import React from "react";
-import { FlatList, View, Text, VirtualizedList } from "react-native";
-import { Title } from "./style";
+import { FlatList, View, Text } from "react-native";
+import { Title, List } from "./style";
 import FeedIconContainer from "../FeedIcon/FeedIconContainer";
 import { compose } from "redux";
-export default function FeedList({ feeds, title }) {
+export default function FeedList({ feeds, title, disableTick }) {
   return (
     <View style={{ overFlow: "hidden" }}>
       <Title> {title}</Title>
-      <VirtualizedList
+      <List
         initialNumberToRender={20}
         windowSize={21}
         data={feeds}
@@ -15,15 +15,15 @@ export default function FeedList({ feeds, title }) {
         getItemCount={data => data.length}
         getItem={(data, index) => data[index]}
         keyExtractor={(item, index) => item.id}
-        renderItem={item => (
-          <FeedIconContainer
-<<<<<<< HEAD
-            isSuscribed={item.is_suscribed}
-=======
-            isSuscribed={item.is_suscribed ? item.is_suscribed : false}
->>>>>>> 52fc2e936ede957a51806b3af481f2a998fed668
+        renderItem={item => {
+          console.log(item.item.has_pending_stories)
+          return <FeedIconContainer
+            isSuscribed={item.item.is_suscribed}
+            hasPendingStories = {item.item.has_pending_stories}
+            disableTick={disableTick}
           />
-        )}
+        }}
+
       />
     </View>
   );
