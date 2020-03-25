@@ -1,21 +1,15 @@
-import React from "react"
+import React, {useState} from "react"
 import FeedIcon from "./FeedIcon"
 
-export default class FeedIconContainer extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            tick: false
-        }
-        this.handlePress = this.handlePress.bind(this)
+export default FeedIconContainer = ({name, isSuscribed, hasPendingStories, disableTick}) => {
+    const [selected, setSelected] = useState(isSuscribed)
+
+    const handlePress = ()=>{
+        setSelected(!selected)
     }
 
-    handlePress(){
-        let tickValue = this.state.tick
-        this.setState({tick: !tickValue })
-    }
+    return (
+        <FeedIcon handlePress={disableTick? null: handlePress} tick={selected} name={name} hasPendingStories={hasPendingStories}/>
+    )
 
-    render(){
-       return <FeedIcon handlePress={this.handlePress} tick={this.state.tick}/>
-    }
 }

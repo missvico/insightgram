@@ -1,14 +1,15 @@
-import { SET_FEEDS } from "../constants";
+import { SET_FEEDS, SET_HOME_USER } from "../constants";
 const initialState = {
-  feeds: []
+  feeds: {},
+  homeUser: {}
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_FEEDS:
-      return Object.assign({}, state, {
-        feeds: action.feeds
-      });
+      return { ...state, feeds: action.feeds };
+    case SET_HOME_USER:
+      return { ...state, homeUser: action.data };
     default:
       return state;
   }
