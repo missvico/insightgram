@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.View`
-  padding: 20px;
+  padding-top: 100%;
 `;
 
 export const InputText = styled.TextInput`

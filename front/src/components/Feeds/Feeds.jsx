@@ -25,8 +25,6 @@ function Item({ title }) {
 export default ({ onChange, inputValue, feeds }) => {
   return (
     <View>
-      <Title>insightgram</Title>
-      <Divider style={{ height: 1, backgroundColor: "grey" }} />
       <Search
         placeholder='Search'
         onChange={e => onChange(e)}

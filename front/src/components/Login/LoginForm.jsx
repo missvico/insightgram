@@ -5,7 +5,7 @@ import { Container } from "./styles";
 import { connect } from "react-redux";
 import { loginUser } from "../../../redux/actions/users";
 
-const LoginForm = ({ loginUser }) => {
+const LoginForm = ({ loginUser,navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,7 +21,8 @@ const LoginForm = ({ loginUser }) => {
     if (email && password) {
       loginUser(email, password)
       .then((response)=>{
-        console.log("Token", response);
+        console.log("Token", response)
+        navigation.navigate("FeedsStack")
       })
     } else {
       Alert.alert("¡ERROR! Completá todos los campos");

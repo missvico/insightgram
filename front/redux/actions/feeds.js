@@ -1,4 +1,3 @@
-// import axios from "axios";
 import { SET_FEEDS, SET_HOME_USER } from "../constants";
 import axios from "axios";
 import { allFeedsUrl, ip, feedsUserUrl } from "../../config";
@@ -14,7 +13,7 @@ const setHomeUser = data => ({
 });
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTU4NTA2MDcyOSwiZXhwIjoxNTg3NjUyNzI5fQ.fNXbyb5KEV9pvgK8cd-ozH9e3tfbXiFZBwEiY1cPw0A";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4NTA5ODk0NywiZXhwIjoxNTg3NjkwOTQ3fQ.zAQMKqYgP927yjHA7f2qZtvPMphECy8RKKviTgfC0eU";
 
 export const fetchAllFeeds = () => dispatch => {
   return axios({

@@ -11,7 +11,7 @@ const FeedsContainer = props => {
     if (Object.keys(allFeeds).length == 0) {
       props.fetchAllFeeds().then(feeds => setAllFeeds(feeds));
     } else {
-      return;
+      return; 
     }
   }, [setAllFeeds]);
 
@@ -33,4 +33,4 @@ const mapDispatchToProps = function(dispatch, ownProps) {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeedsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FeedsContainer)
