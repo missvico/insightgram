@@ -15,12 +15,11 @@ import FeedList from "../Common/FeedList/FeedList";
 import Constants from "expo-constants";
 import FeedIconContainer from "../Common/FeedIcon/FeedIconContainer";
 export default ({ feeds }) => {
+  console.log("COMPONENTE DISCOVER", feeds);
+
   return (
     <View>
-      <Title style={Title}>insightgram</Title>
-      <Divider style={{ height: 1, backgroundColor: "grey" }} />
       <Text>Discover</Text>
-      <Search placeholder='Search' onChange={e => console.log(e)} />
       <ScrollView>
         <SafeAreaView>
           <FlatList

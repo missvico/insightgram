@@ -1,8 +1,13 @@
-const feedsControllers = {}
-const feedsData = require('../feedsData.json')
+const feedsControllers = {};
+const feedsData = require("../feedsData.json");
+const userFeedsData = require("../userFeedsData.js");
 
 feedsControllers.getFeeds = (req, res) => {
-  res.json(feedsData)
-}
+  res.json(feedsData);
+};
 
-module.exports = feedsControllers
+feedsControllers.getFeedsByUser = (req, res) => {
+  res.send(userFeedsData);
+};
+
+module.exports = feedsControllers;

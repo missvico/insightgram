@@ -1,21 +1,26 @@
 import React from "react";
 import { FlatList, View, Text, VirtualizedList } from "react-native";
-import {Title} from "./style"
+import { Title } from "./style";
 import FeedIconContainer from "../FeedIcon/FeedIconContainer";
+import { compose } from "redux";
 export default function FeedList({ feeds, title }) {
   return (
-    <View>
-    <Title > {title}</Title>
-     <VirtualizedList
+    <View style={{ overFlow: "hidden" }}>
+      <Title> {title}</Title>
+      <VirtualizedList
         initialNumberToRender={20}
         windowSize={21}
         data={feeds}
         horizontal={true}
-        getItemCount={(data) => data.length}
-        getItem= {(data, index) => data[index]}
+        getItemCount={data => data.length}
+        getItem={(data, index) => data[index]}
         keyExtractor={(item, index) => item.id}
-        renderItem={item => <FeedIconContainer isSuscribed={item.is_suscribed}/>}
-     />
+        renderItem={item => (
+          <FeedIconContainer
+            isSuscribed={item.is_suscribed ? item.is_suscribed : false}
+          />
+        )}
+      />
     </View>
   );
 }
