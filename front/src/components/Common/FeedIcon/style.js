@@ -1,5 +1,5 @@
 import styled from "styled-components/native"
-import {LIGHT_GREY} from "../../../styles"
+import {LIGHT_GREY, DARK_BLUE} from "../../../styles"
 import {RED} from "../../../styles"
 
 export const IconCard = styled.View`
@@ -22,7 +22,7 @@ export const AvatarBorder = styled.View`
     height: ${props=> props.height*0.23}px;
     width: ${props=> props.height*0.23}px;
     border-radius: ${props=> props.height*0.23/2}px;
-    border: 2px solid ${RED};
+    border: 2px solid ${props=> props.hasPendingStories? RED: DARK_BLUE};
     align-items: center;
     justify-content: center;
     margin-left: ${props=> props.height*0.07}px;

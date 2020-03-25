@@ -21,8 +21,7 @@ const LoginForm = ({ loginUser,navigation}) => {
     if (email && password) {
       loginUser(email, password)
       .then((response)=>{
-        console.log("Token", response)
-        navigation.navigate("FeedsStack")
+        response? navigation.navigate("FeedsStack") : Alert.alert("Email o contraseña incorrecta");
       })
     } else {
       Alert.alert("¡ERROR! Completá todos los campos");

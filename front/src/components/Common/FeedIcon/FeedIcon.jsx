@@ -3,7 +3,7 @@ import { View, Dimensions, TouchableWithoutFeedback,StyleSheet, Text} from 'reac
 import {IconCard, Avatar, AvatarBorder, TickContainer} from "./style.js"
 import { AntDesign } from '@expo/vector-icons';
 
-export default function FeedIcon({handlePress, tick, name}) {
+export default function FeedIcon({handlePress, tick, name, hasPendingStories}) {
   const iconDimensions = {
     height: Dimensions.get('window').height*0.18,
     width: Dimensions.get('window').width*0.28
@@ -11,7 +11,10 @@ export default function FeedIcon({handlePress, tick, name}) {
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
     <IconCard height={iconDimensions.height} width={iconDimensions.width} >
-        <AvatarBorder height={iconDimensions.height} width={iconDimensions.width}>
+        <AvatarBorder 
+        height={iconDimensions.height} 
+        width={iconDimensions.width}
+        hasPendingStories={hasPendingStories}>
             <Avatar
             height={iconDimensions.height}
             width={iconDimensions.width}

@@ -19,7 +19,6 @@ const FeedsContainer = props => {
     let search = event.nativeEvent.text;
     setInputValue(search);
   };
-  console.log(allFeeds);
   return <Feeds feeds={allFeeds ? allFeeds.feeds : {}} onChange={onChange} />;
 };
 const mapStateToProps = function(state, ownProps) {

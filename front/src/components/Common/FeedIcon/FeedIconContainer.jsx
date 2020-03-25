@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import FeedIcon from "./FeedIcon"
 
-export default FeedIconContainer = ({name, isSuscribed}) => {
+export default FeedIconContainer = ({name, isSuscribed, hasPendingStories, disableTick}) => {
     const [selected, setSelected] = useState(isSuscribed)
 
     const handlePress = ()=>{
@@ -9,7 +9,7 @@ export default FeedIconContainer = ({name, isSuscribed}) => {
     }
 
     return (
-        <FeedIcon handlePress={handlePress} tick={selected} name={name}/>
+        <FeedIcon handlePress={disableTick? null: handlePress} tick={selected} name={name} hasPendingStories={hasPendingStories}/>
     )
 
 }

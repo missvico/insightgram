@@ -6,7 +6,7 @@
         {
           "id": "1",
           "name": "Pelotita 1",
-          "is_suscribed": false
+          "is_suscribed": true
         },
         {
           "id": "2",
@@ -41,12 +41,12 @@
         {
           "id": "7",
           "name": "Pelotita 3",
-          "is_suscribed": false
+          "is_suscribed": true
         },
         {
           "id": "8",
           "name": "Pelotita 4",
-          "is_suscribed": true
+          "is_suscribed": false
         }
       ]
     },
@@ -96,12 +96,12 @@
         {
           "id": "15",
           "name": "Pelotita 9",
-          "is_suscribed": false
+          "is_suscribed": true
         },
         {
           "id": "16",
           "name": "Pelotita 10",
-          "is_suscribed": true
+          "is_suscribed": false
         },
         {
           "id": "17",

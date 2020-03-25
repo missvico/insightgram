@@ -25,7 +25,7 @@ const data = {
       {
         id: 25,
         name: "Pelotita 1",
-        has_pending_stories: true,
+        has_pending_stories: false,
         stories: [
           {
             id: 27,
@@ -65,7 +65,7 @@ const data = {
       {
         id: 27,
         name: "Pelotita 3",
-        has_pending_stories: true,
+        has_pending_stories: false,
         stories: [
           {
             id: 33,
@@ -103,7 +103,7 @@ const data = {
       {
         id: 28,
         name: "Pelotita 4",
-        has_pending_stories: true,
+        has_pending_stories: false,
         stories: [
           {
             id: 36,
