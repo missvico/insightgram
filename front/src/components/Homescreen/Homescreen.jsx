@@ -18,21 +18,23 @@ import { Divider } from "react-native-elements";
 import FeedList from "../Common/FeedList/FeedList";
 import Constants from "expo-constants";
 import DiscoverContainer from "../Discover/DiscoverContainer";
-import CustomContainer from "../Custom/CustomContainer"
-import MyFeedsContainer from "../MyFeeds/MyFeedsContainer"
+import CustomContainer from "../Custom/CustomContainer";
+import MyFeedsContainer from "../MyFeeds/MyFeedsContainer";
 
 export default ({ handlePress, feeds }) => {
   return (
     <View>
-      <CustomContainer feeds={feeds.custom}/>
-      <MyFeedsContainer feeds={feeds.all}/>
+      <CustomContainer feeds={feeds.custom} />
+      <MyFeedsContainer feeds={feeds.all} />
       <DiscoverContainer discover={feeds.discover} />
       <View
         style={{
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "flex-end",
-          marginRight: 20
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          margin: 10,
+          marginBottom: 0,
+          alignItems: "flex-end"
         }}
       >
         <TouchableWithoutFeedback onPress={handlePress}>
