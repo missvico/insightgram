@@ -16,10 +16,12 @@ export default ({ handlePress, feeds }) => {
       <DiscoverContainer discover={feeds.discover} />
       <View
         style={{
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "flex-end",
-          marginRight: 20
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          margin: 10,
+          marginBottom: 0,
+          alignItems: "flex-end"
         }}
       >
         <TouchableWithoutFeedback onPress={handlePress}>
