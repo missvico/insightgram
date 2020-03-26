@@ -19,8 +19,22 @@ const FeedsContainer = props => {
     let search = event.nativeEvent.text;
     setInputValue(search);
   };
-  return <Feeds feeds={allFeeds ? allFeeds.feeds : {}} onChange={onChange} />;
+
+  const handlePress = () => {
+    props.navigation.navigate("Home");
+  };
+  return (
+    <Feeds
+      feeds={allFeeds ? allFeeds.feeds : {}}
+      onChange={onChange}
+      handlePress={handlePress}
+    />
+  );
 };
+const mapStateToProps = function(state, ownProps) {
+  return {};
+};
+
 const mapDispatchToProps = function(dispatch, ownProps) {
   return {
     fetchFeeds: search => dispatch(fetchFeeds(search)),
@@ -28,4 +42,4 @@ const mapDispatchToProps = function(dispatch, ownProps) {
   };
 };
 
-export default connect(null, mapDispatchToProps)(FeedsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(FeedsContainer);

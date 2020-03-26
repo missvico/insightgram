@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   FlatList
 } from "react-native";
-import { Title } from "./style";
+import {Title} from "./style"
 
 // import { Title, Search } from "../Feeds/style";
 
@@ -16,6 +16,7 @@ import FeedList from "../Common/FeedList/FeedList";
 import Constants from "expo-constants";
 import FeedIconContainer from "../Common/FeedIcon/FeedIconContainer";
 export default ({ feeds }) => {
+
   return (
     <View>
       <Title>Discover</Title>
@@ -26,12 +27,10 @@ export default ({ feeds }) => {
             numColumns={3}
             data={feeds}
             keyExtractor={item => item.id}
-            renderItem={feed => (
-              <FeedIconContainer
-                hasPendingStories={feed.item.has_pending_stories}
-                disableTick={true}
-              />
-            )}
+            renderItem={( feed ) => {
+              console.log(feed)
+            return <FeedIconContainer hasPendingStories={feed.item.has_pending_stories} disableTick={true} />
+          }}
           />
         </SafeAreaView>
       </ScrollView>
