@@ -1,6 +1,7 @@
 import { SET_FEEDS, SET_HOME_USER } from "../constants";
 import axios from "axios";
 import { allFeedsUrl, ip, feedsUserUrl } from "../../config";
+import { getItemStorage } from "../../assets/js/AsyncStorage";
 
 const setFeeds = feeds => ({
   type: SET_FEEDS,
@@ -12,8 +13,7 @@ const setHomeUser = data => ({
   data
 });
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4NTIzMTE3MSwiZXhwIjoxNTg3ODIzMTcxfQ.CQhcu4cAyu3ptZaVJktxmrS2Uu1k3RPeih2d4w-F9XI";
+const token = getItemStorage("@Token");
 
 export const fetchAllFeeds = () => dispatch => {
   return axios({
@@ -21,7 +21,7 @@ export const fetchAllFeeds = () => dispatch => {
     url: `http://${ip + allFeedsUrl}`,
     headers: {
       "Content-Type": "application/json",
-      token: token
+      token: token._55
     }
   })
     .then(response => response.data)
@@ -38,7 +38,7 @@ export const fetchFeedsByUser = () => dispatch => {
     url: `http://${ip + feedsUserUrl}`,
     headers: {
       "Content-Type": "application/json",
-      token: token
+      token: token._55
     }
   })
     .then(response => response.data)
