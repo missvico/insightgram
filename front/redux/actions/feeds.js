@@ -13,7 +13,7 @@ const setHomeUser = data => ({
 });
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4NTA5ODk0NywiZXhwIjoxNTg3NjkwOTQ3fQ.zAQMKqYgP927yjHA7f2qZtvPMphECy8RKKviTgfC0eU";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4NTIzMTE3MSwiZXhwIjoxNTg3ODIzMTcxfQ.CQhcu4cAyu3ptZaVJktxmrS2Uu1k3RPeih2d4w-F9XI";
 
 export const fetchAllFeeds = () => dispatch => {
   return axios({
