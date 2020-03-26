@@ -26,7 +26,7 @@ export default ({ onChange, inputValue, feeds, handlePress }) => {
   return (
     <View style={{ flex: 1 }}>
       <Search
-        placeholder='Search'
+        placeholder="Search"
         onChange={e => onChange(e)}
         value={inputValue}
       />
@@ -56,8 +56,8 @@ export default ({ onChange, inputValue, feeds, handlePress }) => {
       {/* <Button title='Done' type='clear' /> */}
       <Button
         onPress={() => handlePress()}
-        title='Done'
-        type='clear'
+        title="Done"
+        type="clear"
         buttonStyle={{
           backgroundColor: WHITE,
           height: 60
