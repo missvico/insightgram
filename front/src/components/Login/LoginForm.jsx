@@ -31,8 +31,11 @@ const LoginForm = ({ loginUser, navigation }) => {
   const buttonPressed = () => {
     if (email && password) {
       loginUser(email, password).then(response => {
-        if (response == 401) Alert.alert("Email o contraseña incorrecta");
-        else navigation.navigate("FeedsStack");
+        if (response == 401) {
+          Alert.alert("Email o contraseña incorrecta");
+        } else {
+          navigation.navigate("FeedsStack");
+        }
       });
     } else {
       Alert.alert("¡ERROR! Completá todos los campos");
