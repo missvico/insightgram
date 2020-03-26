@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert } from "react-native";
 import Login from "./Login";
 import { Container } from "./styles";
 import { connect } from "react-redux";
 import { loginUser } from "../../../redux/actions/users";
+import { getItemStorage } from "../../../assets/js/AsyncStorage";
 
 const LoginForm = ({ loginUser, navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const token = getItemStorage("@Token");
+
+  useEffect(() => {
+    if (token._55) {
+      navigation.navigate("FeedsStack");
+    } else {
+      return;
+    }
+  }, []);
 
   const changeEmail = email => {
     setEmail(email);
@@ -20,9 +31,8 @@ const LoginForm = ({ loginUser, navigation }) => {
   const buttonPressed = () => {
     if (email && password) {
       loginUser(email, password).then(response => {
-        if (response && response.err) {
+        if (response == 401) {
           Alert.alert("Email o contraseña incorrecta");
-          navigation.navigate("Login");
         } else {
           navigation.navigate("FeedsStack");
         }

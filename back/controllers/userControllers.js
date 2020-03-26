@@ -16,9 +16,8 @@ userControllers.loginUser = (req, res) => {
   users
     .findOne({ where: { email: req.body.email } })
     .then(user => {
-      if (!user) res.send({ err: "Email does not exist" });
-      if (!user.validPassword(req.body.password))
-        res.send({ err: "Incorrect password" });
+      if (!user) res.sendStatus(401);
+      if (!user.validPassword(req.body.password)) res.sendStatus(401);
       else {
         const token = crearToken(user);
         req.user = user;

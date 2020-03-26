@@ -6,8 +6,8 @@ import { fetchFeedsByUser } from "../../../redux/actions/feeds";
 import { View } from "react-native";
 
 const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
-  const [userHome, setUserHome] = useState({}); //Feeds y Customs del usuario
-  //Titulo de la screen
+  const [userHome, setUserHome] = useState({});
+
   const handlePress = () => {
     navigation.navigate("Feeds");
   };
@@ -19,6 +19,7 @@ const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
       return;
     }
   }, [setUserHome]);
+
   return (
     <View>
       {userHome && userHome.feeds ? (
