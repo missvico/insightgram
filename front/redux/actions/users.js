@@ -21,7 +21,5 @@ export const loginUser = (email, password) => dispatch => {
       dispatch(setUser(response.data));
       return response.data;
     })
-    .catch(error => {
-      console.error("Error:", error);
-    });
+    .catch(error => error.response.status);
 };
