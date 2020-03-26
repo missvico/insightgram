@@ -1,19 +1,6 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  TouchableHighlight
-} from "react-native";
-import {
-  InputText,
-  Input,
-  Button,
-  ButtonText,
-  ContainerForm,
-  Title
-} from "./styles";
+import React from "react";
+
+import { Input, Button, ButtonText, ContainerForm, Title } from "./styles";
 
 export default ({
   changeEmail,

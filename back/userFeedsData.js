@@ -78,10 +78,6 @@ const data = {
           {
             id: 35,
             status: "seen"
-          },
-          {
-            id: 36,
-            status: "not_seen"
           }
         ]
       },
@@ -176,63 +172,6 @@ const data = {
           },
           {
             id: 38,
-            status: "seen"
-          }
-        ]
-      },
-      {
-        id: 33,
-        name: "Pelotita 3",
-        has_pending_stories: false,
-        stories: [
-          {
-            id: 33,
-            status: "not_seen"
-          },
-          {
-            id: 34,
-            status: "not_seen"
-          },
-          {
-            id: 35,
-            status: "seen"
-          }
-        ]
-      },
-      {
-        id: 40,
-        name: "Pelotita 3",
-        has_pending_stories: false,
-        stories: [
-          {
-            id: 33,
-            status: "not_seen"
-          },
-          {
-            id: 34,
-            status: "not_seen"
-          },
-          {
-            id: 35,
-            status: "seen"
-          }
-        ]
-      },
-      {
-        id: 33,
-        name: "Pelotita 3",
-        has_pending_stories: false,
-        stories: [
-          {
-            id: 33,
-            status: "not_seen"
-          },
-          {
-            id: 34,
-            status: "not_seen"
-          },
-          {
-            id: 35,
             status: "seen"
           }
         ]

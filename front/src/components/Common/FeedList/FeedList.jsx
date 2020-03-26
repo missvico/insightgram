@@ -15,15 +15,13 @@ export default function FeedList({ feeds, title, disableTick }) {
         getItemCount={data => data.length}
         getItem={(data, index) => data[index]}
         keyExtractor={(item, index) => item.id}
-        renderItem={item => {
-          console.log(item.item.has_pending_stories)
-          return <FeedIconContainer
+        renderItem={item => (
+          <FeedIconContainer
             isSuscribed={item.item.is_suscribed}
-            hasPendingStories = {item.item.has_pending_stories}
+            hasPendingStories={item.item.has_pending_stories}
             disableTick={disableTick}
           />
-        }}
-
+        )}
       />
     </View>
   );
