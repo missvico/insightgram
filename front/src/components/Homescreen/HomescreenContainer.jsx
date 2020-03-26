@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import Homescreen from "./Homescreen";
 import { fetchFeedsByUser } from "../../../redux/actions/feeds";
 import { View } from "react-native";
-
+import { AntDesign } from "@expo/vector-icons";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
-  const [userHome, setUserHome] = useState({});
-
+  const [userHome, setUserHome] = useState({}); //Feeds y Customs del usuario
+  //Titulo de la screen
   const handlePress = () => {
     navigation.navigate("Feeds");
   };
@@ -19,11 +20,12 @@ const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
       return;
     }
   }, [setUserHome]);
-
   return (
     <View>
       {userHome && userHome.feeds ? (
-        <Homescreen handlePress={handlePress} feeds={userHome.feeds} />
+        <View>
+          <Homescreen handlePress={handlePress} feeds={userHome.feeds} />
+        </View>
       ) : (
         <Text>Loading...</Text>
       )}

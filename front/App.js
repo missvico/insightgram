@@ -15,8 +15,16 @@ const RootStack = createStackNavigator();
 function FeedsStack() {
   return (
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomescreenContainer} options={{ title: 'Insightgram' }} />
-      <Stack.Screen name="Feeds" component={FeedsContainer} options={{ title: 'Insightgram' }} />
+      <Stack.Screen
+        name="Home"
+        component={HomescreenContainer}
+        options={{ title: "Insightgram" }}
+      />
+      <Stack.Screen
+        name="Feeds"
+        component={FeedsContainer}
+        options={{ title: "Insightgram" }}
+      />
     </Stack.Navigator>
   );
 }
