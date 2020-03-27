@@ -16,7 +16,6 @@ export default function FeedList({ feeds, title, disableTick }) {
         getItem={(data, index) => data[index]}
         keyExtractor={(item, index) => item.id}
         renderItem={item => {
-          console.log(item.item.has_pending_stories)
           return <FeedIconContainer
             isSuscribed={item.item.is_suscribed}
             hasPendingStories = {item.item.has_pending_stories}
