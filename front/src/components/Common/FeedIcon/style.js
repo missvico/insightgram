@@ -1,5 +1,5 @@
 import styled from "styled-components/native"
-import {LIGHT_GREY, DARK_BLUE} from "../../../styles"
+import {LIGHT_GREY, DARK_BLUE, WHITE} from "../../../styles"
 import {RED} from "../../../styles"
 
 export const IconCard = styled.View`
@@ -29,8 +29,15 @@ export const AvatarBorder = styled.View`
     margin-top: ${props=> props.height*0.07}px
 `
 
+export const CardName = styled.Text`
+    text-align: center;
+    margin-top: 25%;
+    font-weight: bold;
+    color: ${WHITE}
+`
+
 export const TickContainer = styled.View`
     flex-direction: row; 
-    margin-top: ${props=> props.height*(0.3)}px;
+    margin-top: ${props=> props.height*(0.1)}px;
     margin-left: ${props=> props.height*(0.4)}px;
 `

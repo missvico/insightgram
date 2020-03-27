@@ -28,8 +28,7 @@ export default ({ feeds }) => {
             data={feeds}
             keyExtractor={item => item.id}
             renderItem={( feed ) => {
-              console.log(feed)
-            return <FeedIconContainer hasPendingStories={feed.item.has_pending_stories} disableTick={true} />
+            return <FeedIconContainer hasPendingStories={feed.item.has_pending_stories} disableTick={true} thumbnail={feed.item.thumbnail} name={feed.item.name}/>
           }}
           />
         </SafeAreaView>
