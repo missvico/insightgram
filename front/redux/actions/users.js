@@ -17,7 +17,7 @@ export const loginUser = (email, password) => dispatch => {
     }
   })
     .then(response => {
-      setItemStorage("@Token:key", response.data);
+      setItemStorage("@Token", response.data);
       dispatch(setUser(response.data));
       return response.data;
     })

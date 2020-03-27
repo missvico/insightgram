@@ -3,7 +3,7 @@ import { FlatList, View, Text } from "react-native";
 import { Title, List } from "./style";
 import FeedIconContainer from "../FeedIcon/FeedIconContainer";
 import { compose } from "redux";
-export default function FeedList({ feeds, title, disableTick }) {
+export default function FeedList({ feeds, title, disableTick, handleStory }) {
   return (
     <View style={{ overFlow: "hidden" }}>
       <Title> {title}</Title>
@@ -23,6 +23,8 @@ export default function FeedList({ feeds, title, disableTick }) {
             thumbnail = {item.item.thumbnail}
             preview = {item.item.stories? item.item.stories[0].thumbnail: null}
             name={item.item.name}
+            stories={item.item.stories}
+            handleStory = {handleStory}
           />
         }}
 

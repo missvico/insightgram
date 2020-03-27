@@ -8,13 +8,13 @@ import DiscoverContainer from "../Discover/DiscoverContainer";
 import CustomContainer from "../Custom/CustomContainer";
 import MyFeedsContainer from "../MyFeeds/MyFeedsContainer";
 
-export default ({ handlePress, feeds }) => {
+export default ({ handlePress, feeds, handleStory }) => {
   return (
     <View>
       <ScrollView>
-        <CustomContainer feeds={feeds.custom} />
-        <MyFeedsContainer feeds={feeds.all} />
-        <DiscoverContainer discover={feeds.discover} />
+        <CustomContainer feeds={feeds.custom} handleStory={handleStory} />
+        <MyFeedsContainer feeds={feeds.all} handleStory={handleStory}/>
+        <DiscoverContainer discover={feeds.discover} handleStory={handleStory} />
       </ScrollView>
 
       <View
@@ -23,7 +23,7 @@ export default ({ handlePress, feeds }) => {
           alignSelf: "flex-end",
 
           position: "absolute",
-          bottom: 0,
+          bottom: 20,
           right: 20
         }}
       >

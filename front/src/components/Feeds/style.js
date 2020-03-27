@@ -1,4 +1,5 @@
 import styled from "styled-components/native"
+import {WHITE, LIGHT_BLUE} from "../../styles"
 
 export const Title = styled.Text`
     padding-top: 60px;
@@ -15,4 +16,16 @@ export const Search = styled.TextInput`
     height: 35px;
     width: 300px;
     border: 1px black
+`
+
+export const Done = styled.TouchableOpacity`
+    background-color: ${WHITE};
+    height: 60px;
+    justify-content: center
+`
+
+export const ButtonText = styled.Text`
+    color: ${LIGHT_BLUE};
+    font-size: 18px;
+    text-align: center
 `
