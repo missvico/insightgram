@@ -21,6 +21,9 @@ export default function FeedList({ feeds, title, disableTick }) {
             isSuscribed={item.item.is_suscribed}
             hasPendingStories = {item.item.has_pending_stories}
             disableTick={disableTick}
+            thumbnail = {item.item.thumbnail}
+            preview = {item.item.stories? item.item.stories[0].thumbnail: null}
+            name={item.item.name}
           />
         }}
 

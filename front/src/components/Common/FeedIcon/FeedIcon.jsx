@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Dimensions, TouchableWithoutFeedback,StyleSheet, Text} from 'react-native';
-import {IconCard, Avatar, AvatarBorder, TickContainer} from "./style.js"
+import {IconCard, Avatar, AvatarBorder, TickContainer, CardName} from "./style.js"
 import { AntDesign } from '@expo/vector-icons';
 
-export default function FeedIcon({handlePress, tick, name, hasPendingStories}) {
+export default function FeedIcon({handlePress, tick, name, hasPendingStories, thumbnail, preview}) {
   const iconDimensions = {
     height: Dimensions.get('window').height*0.18,
     width: Dimensions.get('window').width*0.28
   }
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
-    <IconCard height={iconDimensions.height} width={iconDimensions.width} >
+    <IconCard 
+      height={iconDimensions.height} 
+      width={iconDimensions.width}
+      source={preview? {uri:preview} : {uri:"https://www.colorcombos.com/images/colors/CCCCCC.png"}} >
         <AvatarBorder 
         height={iconDimensions.height} 
         width={iconDimensions.width}
@@ -18,15 +21,12 @@ export default function FeedIcon({handlePress, tick, name, hasPendingStories}) {
             <Avatar
             height={iconDimensions.height}
             width={iconDimensions.width}
-            source={{uri:'https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2'}}/>
+            source={{uri:thumbnail}}/>
         </AvatarBorder>
-        <Text> {name}</Text>
-        {tick? (
+        <CardName> {name} </CardName>
         <TickContainer height={iconDimensions.height} width={iconDimensions.width}>
-            <AntDesign name="checkcircle" size={35} color="#01ADED"/>
+           {tick? ( <AntDesign name="checkcircle" size={35} color="#01ADED"/>  ): null}
         </TickContainer>
-        ): null
-        }
     </IconCard>
     </TouchableWithoutFeedback>
   );

@@ -26,14 +26,9 @@ export default ({ feeds }) => {
             numColumns={3}
             data={feeds}
             keyExtractor={item => item.id}
-            renderItem={feed => {
-              return (
-                <FeedIconContainer
-                  hasPendingStories={feed.item.has_pending_stories}
-                  disableTick={true}
-                />
-              );
-            }}
+            renderItem={( feed ) => {
+            return <FeedIconContainer hasPendingStories={feed.item.has_pending_stories} disableTick={true} thumbnail={feed.item.thumbnail} name={feed.item.name}/>
+          }}
           />
         </SafeAreaView>
       </ScrollView>
