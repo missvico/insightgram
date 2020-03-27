@@ -10,16 +10,6 @@ const LoginForm = ({ loginUser, navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const token = getItemStorage("@Token");
-
-  useEffect(() => {
-    if (token._55) {
-      navigation.navigate("FeedsStack");
-    } else {
-      return;
-    }
-  }, []);
-
   const changeEmail = email => {
     setEmail(email);
   };

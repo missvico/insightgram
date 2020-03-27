@@ -13,6 +13,11 @@ const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
     navigation.navigate("Feeds");
   };
 
+  const handleStory = (storyprops) =>{
+    navigation.navigate("Stories", storyprops)
+  }
+
+
   useEffect(() => {
     if (Object.keys(userHome).length == 0) {
       fetchFeedsByUser().then(data => setUserHome(data));
@@ -24,7 +29,7 @@ const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
     <View>
       {userHome && userHome.feeds ? (
         <View>
-          <Homescreen handlePress={handlePress} feeds={userHome.feeds} />
+          <Homescreen handlePress={handlePress} feeds={userHome.feeds} handleStory={handleStory} />
         </View>
       ) : (
         <Text>Loading...</Text>

@@ -7,12 +7,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginForm from "./src/components/Login/LoginForm";
 import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
 import FeedsContainer from "./src/components/Feeds/FeedsContainer";
+import Stories from "./src/components/Stories/StoriesContainer"
 
 const store = configureStore();
 const Stack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-function FeedsStack() {
+function FeedsStack({navigation}) {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
@@ -34,6 +35,7 @@ export default function App() {
       <NavigationContainer>
         <RootStack.Navigator headerMode="none" initialRouteName="Login">
           <RootStack.Screen name="Login" component={LoginForm} />
+          <RootStack.Screen name="Stories" component={Stories} />
           <RootStack.Screen name="FeedsStack" component={FeedsStack} />
         </RootStack.Navigator>
       </NavigationContainer>

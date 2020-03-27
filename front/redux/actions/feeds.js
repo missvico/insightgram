@@ -16,6 +16,7 @@ const setHomeUser = data => ({
 const token = getItemStorage("@Token");
 
 export const fetchAllFeeds = () => dispatch => {
+  console.log(token)
   return axios({
     method: "GET",
     url: `http://${ip + allFeedsUrl}`,
