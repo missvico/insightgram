@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   FlatList
 } from "react-native";
-import {Title} from "./style"
+import { Title } from "./style";
 
 // import { Title, Search } from "../Feeds/style";
 
@@ -16,7 +16,6 @@ import FeedList from "../Common/FeedList/FeedList";
 import Constants from "expo-constants";
 import FeedIconContainer from "../Common/FeedIcon/FeedIconContainer";
 export default ({ feeds }) => {
-
   return (
     <View>
       <Title>Discover</Title>

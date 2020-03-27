@@ -93,6 +93,10 @@ const data = {
             id: 35,
             thumbnail: "https://www.lawebdelprogramador.com/usr/43000/43585/5ad3a5b13af05-grafico-con-google-chart.png",
             status: "seen"
+          },
+          {
+            id: 36,
+            status: "not_seen"
           }
         ]
       },
@@ -207,6 +211,63 @@ const data = {
           {
             id: 38,
             thumbnail: "https://www.lawebdelprogramador.com/usr/43000/43585/5ad3a5b13af05-grafico-con-google-chart.png",
+            status: "seen"
+          }
+        ]
+      },
+      {
+        id: 33,
+        name: "Pelotita 3",
+        has_pending_stories: false,
+        stories: [
+          {
+            id: 33,
+            status: "not_seen"
+          },
+          {
+            id: 34,
+            status: "not_seen"
+          },
+          {
+            id: 35,
+            status: "seen"
+          }
+        ]
+      },
+      {
+        id: 40,
+        name: "Pelotita 3",
+        has_pending_stories: false,
+        stories: [
+          {
+            id: 33,
+            status: "not_seen"
+          },
+          {
+            id: 34,
+            status: "not_seen"
+          },
+          {
+            id: 35,
+            status: "seen"
+          }
+        ]
+      },
+      {
+        id: 33,
+        name: "Pelotita 3",
+        has_pending_stories: false,
+        stories: [
+          {
+            id: 33,
+            status: "not_seen"
+          },
+          {
+            id: 34,
+            status: "not_seen"
+          },
+          {
+            id: 35,
             status: "seen"
           }
         ]
