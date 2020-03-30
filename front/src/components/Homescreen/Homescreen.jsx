@@ -1,22 +1,21 @@
 import React from "react";
-import { View, SafeAreaView, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
-import DiscoverContainer from "../Discover/DiscoverContainer";
-import CustomContainer from "../Custom/CustomContainer";
-import MyFeedsContainer from "../MyFeeds/MyFeedsContainer";
+import Discover from "./Discover/Discover";
+import FeedList from "../Common/FeedList/FeedList"
 
 export default ({ handlePress, feeds, handleStory }) => {
   return (
     <View>
       <ScrollView>
-        <CustomContainer feeds={feeds.custom} handleStory={handleStory} />
-        <MyFeedsContainer feeds={feeds.all} handleStory={handleStory}/>
-        <DiscoverContainer discover={feeds.discover} handleStory={handleStory} />
+        <FeedList title={"Custom"} feeds={feeds.custom} disableTick={true} handleStory={handleStory} section={"custom"}/>
+        <FeedList title={"myFeeds"} feeds={feeds.all} disableTick={true} handleStory={handleStory} section={"all"}/>
+        <Discover feeds={feeds.discover} handleStory={handleStory} />
       </ScrollView>
-
+      
       <View
         style={{
           display: "flex",

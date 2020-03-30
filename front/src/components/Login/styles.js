@@ -21,18 +21,20 @@ export const Input = styled.TextInput`
 `;
 
 export const Button = styled.TouchableHighlight`
+  height: 40px;
   padding-top: 12px;
   padding-bottom: 12px;
-
   background-color: #27ae60;
   margin-bottom: 20px;
   width: 280px;
   border-radius: 20px;
   padding-horizontal: 10px;
+  align-items: center
 `;
 
 export const ButtonText = styled.Text`
-  color: #ecf0f1;
+  color: #ffffff;
+  font-weight: 600;
   font-size: 16px;
   text-align: center;
 `;
