@@ -1,27 +1,24 @@
 import React, {useState, useEffect}  from "react"
-import StoryContainer from "../Story/StoryContainer"
+import Story from "./Content/Story/Story"
 
-export default ({route, navigation})=>{
+export default StoriesContainer = ({feed, handleFeedChange})=>{
+    const {stories} = feed
     const [index, setIndex] = useState(0)
 
-    const handleFoward = ()=>{
-        setIndex(index+1)
+    const handleStoryChange = (n) =>{
+        if(index+n<0 || index+n === stories.length){
+            setIndex(0)
+            handleFeedChange(n)
+        }else{
+            setIndex(index+n)
+        }
     }
 
-    const handleBack = ()=>{
-        setIndex(index-1)
-    }
-
-    const handleHome = () =>{
-        navigation.navigate("Home")
-    }
-
-    return <StoryContainer 
-    story={route.params.stories[index]} 
-    handleFoward={handleFoward} 
-    handleBack={handleBack} 
-    index={index} 
-    storiesLength={route.params.stories.length}
-    handleHome={handleHome}
+    return <Story 
+    story={stories[index]} 
+    handleStoryChange={handleStoryChange} 
     />
 }
+
+
+

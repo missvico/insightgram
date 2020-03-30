@@ -1,18 +1,18 @@
 import React from "react"
-import {Text, TouchableWithoutFeedback} from "react-native"
+import {Image, TouchableWithoutFeedback} from "react-native"
 import {ToggleStory, Touchable, StoryContainer} from "./style"
 
-export default ({story, index, storiesLength, handleBack, handleFoward, handleHome})=>{
+export default ({story, handleStoryChange})=>{
 
     return (
         <StoryContainer>
-            <Text>{story.id}</Text>
+            <Image style={{height:"100%", width:"100%"}} source={{uri:story.thumbnail}}/>
             <ToggleStory>
-                <TouchableWithoutFeedback onPress={index? handleBack: handleHome}>
-                    <Touchable flex={2}>
+                <TouchableWithoutFeedback onPress={()=>handleStoryChange(-1)}>
+                    <Touchable flex={1}>
                     </Touchable>
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback onPress={(index+1===storiesLength)? handleHome: handleFoward}>
+                <TouchableWithoutFeedback onPress={()=>handleStoryChange(1)}>
                     <Touchable flex={2}>
                     </Touchable>
                 </TouchableWithoutFeedback>

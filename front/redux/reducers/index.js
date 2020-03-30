@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import Feeds from "./feedsReducer";
+import feeds from "./feedsReducer";
 
-export default combineReducers({ Feeds });
+export default combineReducers({ feeds });
