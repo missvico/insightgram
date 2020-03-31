@@ -3,7 +3,7 @@ import Story from "./Content/Story/Story";
 import { View } from "react-native";
 import Header from "./Content/Header/Header";
 
-export default StoriesContainer = ({ feed, handleFeedChange }) => {
+export default StoriesContainer = ({ handleClose, feed, handleFeedChange }) => {
   const { stories } = feed;
   const [index, setIndex] = useState(0);
   const [storiesSeen, setStoriesSeen] = useState([]);
@@ -18,14 +18,13 @@ export default StoriesContainer = ({ feed, handleFeedChange }) => {
     }
   };
 
-
   const changeStatus = inx => {
     stories[inx].status = "seen";
     storiesSeen.push(stories[inx].id);
     setStoriesSeen(storiesSeen);
   };
 
-   return (
+  return (
     <View flex={1}>
       <Header style={{ position: "absolute" }} handleClose={handleClose} />
       <Story story={stories[index]} handleStoryChange={handleStoryChange} />

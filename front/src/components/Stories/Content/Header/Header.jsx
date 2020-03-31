@@ -8,16 +8,16 @@ export default ({ play, handleClose }) => {
     <Header>
       <TouchableOpacity>
         {play ? (
-          <Feather name="play" color="#ffffff" size="25px" />
+          <Feather name="play" color="#ffffff" size={25} />
         ) : (
-          <Feather name="pause" color="#ffffff" size="25px" />
+          <Feather name="pause" color="#ffffff" size={25} />
         )}
       </TouchableOpacity>
       <TouchableOpacity onPress={handleClose}>
         <Feather
           name="x"
           color="#ffffff"
-          size="30px"
+          size={30}
           style={{ paddingLeft: 20 }}
         />
       </TouchableOpacity>
