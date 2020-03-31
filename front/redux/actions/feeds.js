@@ -27,7 +27,7 @@ export const fetchAllFeeds = token => dispatch => {
       dispatch(setFeeds(feeds));
       return feeds;
     })
-    .catch(err => console.log(err));
+    .catch(error => error.response.status);
 };
 
 export const fetchFeedsByUser = token => dispatch => {
@@ -44,5 +44,5 @@ export const fetchFeedsByUser = token => dispatch => {
       dispatch(setHomeUser(userHome));
       return userHome;
     })
-    .catch(err => err);
+    .catch(error => error.response.status);
 };
