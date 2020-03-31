@@ -3,12 +3,27 @@ import { Alert } from "react-native";
 import Login from "./Login";
 import { Container } from "./styles";
 import { connect } from "react-redux";
-import { loginUser } from "../../../redux/actions/users";
-import { getItemStorage } from "../../../assets/js/AsyncStorage";
+import { loginUser, validateToken } from "../../../redux/actions/users";
+import {
+  setItemStorage,
+  getItemStorage
+} from "../../../assets/js/AsyncStorage";
 
-const LoginForm = ({ loginUser, navigation }) => {
+const LoginForm = ({ loginUser, navigation, validateToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    getItemStorage("@Token").then(token => {
+      validateToken(token).then(response => {
+        if (response == 401) {
+          return;
+        } else {
+          navigation.navigate("FeedsStack");
+        }
+      });
+    });
+  }, []);
 
   const changeEmail = email => {
     setEmail(email);
@@ -24,7 +39,9 @@ const LoginForm = ({ loginUser, navigation }) => {
         if (response == 401) {
           Alert.alert("Email o contraseña incorrecta");
         } else {
-          navigation.navigate("FeedsStack");
+          setItemStorage("@Token", response).then(() => {
+            navigation.navigate("FeedsStack");
+          });
         }
       });
     } else {
@@ -47,7 +64,8 @@ const LoginForm = ({ loginUser, navigation }) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    loginUser: (email, password) => dispatch(loginUser(email, password))
+    loginUser: (email, password) => dispatch(loginUser(email, password)),
+    validateToken: token => dispatch(validateToken(token))
   };
 };
 

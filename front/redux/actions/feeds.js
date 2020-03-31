@@ -13,16 +13,13 @@ const setHomeUser = data => ({
   data
 });
 
-const token = getItemStorage("@Token");
-
-export const fetchAllFeeds = () => dispatch => {
-  console.log(token)
+export const fetchAllFeeds = token => dispatch => {
   return axios({
     method: "GET",
     url: `http://${ip + allFeedsUrl}`,
     headers: {
       "Content-Type": "application/json",
-      token: token._55
+      token: token
     }
   })
     .then(response => response.data)
@@ -33,13 +30,13 @@ export const fetchAllFeeds = () => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const fetchFeedsByUser = () => dispatch => {
+export const fetchFeedsByUser = token => dispatch => {
   return axios({
     method: "GET",
     url: `http://${ip + feedsUserUrl}`,
     headers: {
       "Content-Type": "application/json",
-      token: token._55
+      token: token
     }
   })
     .then(response => response.data)
