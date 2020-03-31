@@ -30,7 +30,7 @@ export const fetchAllFeeds = () => dispatch => {
       dispatch(setFeeds(feeds));
       return feeds;
     })
-    .catch(err => console.log(err));
+    .catch(error => error.response.status);
 };
 
 export const fetchFeedsByUser = () => dispatch => {
@@ -48,5 +48,5 @@ export const fetchFeedsByUser = () => dispatch => {
       dispatch(setHomeUser(userHome));
       return userHome;
     })
-    .catch(err => err);
+    .catch(error => error.response.status);
 };
