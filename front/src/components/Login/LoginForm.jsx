@@ -19,7 +19,7 @@ const LoginForm = ({ loginUser, navigation, validateToken }) => {
         if (response == 401) {
           return;
         } else {
-          navigation.navigate("FeedsStack");
+          navigation.replace("FeedsStack");
         }
       });
     });
@@ -40,7 +40,7 @@ const LoginForm = ({ loginUser, navigation, validateToken }) => {
           Alert.alert("Email o contraseña incorrecta");
         } else {
           setItemStorage("@Token", response).then(() => {
-            navigation.navigate("FeedsStack");
+            navigation.replace("FeedsStack");
           });
         }
       });
