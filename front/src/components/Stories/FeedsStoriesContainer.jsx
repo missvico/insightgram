@@ -6,12 +6,17 @@ const FeedsStoriesContainer = ({ route, navigation, feeds }) => {
   const { id, section } = route.params;
   const [index, setIndex] = useState(filterStories(feeds[section], id));
 
+
   const handleFeedChange = n => {
     changeHasPendingStories(index);
     index + n < 0 || index + n === feeds[section].length
       ? navigation.navigate("Home")
       : setIndex(index + n);
   };
+
+  const handleClose = () => {
+    navigation.navigate("Home");
+
 
   const changeHasPendingStories = inx => {
     feeds[section][inx].stories.filter(story => story.status == "not_seen")
@@ -22,6 +27,7 @@ const FeedsStoriesContainer = ({ route, navigation, feeds }) => {
 
   return (
     <StoriesContainer
+      handleClose={handleClose}
       handleFeedChange={handleFeedChange}
       feed={feeds[section][index]}
     />
