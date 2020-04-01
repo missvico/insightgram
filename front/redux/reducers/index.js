@@ -1,4 +1,8 @@
 import { combineReducers } from "redux";
-import Feeds from "./feedsReducer";
+import feeds from "./feedsReducer";
+import play from "./playStoriesReducer"
 
-export default combineReducers({ Feeds });
+export default combineReducers({ 
+    feeds, 
+    play 
+});

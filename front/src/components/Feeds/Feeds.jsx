@@ -1,45 +1,42 @@
 import React from "react";
 import {
   Text,
-  StyleSheet,
   View,
   ScrollView,
   SafeAreaView,
   FlatList
 } from "react-native";
-
-import { Title, Search } from "./style";
-
-import { Divider } from "react-native-elements";
+import { Search, Done, ButtonText } from "./style";
 import FeedList from "../Common/FeedList/FeedList";
-import Constants from "expo-constants";
 
-function Item({ title }) {
+export default ({ onChange, inputValue, feeds, handlePress }) => {
   return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-}
-
-export default ({ onChange, inputValue, feeds }) => {
-  return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Search
-        placeholder='Search'
+        placeholder="Search"
         onChange={e => onChange(e)}
         value={inputValue}
       />
 
-      <SafeAreaView>
-        <FlatList
-          data={feeds}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <FeedList title={item.group} feeds={item.feeds} />
-          )}
-        />
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView>
+          <FlatList
+            style={{marginBottom: 10}}
+            data={feeds}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <FeedList title={item.group} feeds={item.feeds} />
+            )}
+          />
+        </ScrollView>
       </SafeAreaView>
+
+      <Done
+        onPress={() => handlePress()}
+      >
+      <ButtonText>Done</ButtonText>
+      </Done>
+      
     </View>
   );
 };

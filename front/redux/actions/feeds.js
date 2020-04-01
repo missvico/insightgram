@@ -12,10 +12,7 @@ const setHomeUser = data => ({
   data
 });
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4NTA5ODk0NywiZXhwIjoxNTg3NjkwOTQ3fQ.zAQMKqYgP927yjHA7f2qZtvPMphECy8RKKviTgfC0eU";
-
-export const fetchAllFeeds = () => dispatch => {
+export const fetchAllFeeds = token => dispatch => {
   return axios({
     method: "GET",
     url: `http://${ip + allFeedsUrl}`,
@@ -29,10 +26,10 @@ export const fetchAllFeeds = () => dispatch => {
       dispatch(setFeeds(feeds));
       return feeds;
     })
-    .catch(err => console.log(err));
+    .catch(error => error.response.status);
 };
 
-export const fetchFeedsByUser = () => dispatch => {
+export const fetchFeedsByUser = token => dispatch => {
   return axios({
     method: "GET",
     url: `http://${ip + feedsUserUrl}`,
@@ -46,5 +43,5 @@ export const fetchFeedsByUser = () => dispatch => {
       dispatch(setHomeUser(userHome));
       return userHome;
     })
-    .catch(err => err);
+    .catch(error => error.response.status);
 };

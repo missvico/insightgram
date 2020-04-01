@@ -4,25 +4,40 @@ import { connect } from "react-redux";
 import Homescreen from "./Homescreen";
 import { fetchFeedsByUser } from "../../../redux/actions/feeds";
 import { View } from "react-native";
-
+import { AntDesign } from "@expo/vector-icons";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { getItemStorage } from "../../../assets/js/AsyncStorage";
 const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
-  const [userHome, setUserHome] = useState({}); //Feeds y Customs del usuario
-  //Titulo de la screen
+  const [userHome, setUserHome] = useState({});
+
+  useEffect(() => {
+    if (Object.keys(userHome).length == 0) {
+      getItemStorage("@Token").then(token => {
+        fetchFeedsByUser(token).then(data => setUserHome(data));
+      });
+    } else {
+      return;
+    }
+  }, [userHome]);
+
   const handlePress = () => {
     navigation.navigate("Feeds");
   };
 
-  useEffect(() => {
-    if (Object.keys(userHome).length == 0) {
-      fetchFeedsByUser().then(data => setUserHome(data));
-    } else {
-      return;
-    }
-  }, [setUserHome]);
+  const handleStory = storyprops => {
+    navigation.navigate("Stories", storyprops);
+  };
+
   return (
     <View>
       {userHome && userHome.feeds ? (
-        <Homescreen handlePress={handlePress} feeds={userHome.feeds} />
+        <View>
+          <Homescreen
+            handlePress={handlePress}
+            feeds={userHome.feeds}
+            handleStory={handleStory}
+          />
+        </View>
       ) : (
         <Text>Loading...</Text>
       )}
@@ -32,7 +47,7 @@ const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchFeedsByUser: () => dispatch(fetchFeedsByUser())
+    fetchFeedsByUser: token => dispatch(fetchFeedsByUser(token))
   };
 };
 

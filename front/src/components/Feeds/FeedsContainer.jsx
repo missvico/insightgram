@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Feeds from "./Feeds";
 import { fetchAllFeeds } from "../../../redux/actions/feeds";
+import { getItemStorage } from "../../../assets/js/AsyncStorage";
 
 const FeedsContainer = props => {
   const [inputValue, setInputValue] = useState("");
@@ -9,9 +10,11 @@ const FeedsContainer = props => {
 
   useEffect(() => {
     if (Object.keys(allFeeds).length == 0) {
-      props.fetchAllFeeds().then(feeds => setAllFeeds(feeds));
+      getItemStorage("@Token").then(token =>
+        props.fetchAllFeeds(token).then(feeds => setAllFeeds(feeds))
+      );
     } else {
-      return; 
+      return;
     }
   }, [setAllFeeds]);
 
@@ -19,7 +22,17 @@ const FeedsContainer = props => {
     let search = event.nativeEvent.text;
     setInputValue(search);
   };
-  return <Feeds feeds={allFeeds ? allFeeds.feeds : {}} onChange={onChange} />;
+
+  const handlePress = () => {
+    props.navigation.navigate("Home");
+  };
+  return (
+    <Feeds
+      feeds={allFeeds ? allFeeds.feeds : {}}
+      onChange={onChange}
+      handlePress={handlePress}
+    />
+  );
 };
 const mapStateToProps = function(state, ownProps) {
   return {};
@@ -28,8 +41,8 @@ const mapStateToProps = function(state, ownProps) {
 const mapDispatchToProps = function(dispatch, ownProps) {
   return {
     fetchFeeds: search => dispatch(fetchFeeds(search)),
-    fetchAllFeeds: () => dispatch(fetchAllFeeds())
+    fetchAllFeeds: token => dispatch(fetchAllFeeds(token))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeedsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(FeedsContainer);

@@ -7,3 +7,8 @@ export const Title = styled.Text`
     font-weight: bold;
     padding-left: 10px
 `
+
+export const DiscoverGrid = styled.FlatList`
+    margin-left: 10px;
+    margin-bottom: 10px
+`
