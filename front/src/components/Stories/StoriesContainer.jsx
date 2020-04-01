@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Story from "./Content/Story/Story";
 import { View } from "react-native";
-import Header from "./Content/Header/Header";
+import HeaderContainer from "./Content/Header/HeaderContainer";
+import { connect } from "react-redux";
 
-export default StoriesContainer = ({ handleClose, feed, handleFeedChange }) => {
-  const { stories } = feed;
+const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
+  const { stories, name } = feed;
   const [index, setIndex] = useState(0);
   const [currentStory, setCurrentStory] = useState({});
 
@@ -16,8 +17,8 @@ export default StoriesContainer = ({ handleClose, feed, handleFeedChange }) => {
       setCurrentStory(stories[inx]);
       changeStatus(inx);
     } else {
-      setCurrentStory(stories[0]);
       setIndex(stories.length - 1);
+      setCurrentStory(stories[stories.length - 1]);
     }
   }, [setCurrentStory, feed]);
 
@@ -36,9 +37,21 @@ export default StoriesContainer = ({ handleClose, feed, handleFeedChange }) => {
     stories[index].status = "seen";
   };
 
+  useInterval(
+    () => {
+      handleStoryChange(1);
+    },
+    3000,
+    play
+  );
+
   return (
     <View flex={1}>
-      <Header style={{ position: "absolute" }} handleClose={handleClose} />
+      <HeaderContainer
+        style={{ position: "absolute" }}
+        handleClose={handleClose}
+        name={name}
+      />
       <Story story={currentStory} handleStoryChange={handleStoryChange} />
     </View>
   );
@@ -46,3 +59,35 @@ export default StoriesContainer = ({ handleClose, feed, handleFeedChange }) => {
 
 const lastNotSeen = stories =>
   stories.indexOf(stories.filter(story => story.status === "not_seen")[0]);
+
+const mapStateToProps = state => {
+  return {
+    play: state.play.value
+  };
+};
+
+//FUNCION AUXILIAR:
+
+function useInterval(callback, delay, isActive) {
+  const savedCallback = useRef();
+
+  // Remember the latest function.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    let interval = null;
+    if (isActive) {
+      interval = setInterval(tick, delay);
+    } else if (!isActive) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isActive, delay]);
+}
+
+export default connect(mapStateToProps, null)(StoriesContainer);
