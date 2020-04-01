@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Story from "./Content/Story/Story";
 import { View } from "react-native";
-import Header from "./Content/Header/Header";
+import HeaderContainer from "./Content/Header/HeaderContainer";
+import {connect} from "react-redux"
 
-export default StoriesContainer = ({ handleClose, feed, handleFeedChange }) => {
-  const { stories } = feed;
+const StoriesContainer = ({ handleClose, feed, handleFeedChange, play}) => {
+  const { stories, name } = feed;
   const [index, setIndex] = useState(0);
   const [storiesSeen, setStoriesSeen] = useState([]);
 
@@ -18,6 +19,10 @@ export default StoriesContainer = ({ handleClose, feed, handleFeedChange }) => {
     }
   };
 
+  useInterval(() => {
+    handleStoryChange(1)
+  }, 3000, play);
+
   const changeStatus = inx => {
     stories[inx].status = "seen";
     storiesSeen.push(stories[inx].id);
@@ -26,8 +31,43 @@ export default StoriesContainer = ({ handleClose, feed, handleFeedChange }) => {
 
   return (
     <View flex={1}>
-      <Header style={{ position: "absolute" }} handleClose={handleClose} />
+      <HeaderContainer style={{ position: "absolute" }} handleClose={handleClose} name={name} />
       <Story story={stories[index]} handleStoryChange={handleStoryChange} />
     </View>
   );
 };
+
+const mapStateToProps = (state) => {
+  return{
+    play: state.play.value
+  }
+}
+
+
+export default connect(mapStateToProps, null)(StoriesContainer)
+
+
+//FUNCION AUXILIAR:
+
+function useInterval(callback, delay, isActive) {
+  const savedCallback = useRef();
+
+  // Remember the latest function.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    let interval = null;
+    if (isActive) {
+      interval = setInterval(tick, delay);
+    } else if (!isActive ) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isActive, delay]);
+  
+}
