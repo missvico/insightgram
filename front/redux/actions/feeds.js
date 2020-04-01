@@ -1,4 +1,4 @@
-import { SET_FEEDS, SET_HOME_USER } from "../constants";
+import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA } from "../constants";
 import axios from "axios";
 import { allFeedsUrl, ip, feedsUserUrl } from "../../config";
 
@@ -9,6 +9,11 @@ const setFeeds = feeds => ({
 
 const setHomeUser = data => ({
   type: SET_HOME_USER,
+  data
+});
+
+const updateHomeData = data => ({
+  type: UPDATE_HOME_DATA,
   data
 });
 
@@ -44,4 +49,8 @@ export const fetchFeedsByUser = token => dispatch => {
       return userHome;
     })
     .catch(error => error.response.status);
+};
+
+export const updateFeedsUser = feeds => dispatch => {
+  dispatch(updateHomeData(feeds))
 };

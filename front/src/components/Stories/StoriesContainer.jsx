@@ -2,50 +2,69 @@ import React, { useState, useEffect, useRef } from "react";
 import Story from "./Content/Story/Story";
 import { View } from "react-native";
 import HeaderContainer from "./Content/Header/HeaderContainer";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
 
-const StoriesContainer = ({ handleClose, feed, handleFeedChange, play}) => {
+const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
   const { stories, name } = feed;
   const [index, setIndex] = useState(0);
-  const [storiesSeen, setStoriesSeen] = useState([]);
+  const [currentStory, setCurrentStory] = useState({});
+
+  useEffect(() => {
+    const inx = lastNotSeen(stories);
+
+    if (inx !== -1) {
+      setIndex(inx);
+      setCurrentStory(stories[inx]);
+      changeStatus(inx);
+    } else {
+      setIndex(stories.length - 1);
+      setCurrentStory(stories[stories.length - 1]);
+    }
+  }, [setCurrentStory, feed]);
 
   const handleStoryChange = n => {
-    changeStatus(index);
-    if (index + n < 0 || index + n === stories.length) {
+    if (index + n < 0 || index + n > stories.length) {
       setIndex(0);
       handleFeedChange(n);
     } else {
+      changeStatus(index);
       setIndex(index + n);
+      setCurrentStory(stories[index]);
     }
   };
 
-  useInterval(() => {
-    handleStoryChange(1)
-  }, 3000, play);
-
-  const changeStatus = inx => {
-    stories[inx].status = "seen";
-    storiesSeen.push(stories[inx].id);
-    setStoriesSeen(storiesSeen);
+  const changeStatus = index => {
+    stories[index].status = "seen";
   };
+
+  useInterval(
+    () => {
+      handleStoryChange(1);
+    },
+    3000,
+    play
+  );
 
   return (
     <View flex={1}>
-      <HeaderContainer style={{ position: "absolute" }} handleClose={handleClose} name={name} />
-      <Story story={stories[index]} handleStoryChange={handleStoryChange} />
+      <HeaderContainer
+        style={{ position: "absolute" }}
+        handleClose={handleClose}
+        name={name}
+      />
+      <Story story={currentStory} handleStoryChange={handleStoryChange} />
     </View>
   );
 };
 
-const mapStateToProps = (state) => {
-  return{
+const lastNotSeen = stories =>
+  stories.indexOf(stories.filter(story => story.status === "not_seen")[0]);
+
+const mapStateToProps = state => {
+  return {
     play: state.play.value
-  }
-}
-
-
-export default connect(mapStateToProps, null)(StoriesContainer)
-
+  };
+};
 
 //FUNCION AUXILIAR:
 
@@ -64,10 +83,11 @@ function useInterval(callback, delay, isActive) {
     let interval = null;
     if (isActive) {
       interval = setInterval(tick, delay);
-    } else if (!isActive ) {
+    } else if (!isActive) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
   }, [isActive, delay]);
-  
 }
+
+export default connect(mapStateToProps, null)(StoriesContainer);

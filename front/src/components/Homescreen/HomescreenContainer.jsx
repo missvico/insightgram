@@ -7,7 +7,12 @@ import { View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { getItemStorage } from "../../../assets/js/AsyncStorage";
-const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
+
+const HomescreenContainer = ({
+  navigation,
+  fetchFeedsByUser,
+  homeUserStore
+}) => {
   const [userHome, setUserHome] = useState({});
 
   useEffect(() => {
@@ -18,7 +23,7 @@ const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
     } else {
       return;
     }
-  }, [userHome]);
+  }, [setUserHome]);
 
   const handlePress = () => {
     navigation.navigate("Feeds");
@@ -45,10 +50,19 @@ const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
   );
 };
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    homeUserStore: state.feeds.homeUser
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchFeedsByUser: token => dispatch(fetchFeedsByUser(token))
   };
 };
 
-export default connect(null, mapDispatchToProps)(HomescreenContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomescreenContainer);
