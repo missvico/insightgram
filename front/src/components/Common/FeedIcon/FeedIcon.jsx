@@ -3,8 +3,7 @@ import { View, Dimensions, TouchableWithoutFeedback,StyleSheet, Text, ImageBackg
 import {IconContainer, GreyBackgroud, PreviewImage, IconCard, Avatar, AvatarBorder, TickBorder ,TopContainer , CardName} from "./style.js"
 import { AntDesign } from '@expo/vector-icons';
 
-export default function FeedIcon({handlePress, tick, name, hasPendingStories, thumbnail, preview, disableTick}) {
-  const size = "big"
+export default function FeedIcon({handlePress, tick, name, hasPendingStories, thumbnail, preview, disableTick, size}) {
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <IconContainer
