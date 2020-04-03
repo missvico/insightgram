@@ -57,8 +57,8 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <RootStack.Navigator headerMode="none" initialRouteName="Login">
-          {/* <RootStack.Screen name="Login" component={LoginForm} /> */}
-          {/* <RootStack.Screen name="Stories" component={FeedsStoriesContainer} /> */}
+          <RootStack.Screen name="Login" component={LoginForm} />
+          <RootStack.Screen name="Stories" component={FeedsStoriesContainer} />
           <RootStack.Screen name="FeedsStack" component={FeedsStack} />
         </RootStack.Navigator>
       </NavigationContainer>
