@@ -7,7 +7,6 @@ import {setPlay} from "../../../../../redux/actions/play"
 const HeaderContainer = ({ play, handleClose, setPlay, name}) => {
     const handlePlay = () => {
         setPlay(!play)
-        console.log(play)
     }
   return (
     <Header play={play} handleClose={handleClose} handlePlay={handlePlay} name={name}/>

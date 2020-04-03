@@ -4,11 +4,12 @@ import { ItemText } from "./style";
 import FeedList from "../Common/FeedList/FeedList";
 import { connect } from "react-redux";
 
-const MyFeedsToggle = ({ feeds }) => {
-  console.log(feeds, "FEEDDDSSS11111");
+const MyFeedsToggle = ({ feedsUnfiltered }) => {
+  const feeds = feedsUnfiltered? filter(feedsUnfiltered): null
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView>
+      {feeds? 
+      (<ScrollView>
         <FlatList
           data={feeds}
           keyExtractor={item => item.id}
@@ -19,7 +20,9 @@ const MyFeedsToggle = ({ feeds }) => {
             </View>
           )}
         />
-      </ScrollView>
+      </ScrollView>):
+    (<Text> Loading...</Text>)
+    }
     </SafeAreaView>
   );
 };
@@ -38,7 +41,7 @@ const filter = feeds => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    feeds: filter(state.feeds.feeds.feeds)
+    feedsUnfiltered: state.feeds.feeds.feeds
   };
 };
 

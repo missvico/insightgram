@@ -1,9 +1,8 @@
 import React, {useState} from "react"
 import FeedIcon from "./FeedIcon"
 
-export default FeedIconContainer = ({feed, disableTick, handleStory, section}) => { 
+export default FeedIconContainer = ({feed, disableTick, handleStory, section, size }) => { 
     const [selected, setSelected] = useState(feed.is_suscribed)
-    console.log(feed)
     const handlePress = ()=>{
         setSelected(!selected)
     }
@@ -18,6 +17,7 @@ export default FeedIconContainer = ({feed, disableTick, handleStory, section}) =
             thumbnail={feed.thumbnail}
             preview={disableTick? feed.stories[0].thumbnail: null}
             disableTick={disableTick}
+            size={size}
              />
     )
 

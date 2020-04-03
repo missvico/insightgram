@@ -21,6 +21,7 @@ export default function FeedList({ feeds, title, disableTick, handleStory, secti
             handleStory = {handleStory}
             feed={item.item}
             section={section}
+            size={"big"}
           />
         }}
 
