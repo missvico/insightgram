@@ -3,7 +3,7 @@ import FeedIcon from "./FeedIcon"
 
 export default FeedIconContainer = ({feed, disableTick, handleStory, section}) => { 
     const [selected, setSelected] = useState(feed.is_suscribed)
-
+    console.log(feed)
     const handlePress = ()=>{
         setSelected(!selected)
     }
@@ -16,7 +16,8 @@ export default FeedIconContainer = ({feed, disableTick, handleStory, section}) =
             name={feed.name} 
             hasPendingStories={feed.has_pending_stories} 
             thumbnail={feed.thumbnail}
-            preview={feed.preview}
+            preview={disableTick? feed.stories[0].thumbnail: null}
+            disableTick={disableTick}
              />
     )
 
