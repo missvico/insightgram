@@ -9,10 +9,19 @@ export const Title = styled.Text`
 `;
 
 export const Search = styled.TextInput`
-  padding-left: 10px;
-  margin: 10px;
-  border-radius: 10px;
+  margin: 13px 14px 13px 18px;
+  border-radius: 13px;
   height: 35px;
-  width: 300px;
-  border: 1px black;
+  font-size: 17px;
+  padding: 0 30px;
+  background-color: rgba(142, 142, 147, 0.12);
+`;
+
+export const AllView = styled.View`
+  background-color: white;
+`;
+
+export const Subscribe = styled.Button`
+  height: 100;
+  background-color: red;
 `;
