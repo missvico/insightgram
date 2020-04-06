@@ -7,6 +7,7 @@ export const IconContainer = styled.View`
     margin: ${props=> props.size==="big"? 3*1.15: 2*1.15}px;
 `
 
+
 export const PreviewImage = styled.Image`
     height: ${props=> props.size==="big"? 181*1.15: 148*1.15}px;
     width: ${props=> props.size==="big"? 101*1.15: 82*1.15}px;
@@ -37,7 +38,15 @@ export const IconCard = styled.View`
 export const Avatar = styled.Image`
     height: ${27*1.15}px;
     width: ${27*1.15}px;
-    border-radius: ${27*1.15/2}px    
+    border-radius: ${27*1.15/2}px 
+`
+
+export const AvatarBorderGradient = styled(LinearGradient)`
+    height: ${32*1.15}px;
+    width: ${32*1.15}px;
+    border-radius: ${32*1.15/2}px;
+    align-items: center;
+    justify-content: center;
 `
 
 export const AvatarBorder = styled.View`
@@ -45,7 +54,6 @@ export const AvatarBorder = styled.View`
     width: ${32*1.15}px;
     border-radius: ${32*1.15/2}px;
     background-color: transparent;
-    border: ${3*1.15}px solid ${props=> props.hasPendingStories? "#368deb": "transparent"};
     align-items: center;
     justify-content: center;
 `
