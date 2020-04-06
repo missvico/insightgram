@@ -10,7 +10,7 @@ const AllFeedsToggle = ({ feeds }) => {
       <ScrollView>
         <FlatList
           data={feeds}
-          keyExtractor={item => item.id}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View>
               <ItemText>{item.group}</ItemText>
@@ -25,7 +25,7 @@ const AllFeedsToggle = ({ feeds }) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    feeds: state.feeds.feeds.feeds
+    feeds: state.feeds.feeds.feeds,
   };
 };
 

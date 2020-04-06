@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { TabContainer, TabText } from "./style";
+import { TabContainer } from "./style";
 import { Text, View, TouchableWithoutFeedback } from "react-native";
 
-const Header = props => {
+const Header = (props) => {
   const {
     navigationState,
     navigation,
     activeTintColor,
-    inactiveTintColor
+    inactiveTintColor,
   } = props;
   const activeTabIndex = navigation.state.index;
 
@@ -32,7 +32,7 @@ const Header = props => {
                     }`,
 
                     paddingLeft: 15,
-                    paddingRight: 15
+                    paddingRight: 15,
                   }}
                 >
                   {route.routeName}
@@ -46,7 +46,7 @@ const Header = props => {
         style={{
           borderBottomColor: "black",
           opacity: 0.1,
-          borderBottomWidth: 1
+          borderBottomWidth: 1,
         }}
       />
     </View>
