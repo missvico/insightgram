@@ -23,5 +23,5 @@ export const AllView = styled.View`
 
 export const Subscribe = styled.Button`
   height: 100;
-  background-color: red;
+  background-color: blue;
 `;
