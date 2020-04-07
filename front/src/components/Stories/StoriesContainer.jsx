@@ -27,8 +27,8 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
       setIndex(0);
       handleFeedChange(n);
     } else {
-      changeStatus(index);
       setIndex(index + n);
+      changeStatus(index);
       setCurrentStory(stories[index]);
     }
   };
