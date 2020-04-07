@@ -3,9 +3,9 @@ import { Text, View, TextInput } from "react-native";
 import { Input, SearchContainer } from "./style";
 import { AntDesign } from "@expo/vector-icons";
 
-export default ({ onChange, inputValue }) => {
+export default () => {
   return (
-    <View>
+    <View style={{ backgroundColor: "#fff" }}>
       <SearchContainer>
         <AntDesign
           name="search1"

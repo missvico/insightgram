@@ -8,11 +8,9 @@ export const Title = styled.Text`
   font-weight: bold;
 `;
 
-export const Search = styled.TextInput`
-  padding-left: 10px;
-  margin: 10px;
-  border-radius: 10px;
-  height: 35px;
-  width: 300px;
-  border: 1px black;
+export const ItemText = styled.Text`
+  font-size: 17px;
+  padding-top: 15px;
+  margin-bottom: -10px;
+  padding-left: 16px;
 `;

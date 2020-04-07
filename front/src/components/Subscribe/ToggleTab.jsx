@@ -12,7 +12,7 @@ const Header = (props) => {
   const activeTabIndex = navigation.state.index;
 
   return (
-    <View>
+    <View style={{ backgroundColor: "#fff" }}>
       <TabContainer>
         {navigationState.routes.map((route, index) => {
           const isRouteActive = index === activeTabIndex;

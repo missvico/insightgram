@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 const MyFeedsToggle = ({ feedsUnfiltered }) => {
   const feeds = feedsUnfiltered ? filter(feedsUnfiltered) : null;
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       {feeds ? (
         <ScrollView>
           <FlatList
