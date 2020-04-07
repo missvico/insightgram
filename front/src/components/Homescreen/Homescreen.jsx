@@ -107,7 +107,6 @@ export default ({ handlePress, feeds, handleStory }) => {
     </AllView>
   );
 };
-
 {
   /* <View
         style={{

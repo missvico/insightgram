@@ -20,7 +20,6 @@ export const Search = styled.TextInput`
 export const AllView = styled.View`
   background-color: white;
 `;
-
 export const Subscribe = styled.Button`
   height: 100;
   background-color: red;
