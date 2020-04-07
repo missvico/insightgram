@@ -1,6 +1,6 @@
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { Provider } from "react-redux";
 import configureStore from "./redux/index";
 import { NavigationContainer } from "@react-navigation/native";
@@ -20,14 +20,23 @@ function FeedsStack({ navigation }) {
       <Stack.Screen
         name="Home"
         component={HomescreenContainer}
-        options={{ title: "Insightgram" }}
+        options={{
+          title: "Insightgram",
+          headerStyle: {
+            borderBottomColor: "#fff",
+            borderBottomWidth: 0,
+          },
+        }}
       />
-
       <Stack.Screen
         name="Feeds"
         component={FeedsContainer}
         options={{
           title: "Subscribe",
+          headerStyle: {
+            borderBottomColor: "rgba(163, 163, 163, 0.3)",
+            borderBottomWidth: 0.5,
+          },
           headerRight: () => (
             <Button
               onPress={() => navigation.navigate({ name: "Home" })}
@@ -64,8 +73,8 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <RootStack.Navigator headerMode="none" initialRouteName="Login">
-          <RootStack.Screen name="Login" component={LoginForm} />
-          <RootStack.Screen name="Stories" component={FeedsStoriesContainer} />
+          {/* <RootStack.Screen name="Login" component={LoginForm} />
+          <RootStack.Screen name="Stories" component={FeedsStoriesContainer} /> */}
           <RootStack.Screen name="FeedsStack" component={FeedsStack} />
         </RootStack.Navigator>
       </NavigationContainer>

@@ -7,19 +7,19 @@ import ToggleTab from "./ToggleTab";
 const ToggleFeeds = createMaterialTopTabNavigator(
   {
     ["See all"]: {
-      screen: AllFeedsToggle
+      screen: AllFeedsToggle,
     },
     ["My Feeds"]: {
-      screen: MyFeedsToggle
-    }
+      screen: MyFeedsToggle,
+    },
   },
   {
     tabBarComponent: ToggleTab,
     tabBarOptions: {
       activeTintColor: "#000000",
-      inactiveTintColor: "rgb(163 163 163)"
+      inactiveTintColor: "rgb(163 163 163)",
     },
-    initialRouteName: "See all"
+    initialRouteName: "See all",
   }
 );
 
