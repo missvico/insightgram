@@ -1,15 +1,19 @@
 import React from "react";
-import { Text, View } from "react-native";
-import { Search } from "./style";
+import { Text, View, TextInput } from "react-native";
+import { Input, SearchContainer } from "./style";
+import { AntDesign } from "@expo/vector-icons";
 
 export default ({ onChange, inputValue }) => {
   return (
     <View>
-      <Search
-        placeholder="Search"
-        onChange={(e) => onChange(e)}
-        value={inputValue}
-      />
+      <SearchContainer>
+        <AntDesign
+          name="search1"
+          style={{ color: "#000", opacity: "0.32" }}
+          size={20}
+        />
+        <Input placeholder="Search" />
+      </SearchContainer>
     </View>
   );
 };
