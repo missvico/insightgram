@@ -9,7 +9,6 @@ import LoginForm from "./src/components/Login/LoginForm";
 import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
 import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 import FeedsStoriesContainer from "./src/components/Stories/FeedsStoriesContainer";
-import Search from "./src/components/Common/Search/Search";
 const store = configureStore();
 const Stack = createStackNavigator();
 const RootStack = createStackNavigator();

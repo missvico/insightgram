@@ -2,7 +2,7 @@ import React from "react";
 import { View, ScrollView, Text, SafeAreaView } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { ItemText } from "./style";
+import { ItemText, Subscribe, SeeAll, SubscribeTxt, Align } from "./style";
 import Discover from "./Discover/Discover";
 import FeedList from "../Common/FeedList/FeedList";
 import Search from "../Common/Search/Search";
@@ -10,9 +10,14 @@ import Search from "../Common/Search/Search";
 export default ({ handlePress, feeds, handleStory }) => {
   return (
     <View backgroundColor={"white"}>
-      <ScrollView>
+      <ScrollView style={{ marginBottom: 10 }}>
         <View paddingTop={"13%"}>
-          <ItemText>My feeds</ItemText>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <ItemText>My feeds</ItemText>
+            <SeeAll onPress={() => console.log("press")}>See all</SeeAll>
+          </View>
           <FeedList
             feeds={feeds.all}
             disableTick={true}
@@ -22,19 +27,15 @@ export default ({ handlePress, feeds, handleStory }) => {
           <Discover feeds={feeds.discover} handleStory={handleStory} />
         </View>
       </ScrollView>
-      <View
-        style={{
-          display: "flex",
-          alignSelf: "flex-end",
-          position: "absolute",
-          bottom: 20,
-          right: 20,
-        }}
-      >
+
+      <Align>
         <TouchableWithoutFeedback onPress={handlePress}>
-          <AntDesign name="pluscircle" size={35} color="#01ADED" />
+          <Subscribe>
+            <AntDesign name="pluscircle" size={15} color="white" />
+            <SubscribeTxt>Subscribe</SubscribeTxt>
+          </Subscribe>
         </TouchableWithoutFeedback>
-      </View>
+      </Align>
 
       <View
         style={{
