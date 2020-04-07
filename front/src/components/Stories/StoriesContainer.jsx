@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Story from "./Content/Story/Story";
-import { View } from "react-native";
+import { View, Dimensions, Animated } from "react-native";
 import HeaderContainer from "./Content/Header/HeaderContainer";
-import { connect } from "react-redux";
-
+import { connect, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { currentStoryIndex } from "../../../redux/actions/feeds";
 const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
+  const dispatch = useDispatch();
   const { stories, name } = feed;
   const [index, setIndex] = useState(0);
   const [currentStory, setCurrentStory] = useState({});
@@ -16,24 +18,28 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
       setIndex(inx);
       setCurrentStory(stories[inx]);
       changeStatus(inx);
+      dispatch(currentStoryIndex(inx));
     } else {
       setIndex(stories.length - 1);
       setCurrentStory(stories[stories.length - 1]);
+      dispatch(currentStoryIndex(stories.length - 1));
     }
   }, [setCurrentStory, feed]);
 
-  const handleStoryChange = n => {
+  const handleStoryChange = (n) => {
     if (index + n < 0 || index + n > stories.length) {
       setIndex(0);
+      dispatch(currentStoryIndex(0));
       handleFeedChange(n);
     } else {
       changeStatus(index);
-      setIndex(index + n);
+      setIndex(index + 1);
+      dispatch(currentStoryIndex(index));
       setCurrentStory(stories[index]);
     }
   };
 
-  const changeStatus = index => {
+  const changeStatus = (index) => {
     stories[index].status = "seen";
   };
 
@@ -51,18 +57,19 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
         style={{ position: "absolute" }}
         handleClose={handleClose}
         name={name}
+        stories={stories}
       />
       <Story story={currentStory} handleStoryChange={handleStoryChange} />
     </View>
   );
 };
 
-const lastNotSeen = stories =>
-  stories.indexOf(stories.filter(story => story.status === "not_seen")[0]);
+const lastNotSeen = (stories) =>
+  stories.indexOf(stories.filter((story) => story.status === "not_seen")[0]);
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    play: state.play.value
+    play: state.play.value,
   };
 };
 
@@ -70,7 +77,6 @@ const mapStateToProps = state => {
 
 function useInterval(callback, delay, isActive) {
   const savedCallback = useRef();
-
   // Remember the latest function.
   useEffect(() => {
     savedCallback.current = callback;
