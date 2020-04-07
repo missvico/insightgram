@@ -4,7 +4,7 @@ import { Done, ButtonText } from "./style";
 import Navigation from "../Subscribe/Navigation";
 import Search from "../Common/Search/Search";
 
-export default ({ onChange, inputValue, feeds, handlePress }) => {
+export default ({ feeds, handlePress }) => {
   return (
     <View style={{ flex: 1 }}>
       <Search />

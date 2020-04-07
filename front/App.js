@@ -9,7 +9,6 @@ import LoginForm from "./src/components/Login/LoginForm";
 import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
 import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 import FeedsStoriesContainer from "./src/components/Stories/FeedsStoriesContainer";
-import Search from "./src/components/Common/Search/Search";
 const store = configureStore();
 const Stack = createStackNavigator();
 const RootStack = createStackNavigator();
@@ -73,8 +72,8 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <RootStack.Navigator headerMode="none" initialRouteName="Login">
-          {/* <RootStack.Screen name="Login" component={LoginForm} />
-          <RootStack.Screen name="Stories" component={FeedsStoriesContainer} /> */}
+          <RootStack.Screen name="Login" component={LoginForm} />
+          <RootStack.Screen name="Stories" component={FeedsStoriesContainer} />
           <RootStack.Screen name="FeedsStack" component={FeedsStack} />
         </RootStack.Navigator>
       </NavigationContainer>
