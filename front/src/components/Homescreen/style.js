@@ -16,6 +16,7 @@ export const Search = styled.TextInput`
   padding: 0 30px;
   background-color: rgba(142, 142, 147, 0.12);
 `;
+
 export const AllView = styled.View`
   background-color: white;
 `;
