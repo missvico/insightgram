@@ -15,7 +15,7 @@ export default ({ feeds , handleStory}) => {
       <ScrollView>
         <SafeAreaView>
           <DiscoverGrid
-            numColumns={3}
+            numColumns={4}
             data={feeds}
             keyExtractor={item => item.id}
             renderItem={( feed ) => {
