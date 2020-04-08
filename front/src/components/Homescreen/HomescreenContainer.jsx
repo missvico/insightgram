@@ -33,14 +33,20 @@ const HomescreenContainer = ({
     navigation.navigate("Stories", storyprops);
   };
 
+  const handleMyFeeds = () => {
+    console.log("CLICK")
+    navigation.navigate("MyFeeds");
+  }
+
   return (
     <View>
       {userHome && userHome.feeds ? (
         <View>
           <Homescreen
-            handlePress={handlePress}
             feeds={userHome.feeds}
+            handlePress={handlePress}
             handleStory={handleStory}
+            handleMyFeeds={handleMyFeeds}
           />
         </View>
       ) : (
@@ -51,12 +57,14 @@ const HomescreenContainer = ({
 };
 
 const mapStateToProps = (state, ownProps) => {
+
   return {
     homeUserStore: state.feeds.homeUser,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  
   return {
     fetchFeedsByUser: (token) => dispatch(fetchFeedsByUser(token)),
   };

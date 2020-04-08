@@ -11,7 +11,7 @@ export default ({ feeds, handlePress }) => {
       <Navigation feeds={feeds} />
       <Done onPress={() => handlePress()}>
         <ButtonText>Done</ButtonText>
-      </Done> 
+      </Done>
     </View>
   );
 };

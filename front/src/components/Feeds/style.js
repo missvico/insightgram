@@ -9,13 +9,13 @@ export const Title = styled.Text`
 `;
 
 export const Done = styled.TouchableOpacity`
-  background-color: rgb(0, 122, 255);
+  background-color: #0066ff;
   height: 60px;
   justify-content: center;
 `;
 
 export const ButtonText = styled.Text`
-  color: white;
+  color: #fff;
   font-size: 18px;
   text-align: center;
 `;

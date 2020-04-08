@@ -1,22 +1,28 @@
 import React from "react";
 import { View, ScrollView, Text, SafeAreaView } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { ItemText, Subscribe, SeeAll, SubscribeTxt, Align } from "./style";
+import { TouchableWithoutFeedback, TouchableOpacity } from "react-native-gesture-handler";
+import { ItemText, Subscribe, SeeAllButton, SeeAllText, SubscribeTxt, Align } from "./style";
 import Discover from "./Discover/Discover";
 import FeedList from "../Common/FeedList/FeedList";
 import Search from "../Common/Search/Search";
 
-export default ({ handlePress, feeds, handleStory }) => {
+export default ({ handlePress, feeds, handleStory, handleMyFeeds }) => {
   return (
     <View backgroundColor={"white"}>
-      <ScrollView style={{ marginBottom: 10 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
         <View paddingTop={"13%"}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <ItemText>My feeds</ItemText>
-            <SeeAll onPress={() => console.log("press")}>See all</SeeAll>
+            <TouchableWithoutFeedback onPress={handleMyFeeds}>
+              <SeeAllButton>
+                <SeeAllText>See all</SeeAllText>
+              </SeeAllButton>
+            </TouchableWithoutFeedback>
           </View>
           <FeedList
             feeds={feeds.all}
@@ -44,7 +50,7 @@ export default ({ handlePress, feeds, handleStory }) => {
           position: "absolute",
           top: 0,
           marginTop: -5,
-          backgroundColor: "white",
+          backgroundColor: "#fff",
         }}
       >
         <Search />
@@ -52,7 +58,8 @@ export default ({ handlePress, feeds, handleStory }) => {
           style={{
             marginTop: 13,
             height: 1,
-            backgroundColor: "rgba(0,0,0,0.15)",
+            backgroundColor: "#000",
+            opacity: 0.3,
           }}
         ></View>
       </View>
