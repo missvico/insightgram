@@ -1,40 +1,40 @@
 import React, { useState, useEffect, useRef } from "react";
 import Story from "./Content/Story/Story";
-import { View } from "react-native";
+import { View, Dimensions, Animated } from "react-native";
 import HeaderContainer from "./Content/Header/HeaderContainer";
-import { connect } from "react-redux";
-
+import { connect, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { currentStoryIndex } from "../../../redux/actions/feeds";
 const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
+  const dispatch = useDispatch();
   const { stories, name } = feed;
-  const [index, setIndex] = useState(0);
-  const [currentStory, setCurrentStory] = useState({});
+  const [storyIndex, setStoryIndex] = useState(0);
+  const [currentStory, setCurrentStory] = useState(stories[storyIndex]);
 
   useEffect(() => {
-    const inx = lastNotSeen(stories);
+    setCurrentStory(stories[storyIndex]);
+    dispatch(currentStoryIndex(storyIndex));
+  }, [feed]);
 
-    if (inx !== -1) {
-      setIndex(inx);
-      setCurrentStory(stories[inx]);
-      changeStatus(inx);
-    } else {
-      setIndex(stories.length - 1);
-      setCurrentStory(stories[stories.length - 1]);
-    }
-  }, [setCurrentStory, feed]);
+  const handleStoryChange = (moveStory) => {
+    let newIndex = storyIndex + moveStory;
 
-  const handleStoryChange = n => {
-    if (index + n < 0 || index + n > stories.length) {
-      setIndex(0);
-      handleFeedChange(n);
+    if (newIndex >= 0 && newIndex < stories.length) {
+      changeStatus();
+      setCurrentStory((value) => stories[newIndex]);
+      setStoryIndex((value) => newIndex);
+      dispatch(currentStoryIndex(newIndex));
     } else {
-      setIndex(index + n);
-      changeStatus(index);
-      setCurrentStory(stories[index]);
+      setStoryIndex(0);
+      dispatch(currentStoryIndex(0));
+      handleFeedChange(moveStory);
     }
   };
 
-  const changeStatus = index => {
-    stories[index].status = "seen";
+  const changeStatus = () => {
+    if (stories[storyIndex].status == "not_seen") {
+      stories[storyIndex].status = "seen";
+    }
   };
 
   useInterval(
@@ -51,18 +51,16 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
         style={{ position: "absolute" }}
         handleClose={handleClose}
         name={name}
+        stories={stories}
       />
       <Story story={currentStory} handleStoryChange={handleStoryChange} />
     </View>
   );
 };
 
-const lastNotSeen = stories =>
-  stories.indexOf(stories.filter(story => story.status === "not_seen")[0]);
-
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    play: state.play.value
+    play: state.play.value,
   };
 };
 
@@ -70,7 +68,6 @@ const mapStateToProps = state => {
 
 function useInterval(callback, delay, isActive) {
   const savedCallback = useRef();
-
   // Remember the latest function.
   useEffect(() => {
     savedCallback.current = callback;

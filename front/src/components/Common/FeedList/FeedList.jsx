@@ -14,13 +14,14 @@ export default function FeedList({
     <View style={{ overFlow: "hidden" }}>
       <Title>{title}</Title>
       <List
+        showsHorizontalScrollIndicator={false}
         initialNumberToRender={20}
         windowSize={21}
         data={feeds}
         horizontal={true}
         getItemCount={(data) => data.length}
         getItem={(data, index) => data[index]}
-        keyExtractor={(item, index) => item.id}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={(item) => {
           return (
             <FeedIconContainer
@@ -28,7 +29,7 @@ export default function FeedList({
               handleStory={handleStory}
               feed={item.item}
               section={section}
-              size={"big"}
+              size={"medium"}
             />
           );
         }}

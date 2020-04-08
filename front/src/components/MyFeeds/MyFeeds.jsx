@@ -1,27 +1,30 @@
-import React from "react";
-import { View } from "react-native";
-import { DiscoverGrid, ItemText } from "./style";
+import React, { Component } from "react";
+import { ScrollView, SafeAreaView, FlatList, View, Text } from "react-native";
+import { Grid } from "./style";
+import FeedIconContainer from "../Common/FeedIcon/FeedIconContainer";
+import { connect } from "react-redux";
 
-import FeedIconContainer from "../../Common/FeedIcon/FeedIconContainer";
 export default ({ feeds, handleStory }) => {
-  return (
+  return ( 
     <View>
-      <ItemText>Discover</ItemText>
-      <DiscoverGrid
-        numColumns={4}
+      <Grid
+        numColumns={3}
         data={feeds}
         keyExtractor={(item, index) => index.toString()}
         renderItem={(feed) => {
           return (
             <FeedIconContainer
+            size={"big"}
               disableTick={true}
               feed={feed.item}
               handleStory={handleStory}
-              section={"discover"}
+              section={"all"}
             />
           );
         }}
       />
     </View>
+
   );
 };
+

@@ -15,19 +15,23 @@ export const ItemText = styled.Text`
   padding-left: 16px;
 `;
 
-export const SeeAll = styled.Text`
-  margin-right: 20;
-  color: rgb(0, 122, 255);
-  font-size: 17px;
+export const SeeAllButton = styled.View`
+  height: 45px;
+  margin-right: 20px;
   padding-top: 15px;
   margin-bottom: -10px;
   padding-left: 16px;
 `;
 
+export const SeeAllText = styled.Text`
+  color: #0066ff;
+  font-size: 17px;
+`
+
 export const Subscribe = styled.View`
   width: 150px;
   height: 40px;
-  background-color: rgb(0, 118, 255);
+  background-color: #0076ff;
   border-radius: 20px;
   align-content: flex-end;
   align-items: center;
@@ -38,13 +42,13 @@ export const Subscribe = styled.View`
 
 export const Align = styled.View`
   position: absolute;
-  bottom: 30px;
-  right: 20px;
+  bottom: 24px;
+  right: 24px;
 `;
 
 export const SubscribeTxt = styled.Text`
   margin: 5px;
-  color: white;
+  color: #fff;
   align-self: center;
   align-content: center;
   align-items: center;

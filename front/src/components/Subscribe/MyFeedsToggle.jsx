@@ -9,20 +9,18 @@ const MyFeedsToggle = ({ feedsUnfiltered }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       {feeds ? (
-        <ScrollView>
-          <FlatList
-            data={feeds}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <View>
-                <ItemText>{item.group}</ItemText>
-                <FeedList feeds={item.feeds} />
-              </View>
-            )}
-          />
-        </ScrollView>
+        <FlatList
+          data={feeds}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <View>
+              <ItemText>{item.group}</ItemText>
+              <FeedList feeds={item.feeds} />
+            </View>
+          )}
+        />
       ) : (
-        <Text> Loading...</Text>
+        <Text>Loading...</Text>
       )}
     </SafeAreaView>
   );
