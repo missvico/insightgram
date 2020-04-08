@@ -40,6 +40,7 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
   };
 
   const changeStatus = (index) => {
+    console.log(stories)
     stories[index].status = "seen";
   };
 
