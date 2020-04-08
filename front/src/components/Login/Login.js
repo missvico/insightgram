@@ -4,36 +4,29 @@ import {
   View,
   Text,
   TextInput,
-  TouchableHighlight
+  TouchableHighlight,
 } from "react-native";
-import {
-  InputText,
-  Input,
-  Button,
-  ButtonText,
-  ContainerForm,
-  Title
-} from "./styles";
+import { Input, Button, ButtonText, ContainerForm, Title } from "./styles";
 
 export default ({
   changeEmail,
   changePassword,
   buttonPressed,
   email,
-  password
+  password,
 }) => {
   return (
     <ContainerForm>
       <Title>INSIGHTGRAM</Title>
       <Input
         autoCapitalize="none"
-        onChangeText={emailVal => changeEmail(emailVal)}
+        onChangeText={(emailVal) => changeEmail(emailVal)}
         placeholder="Email"
         value={email}
       />
       <Input
         secureTextEntry={true}
-        onChangeText={passwordVal => changePassword(passwordVal)}
+        onChangeText={(passwordVal) => changePassword(passwordVal)}
         placeholder="Contraseña"
         value={password}
       />

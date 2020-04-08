@@ -10,7 +10,7 @@ export default ({ feeds, handleStory }) => {
       <DiscoverGrid
         numColumns={4}
         data={feeds}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={(feed) => {
           return (
             <FeedIconContainer

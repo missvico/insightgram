@@ -59,16 +59,16 @@ export const AvatarBorder = styled.View`
 `;
 
 export const CardName = styled.Text`
-    text-align: left;
-    margin-top: 25%;
-    font-weight: bold;
-    font-size: ${13 * 1.15}px;
-    color: ${WHITE};
-    shadow-color: #000;
-    text-shadow-color: rgb(0, 0, 0);                
-    text.shadow-offset: { width: 0, height: 2 };                 
-    text-shadow-radius: 4px;
-    elevation: 0;
+  text-align: left;
+  margin-top: 25%;
+  font-weight: bold;
+  font-size: ${13 * 1.15}px;
+  color: ${WHITE};
+  shadow-color: #000;
+  text-shadow-color: #000;
+  text-shadow-offset: 0px 2px;
+  text-shadow-radius: 4px;
+  elevation: 0;
 `;
 export const TickBorder = styled.View`
   height: ${27 * 1.15}px;
@@ -84,7 +84,7 @@ export const TickBorder = styled.View`
 `;
 
 export const TopContainer = styled.View`
-    flex: 1
-    flex-direction: row; 
-    justify-content: space-between;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
 `;

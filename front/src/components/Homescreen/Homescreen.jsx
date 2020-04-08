@@ -10,7 +10,10 @@ import Search from "../Common/Search/Search";
 export default ({ handlePress, feeds, handleStory }) => {
   return (
     <View backgroundColor={"white"}>
-      <ScrollView style={{ marginBottom: 10 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ marginBottom: 10 }}
+      >
         <View paddingTop={"13%"}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -44,7 +47,7 @@ export default ({ handlePress, feeds, handleStory }) => {
           position: "absolute",
           top: 0,
           marginTop: -5,
-          backgroundColor: "white",
+          backgroundColor: "#fff",
         }}
       >
         <Search />
@@ -52,7 +55,8 @@ export default ({ handlePress, feeds, handleStory }) => {
           style={{
             marginTop: 13,
             height: 1,
-            backgroundColor: "rgba(0,0,0,0.15)",
+            backgroundColor: "#000",
+            opacity: 0.3,
           }}
         ></View>
       </View>

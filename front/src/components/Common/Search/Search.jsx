@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TextInput } from "react-native";
+import { View } from "react-native";
 import { Input, SearchContainer } from "./style";
 import { AntDesign } from "@expo/vector-icons";
 

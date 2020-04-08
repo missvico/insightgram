@@ -6,7 +6,7 @@ export const DiscoverGrid = styled.FlatList`
 `;
 export const ItemText = styled.Text`
   font-size: 17px;
-  padding-top: 10px;
   margin-bottom: 10px;
+  padding-top: 10px;
   padding-left: 16px;
 `;
