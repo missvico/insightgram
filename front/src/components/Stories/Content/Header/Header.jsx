@@ -1,12 +1,16 @@
 import { Feather } from "@expo/vector-icons";
-import { View, TouchableOpacity, Text } from "react-native";
+import { View, TouchableOpacity, Text} from "react-native";
 import React, { useState, useEffect } from "react";
 import ProgressIndicator from "./ProgressIndicator";
-import { Header, IconsContainer, TitleContainer, Title } from "./style";
+import { Header, ProgressBarContainer, TitleIconContainer,IconsContainer, TitleContainer, Title } from "./style";
 
 export default ({ name, play, handleClose, handlePlay, stories }) => {
   return (
-    <Header>
+  <Header>
+    <ProgressBarContainer>
+      <ProgressIndicator stories={stories}/>
+    </ProgressBarContainer>
+    <TitleIconContainer>
       <TitleContainer>
         <Title>{name}</Title>
       </TitleContainer>
@@ -27,7 +31,7 @@ export default ({ name, play, handleClose, handlePlay, stories }) => {
           />
         </TouchableOpacity>
       </IconsContainer>
-      <ProgressIndicator stories={stories} />
-    </Header>
+    </TitleIconContainer>
+  </Header>
   );
 };

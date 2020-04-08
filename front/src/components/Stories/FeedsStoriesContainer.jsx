@@ -7,32 +7,39 @@ const FeedsStoriesContainer = ({
   route,
   navigation,
   feeds,
-  updateFeedsUser
+  updateFeedsUser,
 }) => {
   const { id, section } = route.params;
-  const [index, setIndex] = useState(filterStories(feeds[section], id));
-  const [currentFeed, setCurrentFeed] = useState(feeds[section][index]);
+  const feedSelected = feeds[section];
+  const [feedIndex, setFeedIndex] = useState(
+    searchFeedSelected(feedSelected, id)
+  );
+  const [currentFeed, setCurrentFeed] = useState(feedSelected[feedIndex]);
 
-  const handleFeedChange = n => {
-    changeHasPendingStories(index);
-    if (index + n < 0 || index + n === feeds[section].length) {
-      handleClose();
+  const handleFeedChange = (moveFeed) => {
+    let newIndex = feedIndex + moveFeed;
+    console.log(feedSelected.length, newIndex);
+
+    changeHasPendingStories();
+    if (newIndex >= 0 && newIndex < feeds[section].length) {
+      setCurrentFeed((value) => feedSelected[newIndex]);
+      setFeedIndex((value) => newIndex);
     } else {
-      setIndex(index + n);
-      setCurrentFeed(feeds[section][index + n]);
+      handleClose();
     }
   };
 
   const handleClose = () => {
-    changeHasPendingStories(index);
+    changeHasPendingStories();
     updateFeedsUser(feeds);
     navigation.navigate("Home");
   };
 
-  const changeHasPendingStories = inx => {
-    feeds[section][inx].stories.filter(story => story.status == "not_seen")
-      .length == 0
-      ? (feeds[section][index].has_pending_stories = false)
+  const changeHasPendingStories = () => {
+    feedSelected[feedIndex].stories.filter(
+      (story) => story.status == "not_seen"
+    ).length == 0
+      ? (feedSelected[feedIndex].has_pending_stories = false)
       : null;
   };
 
@@ -45,20 +52,20 @@ const FeedsStoriesContainer = ({
   );
 };
 
+const searchFeedSelected = (feedSelected, id) => {
+  return feedSelected.findIndex((feed) => feed.id === id);
+};
+
 const mapStateToProps = (state, ownProps) => {
   return {
-    feeds: state.feeds.homeUser.feeds
+    feeds: state.feeds.homeUser.feeds,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    updateFeedsUser: data => dispatch(updateFeedsUser(data))
+    updateFeedsUser: (data) => dispatch(updateFeedsUser(data)),
   };
-};
-
-const filterStories = (feeds, feedId) => {
-  return feeds.indexOf(feeds.filter(feed => feed.id === feedId)[0]);
 };
 
 export default connect(

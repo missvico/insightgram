@@ -6,20 +6,18 @@ import { connect } from "react-redux";
 
 const AllFeedsToggle = ({ feeds }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView>
-        <FlatList
-          data={feeds}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View>
-              <ItemText>{item.group}</ItemText>
-              <FeedList feeds={item.feeds} />
-            </View>
-          )}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+      <FlatList
+        data={feeds}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <View>
+            <ItemText>{item.group}</ItemText>
+            <FeedList feeds={item.feeds} />
+          </View>
+        )}
+      />
+    </View>
   );
 };
 

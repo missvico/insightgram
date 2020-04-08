@@ -8,43 +8,32 @@ import { currentStoryIndex } from "../../../redux/actions/feeds";
 const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
   const dispatch = useDispatch();
   const { stories, name } = feed;
-  const [index, setIndex] = useState(0);
-  const [currentStory, setCurrentStory] = useState({});
+  const [storyIndex, setStoryIndex] = useState(0);
+  const [currentStory, setCurrentStory] = useState(stories[storyIndex]);
 
   useEffect(() => {
-    const inx = lastNotSeen(stories);
+    setCurrentStory(stories[storyIndex]);
+  }, [feed]);
 
-    if (inx !== -1) {
-      setIndex(inx);
-      setCurrentStory(stories[inx]);
-      changeStatus(inx);
-      //Dispatch de el currentIndex
-      dispatch(currentStoryIndex(inx));
+  const handleStoryChange = (moveStory) => {
+    let newIndex = storyIndex + moveStory;
+
+    if (newIndex >= 0 && newIndex < stories.length) {
+      changeStatus();
+      setCurrentStory((value) => stories[newIndex]);
+      setStoryIndex((value) => newIndex);
+      dispatch(currentStoryIndex(newIndex));
     } else {
-      setIndex(stories.length - 1);
-      setCurrentStory(stories[stories.length - 1]);
-      //Dispatch de el currentIndex
-      dispatch(currentStoryIndex(stories.length - 1));
-    }
-  }, [setCurrentStory, feed]);
-
-  const handleStoryChange = (n) => {
-    if (index + n < 0 || index + n > stories.length) {
-      setIndex(0);
-      //Dispatch de el currentIndex
+      setStoryIndex(0);
       dispatch(currentStoryIndex(0));
-      handleFeedChange(n);
-    } else {
-      changeStatus(index);
-      setIndex(index + 1);
-      //Dispatch de el currentIndex
-      dispatch(currentStoryIndex(index));
-      setCurrentStory(stories[index]);
+      handleFeedChange(moveStory);
     }
   };
 
-  const changeStatus = (index) => {
-    stories[index].status = "seen";
+  const changeStatus = () => {
+    if (stories[storyIndex].status == "not_seen") {
+      stories[storyIndex].status = "seen";
+    }
   };
 
   useInterval(
@@ -67,9 +56,6 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
     </View>
   );
 };
-
-const lastNotSeen = (stories) =>
-  stories.indexOf(stories.filter((story) => story.status === "not_seen")[0]);
 
 const mapStateToProps = (state) => {
   return {
