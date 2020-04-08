@@ -18,10 +18,12 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
       setIndex(inx);
       setCurrentStory(stories[inx]);
       changeStatus(inx);
+      //Dispatch de el currentIndex
       dispatch(currentStoryIndex(inx));
     } else {
       setIndex(stories.length - 1);
       setCurrentStory(stories[stories.length - 1]);
+      //Dispatch de el currentIndex
       dispatch(currentStoryIndex(stories.length - 1));
     }
   }, [setCurrentStory, feed]);
@@ -29,11 +31,13 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
   const handleStoryChange = (n) => {
     if (index + n < 0 || index + n > stories.length) {
       setIndex(0);
+      //Dispatch de el currentIndex
       dispatch(currentStoryIndex(0));
       handleFeedChange(n);
     } else {
       changeStatus(index);
       setIndex(index + 1);
+      //Dispatch de el currentIndex
       dispatch(currentStoryIndex(index));
       setCurrentStory(stories[index]);
     }

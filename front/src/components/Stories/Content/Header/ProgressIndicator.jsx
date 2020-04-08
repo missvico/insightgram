@@ -5,7 +5,6 @@ import Indicator from "./Indicator";
 
 const ProgressIndicator = ({ stories }) => {
   const opacity = useRef(new Animated.Value(1)).current;
-  const play = useSelector((state) => state.play.value);
   const currentIndex = useSelector(
     (state) => state.feeds.currentStoryIndex.currentStoryIndex
   );
