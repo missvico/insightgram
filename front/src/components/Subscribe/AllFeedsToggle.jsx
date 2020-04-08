@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 
 const AllFeedsToggle = ({ feeds }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+      <ScrollView>
         <FlatList
           data={feeds}
           keyExtractor={(item) => item.id}
@@ -17,7 +18,8 @@ const AllFeedsToggle = ({ feeds }) => {
             </View>
           )}
         />
-    </SafeAreaView>
+      </ScrollView>
+    </View>
   );
 };
 

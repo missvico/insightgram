@@ -11,14 +11,14 @@ import { getItemStorage } from "../../../assets/js/AsyncStorage";
 const HomescreenContainer = ({
   navigation,
   fetchFeedsByUser,
-  homeUserStore
+  homeUserStore,
 }) => {
   const [userHome, setUserHome] = useState({});
 
   useEffect(() => {
     if (Object.keys(userHome).length == 0) {
-      getItemStorage("@Token").then(token => {
-        fetchFeedsByUser(token).then(data => setUserHome(data));
+      getItemStorage("@Token").then((token) => {
+        fetchFeedsByUser(token).then((data) => setUserHome(data));
       });
     } else {
       return;
@@ -29,7 +29,7 @@ const HomescreenContainer = ({
     navigation.navigate("Feeds");
   };
 
-  const handleStory = storyprops => {
+  const handleStory = (storyprops) => {
     navigation.navigate("Stories", storyprops);
   };
 
@@ -52,13 +52,13 @@ const HomescreenContainer = ({
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    homeUserStore: state.feeds.homeUser
+    homeUserStore: state.feeds.homeUser,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchFeedsByUser: token => dispatch(fetchFeedsByUser(token))
+    fetchFeedsByUser: (token) => dispatch(fetchFeedsByUser(token)),
   };
 };
 
