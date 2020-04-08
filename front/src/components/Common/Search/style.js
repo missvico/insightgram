@@ -5,13 +5,12 @@ export const SearchContainer = styled.View`
   border-radius: 13px;
   height: 35px;
   padding-horizontal: 14px;
-  background-color: rgba(142, 142, 147, 0.12);
+  background-color: #f1f1f2;
   flex-direction: row;
   align-items: center;
 `;
 
 export const Input = styled.TextInput`
   font-size: 17px;
-  color: rgba(0, 0, 0, 0.32);
   padding-left: 10px;
 `;

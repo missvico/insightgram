@@ -17,7 +17,7 @@ const ToggleFeeds = createMaterialTopTabNavigator(
     tabBarComponent: ToggleTab,
     tabBarOptions: {
       activeTintColor: "#000000",
-      inactiveTintColor: "rgb(163 163 163)",
+      inactiveTintColor: "#A3A3A3",
     },
     initialRouteName: "See all",
   }

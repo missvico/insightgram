@@ -22,7 +22,7 @@ const MyFeedsToggle = ({ feedsUnfiltered }) => {
           />
         </ScrollView>
       ) : (
-        <Text> Loading...</Text>
+        <Text>Loading...</Text>
       )}
     </SafeAreaView>
   );

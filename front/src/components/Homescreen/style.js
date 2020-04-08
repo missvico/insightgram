@@ -16,8 +16,8 @@ export const ItemText = styled.Text`
 `;
 
 export const SeeAll = styled.Text`
-  margin-right: 20;
-  color: rgb(0, 122, 255);
+  margin-right: 20px;
+  color: #0066ff;
   font-size: 17px;
   padding-top: 15px;
   margin-bottom: -10px;
@@ -27,7 +27,7 @@ export const SeeAll = styled.Text`
 export const Subscribe = styled.View`
   width: 150px;
   height: 40px;
-  background-color: rgb(0, 118, 255);
+  background-color: #0076ff;
   border-radius: 20px;
   align-content: flex-end;
   align-items: center;
@@ -44,7 +44,7 @@ export const Align = styled.View`
 
 export const SubscribeTxt = styled.Text`
   margin: 5px;
-  color: white;
+  color: #fff;
   align-self: center;
   align-content: center;
   align-items: center;

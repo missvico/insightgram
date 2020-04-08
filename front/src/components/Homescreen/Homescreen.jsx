@@ -44,7 +44,7 @@ export default ({ handlePress, feeds, handleStory }) => {
           position: "absolute",
           top: 0,
           marginTop: -5,
-          backgroundColor: "white",
+          backgroundColor: "#fff",
         }}
       >
         <Search />
