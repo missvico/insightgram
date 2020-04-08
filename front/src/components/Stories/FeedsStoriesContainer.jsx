@@ -32,7 +32,7 @@ const FeedsStoriesContainer = ({
   const handleClose = () => {
     changeHasPendingStories();
     updateFeedsUser(feeds);
-    navigation.navigate("Home");
+    navigation.pop();
   };
 
   const changeHasPendingStories = () => {

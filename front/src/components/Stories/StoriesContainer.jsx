@@ -13,6 +13,7 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
 
   useEffect(() => {
     setCurrentStory(stories[storyIndex]);
+    dispatch(currentStoryIndex(storyIndex));
   }, [feed]);
 
   const handleStoryChange = (moveStory) => {

@@ -22,6 +22,7 @@ function FeedsStack({ navigation }) {
         component={HomescreenContainer}
         options={{
           title: "Insightgram",
+          headerTitleAlign: "center",
           headerStyle: {
             borderBottomColor: "#fff",
             borderBottomWidth: 0,
@@ -33,6 +34,7 @@ function FeedsStack({ navigation }) {
         component={MyFeedsContainer}
         options={{
           title: "My Feeds",
+          headerTitleAlign: "center",
           headerStyle: {
             borderBottomColor: "#fff",
             borderBottomWidth: 0,
@@ -63,6 +65,7 @@ function FeedsStack({ navigation }) {
         component={FeedsContainer}
         options={{
           title: "Subscribe",
+          headerTitleAlign: "center",
           headerStyle: {
             borderBottomColor: "rgba(163, 163, 163, 0.3)",
             borderBottomWidth: 0.5,
@@ -101,6 +104,7 @@ function FeedsStack({ navigation }) {
   );
 }
 export default function App() {
+  console.disableYellowBox = true 
   return (
     <Provider store={store}>
       <NavigationContainer>

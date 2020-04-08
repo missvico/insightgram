@@ -16,7 +16,7 @@ export const ItemText = styled.Text`
 `;
 
 export const SeeAllButton = styled.View`
-  height: 52px;
+  height: 45px;
   margin-right: 20px;
   padding-top: 15px;
   margin-bottom: -10px;
@@ -42,8 +42,8 @@ export const Subscribe = styled.View`
 
 export const Align = styled.View`
   position: absolute;
-  bottom: 30px;
-  right: 20px;
+  bottom: 24px;
+  right: 24px;
 `;
 
 export const SubscribeTxt = styled.Text`

@@ -15,7 +15,7 @@ export default ({ handlePress, feeds, handleStory, handleMyFeeds }) => {
       >
         <View paddingTop={"13%"}>
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
+            style={{ flexDirection: "row", justifyContent: "space-between", marginBottom:-10, zIndex:2 }}
           >
             <ItemText>My feeds</ItemText>
             <TouchableWithoutFeedback onPress={handleMyFeeds}>

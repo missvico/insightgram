@@ -1,6 +1,6 @@
 import { SET_PLAY } from "../constants";
 const initialState = {
-  value: true,
+  value: false,
 };
 
 export default (state = initialState, action) => {
