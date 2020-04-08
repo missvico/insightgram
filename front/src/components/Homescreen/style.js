@@ -16,7 +16,7 @@ export const ItemText = styled.Text`
 `;
 
 export const SeeAll = styled.Text`
-  margin-right: 20;
+  margin-right: 20px;
   color: rgb(0, 122, 255);
   font-size: 17px;
   padding-top: 15px;

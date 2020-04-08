@@ -6,35 +6,30 @@ import { connect } from "react-redux";
 
 const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
   const { stories, name } = feed;
-  const [index, setIndex] = useState(0);
-  const [currentStory, setCurrentStory] = useState({});
+  const [storyIndex, setStoryIndex] = useState(0);
+  const [currentStory, setCurrentStory] = useState(stories[storyIndex]);
 
   useEffect(() => {
-    const inx = lastNotSeen(stories);
+    setCurrentStory(stories[storyIndex]);
+  }, [feed]);
 
-    if (inx !== -1) {
-      setIndex(inx);
-      setCurrentStory(stories[inx]);
-      changeStatus(inx);
-    } else {
-      setIndex(stories.length - 1);
-      setCurrentStory(stories[stories.length - 1]);
-    }
-  }, [setCurrentStory, feed]);
+  const handleStoryChange = (moveStory) => {
+    let newIndex = storyIndex + moveStory;
 
-  const handleStoryChange = n => {
-    if (index + n < 0 || index + n > stories.length) {
-      setIndex(0);
-      handleFeedChange(n);
+    if (newIndex >= 0 && newIndex < stories.length) {
+      changeStatus();
+      setCurrentStory((value) => stories[newIndex]);
+      setStoryIndex((value) => newIndex);
     } else {
-      setIndex(index + n);
-      changeStatus(index);
-      setCurrentStory(stories[index]);
+      setStoryIndex(0);
+      handleFeedChange(moveStory);
     }
   };
 
-  const changeStatus = index => {
-    stories[index].status = "seen";
+  const changeStatus = () => {
+    if (stories[storyIndex].status == "not_seen") {
+      stories[storyIndex].status = "seen";
+    }
   };
 
   useInterval(
@@ -57,12 +52,9 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
   );
 };
 
-const lastNotSeen = stories =>
-  stories.indexOf(stories.filter(story => story.status === "not_seen")[0]);
-
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    play: state.play.value
+    play: state.play.value,
   };
 };
 

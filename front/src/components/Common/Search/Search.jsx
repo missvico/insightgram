@@ -9,7 +9,7 @@ export default () => {
       <SearchContainer>
         <AntDesign
           name="search1"
-          style={{ color: "#000", opacity: "0.32" }}
+          style={{ color: "#000", opacity: 0.32 }}
           size={20}
         />
         <Input placeholder="Search" />
