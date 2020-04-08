@@ -2,55 +2,63 @@ import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA } from "../constants";
 import axios from "axios";
 import { allFeedsUrl, ip, feedsUserUrl } from "../../config";
 
-const setFeeds = feeds => ({
+const setFeeds = (feeds) => ({
   type: SET_FEEDS,
-  feeds
+  feeds,
 });
 
-const setHomeUser = data => ({
+const setHomeUser = (data) => ({
   type: SET_HOME_USER,
-  data
+  data,
 });
 
-const updateHomeData = data => ({
+const updateHomeData = (data) => ({
   type: UPDATE_HOME_DATA,
-  data
+  data,
+});
+const updateCurrentIndex = (data) => ({
+  type: "UPDATE_STORY_INDEX",
+  data,
 });
 
-export const fetchAllFeeds = token => dispatch => {
+export const fetchAllFeeds = (token) => (dispatch) => {
   return axios({
     method: "GET",
     url: `http://${ip + allFeedsUrl}`,
     headers: {
       "Content-Type": "application/json",
-      token: token
-    }
+      token: token,
+    },
   })
-    .then(response => response.data)
-    .then(feeds => {
+    .then((response) => response.data)
+    .then((feeds) => {
       dispatch(setFeeds(feeds));
       return feeds;
     })
-    .catch(error => error.response.status);
+    .catch((error) => error.response.status);
 };
 
-export const fetchFeedsByUser = token => dispatch => {
+export const fetchFeedsByUser = (token) => (dispatch) => {
   return axios({
     method: "GET",
     url: `http://${ip + feedsUserUrl}`,
     headers: {
       "Content-Type": "application/json",
-      token: token
-    }
+      token: token,
+    },
   })
-    .then(response => response.data)
-    .then(userHome => {
+    .then((response) => response.data)
+    .then((userHome) => {
       dispatch(setHomeUser(userHome));
       return userHome;
     })
-    .catch(error => error.response.status);
+    .catch((error) => error.response.status);
 };
 
-export const updateFeedsUser = feeds => dispatch => {
-  dispatch(updateHomeData(feeds))
+export const updateFeedsUser = (feeds) => (dispatch) => {
+  dispatch(updateHomeData(feeds));
+};
+
+export const currentStoryIndex = (index) => (dispatch) => {
+  dispatch(updateCurrentIndex(index));
 };

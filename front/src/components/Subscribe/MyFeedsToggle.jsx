@@ -9,7 +9,6 @@ const MyFeedsToggle = ({ feedsUnfiltered }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       {feeds ? (
-        <ScrollView>
           <FlatList
             data={feeds}
             keyExtractor={(item) => item.id}
@@ -20,7 +19,6 @@ const MyFeedsToggle = ({ feedsUnfiltered }) => {
               </View>
             )}
           />
-        </ScrollView>
       ) : (
         <Text> Loading...</Text>
       )}

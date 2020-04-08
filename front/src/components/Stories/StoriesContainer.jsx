@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Story from "./Content/Story/Story";
-import { View } from "react-native";
+import { View, Dimensions, Animated } from "react-native";
 import HeaderContainer from "./Content/Header/HeaderContainer";
-import { connect } from "react-redux";
-
+import { connect, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { currentStoryIndex } from "../../../redux/actions/feeds";
 const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
+  const dispatch = useDispatch();
   const { stories, name } = feed;
   const [storyIndex, setStoryIndex] = useState(0);
   const [currentStory, setCurrentStory] = useState(stories[storyIndex]);
@@ -20,8 +22,10 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
       changeStatus();
       setCurrentStory((value) => stories[newIndex]);
       setStoryIndex((value) => newIndex);
+      dispatch(currentStoryIndex(newIndex));
     } else {
       setStoryIndex(0);
+      dispatch(currentStoryIndex(0));
       handleFeedChange(moveStory);
     }
   };
@@ -46,6 +50,7 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
         style={{ position: "absolute" }}
         handleClose={handleClose}
         name={name}
+        stories={stories}
       />
       <Story story={currentStory} handleStoryChange={handleStoryChange} />
     </View>
@@ -62,7 +67,6 @@ const mapStateToProps = (state) => {
 
 function useInterval(callback, delay, isActive) {
   const savedCallback = useRef();
-
   // Remember the latest function.
   useEffect(() => {
     savedCallback.current = callback;
