@@ -20,7 +20,7 @@ export default function FeedList({
         horizontal={true}
         getItemCount={(data) => data.length}
         getItem={(data, index) => data[index]}
-        keyExtractor={(item, index) => item.id}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={(item) => {
           return (
             <FeedIconContainer
