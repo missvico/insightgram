@@ -34,9 +34,8 @@ const HomescreenContainer = ({
   };
 
   const handleMyFeeds = () => {
-    console.log("CLICK")
     navigation.navigate("MyFeeds");
-  }
+  };
 
   return (
     <View>
@@ -57,14 +56,12 @@ const HomescreenContainer = ({
 };
 
 const mapStateToProps = (state, ownProps) => {
-
   return {
     homeUserStore: state.feeds.homeUser,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  
   return {
     fetchFeedsByUser: (token) => dispatch(fetchFeedsByUser(token)),
   };
