@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { Done, ButtonText } from "./style";
-import Navigation from "../Subscribe/Navigation";
+import Navigation from "./Content/Navigation";
 import Search from "../Common/Search/Search";
 
 export default ({ feeds, handlePress }) => {

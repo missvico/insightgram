@@ -1,6 +1,6 @@
 import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
-import AllFeedsToggle from "./Content/AllFeedsToggle";
+import AllFeedsToggle from "./AllFeedsToggle";
 import MyFeedsToggle from "./MyFeedsToggle";
 import ToggleTab from "./ToggleTab";
 

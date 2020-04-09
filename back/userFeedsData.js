@@ -84,8 +84,6 @@ const data = {
           },
         ],
       },
-    ],
-    discover: [
       {
         id: 4,
         name: "Hamsters",
@@ -104,9 +102,38 @@ const data = {
             thumbnail:
               "https://cdn.pixabay.com/photo/2016/04/14/17/12/hamster-1329300_960_720.jpg",
             status: "not_seen",
-          },
-        ],
+          }
+        ]
       },
+      {
+        id: 13,
+        name: "Conejitos",
+        thumbnail:
+          "https://pbs.twimg.com/profile_images/898319433516687361/x7Q6lvxz_400x400.jpg",
+        has_pending_stories: false,
+        stories: [
+          {
+            id: 36,
+            thumbnail:
+              "https://cdn.pixabay.com/photo/2016/09/18/20/48/hare-1679003_960_720.jpg",
+            status: "not_seen",
+          },
+          {
+            id: 37,
+            thumbnail:
+              "https://cdn.pixabay.com/photo/2016/06/06/21/19/rabbit-1440432_960_720.jpg",
+            status: "not_seen",
+          },
+          {
+            id: 38,
+            thumbnail:
+              "https://cdn.pixabay.com/photo/2016/03/24/12/27/bunny-1276628_960_720.jpg",
+            status: "not_seen",
+          }
+        ]
+      }
+    ],
+    discover: [
       {
         id: 5,
         name: "Loritos",
@@ -321,6 +348,48 @@ const data = {
             thumbnail:
               "https://cdn.pixabay.com/photo/2014/07/31/22/29/white-bengal-tiger-407030_960_720.jpg",
           },
+        ],
+      },
+      {
+        id: 12,
+        name: "Zorros",
+        has_pending_stories: false,
+        thumbnail:
+          "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
+        stories: [
+          {
+            id: 35,
+            status: "not_seen",
+            thumbnail:
+              "https://cdn.pixabay.com/photo/2016/11/20/11/49/fox-1842565_960_720.jpg",
+          },
+          {
+            id: 36,
+            status: "not_seen",
+            thumbnail:
+              "https://cdn.pixabay.com/photo/2017/11/02/09/36/fuchs-2910517_960_720.jpg",
+          }
+        ],
+      },
+      {
+        id: 14,
+        name: "Erizos",
+        has_pending_stories: true,
+        thumbnail:
+          "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
+        stories: [
+          {
+            id: 40,
+            status: "not_seen",
+            thumbnail:
+              "https://cdn.pixabay.com/photo/2015/08/29/17/13/animal-913211_960_720.jpg",
+          },
+          {
+            id: 41,
+            status: "not_seen",
+            thumbnail:
+              "https://cdn.pixabay.com/photo/2018/03/22/20/47/hedgehog-3251806_960_720.jpg",
+          }
         ],
       },
     ],

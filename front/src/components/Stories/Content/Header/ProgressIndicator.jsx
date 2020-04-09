@@ -26,6 +26,7 @@ const ProgressIndicator = ({ stories }) => {
     <FlatList
       horizontal
       data = {stories}
+      keyExtractor = {(item,index)=> index.toString()}
       renderItem={({item, index})=>{
         return <StoryIndicator currentIndex={currentIndex} index={index} scale={windowWidth/stories.length}/>
       }}

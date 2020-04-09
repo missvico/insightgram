@@ -7,8 +7,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginForm from "./src/components/Login/LoginForm";
 import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
-import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 import FeedsStoriesContainer from "./src/components/Stories/FeedsStoriesContainer";
+import MyFeedsContainer from "./src/components/MyFeeds/MyFeedsContainer";
+import SubscribeContainer from "./src/components/Subscribe/SubscribeContainer";
 const store = configureStore();
 const Stack = createStackNavigator();
 const RootStack = createStackNavigator();
@@ -21,6 +22,7 @@ function FeedsStack({ navigation }) {
         component={HomescreenContainer}
         options={{
           title: "Insightgram",
+          headerTitleAlign: "center",
           headerStyle: {
             borderBottomColor: "#fff",
             borderBottomWidth: 0,
@@ -28,25 +30,69 @@ function FeedsStack({ navigation }) {
         }}
       />
       <Stack.Screen
+        name="MyFeeds"
+        component={MyFeedsContainer}
+        options={{
+          title: "My Feeds",
+          headerTitleAlign: "center",
+          headerStyle: {
+            borderBottomColor: "#fff",
+            borderBottomWidth: 0,
+          },
+          headerLeft: () => (
+            <View>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginLeft: 10,
+                }}
+              >
+                <Ionicons
+                  name="ios-arrow-back"
+                  color="rgb(0, 122, 255)"
+                  size={25}
+                  onPress={() => navigation.navigate({ name: "Home" })}
+                />
+                <Button
+                  onPress={() => navigation.navigate({ name: "Home" })}
+                  color="rgb(0, 122, 255)"
+                  title="Home"
+                />
+              </View>
+            </View>
+          ),
+        }}
+      />
+      <Stack.Screen
         name="Feeds"
-        component={FeedsContainer}
+        component={SubscribeContainer}
         options={{
           title: "Subscribe",
+          headerTitleAlign: "center",
           headerStyle: {
             borderBottomColor: "rgba(163, 163, 163, 0.3)",
             borderBottomWidth: 0.5,
           },
           headerRight: () => (
-            <Button
-              onPress={() => navigation.navigate({ name: "Home" })}
-              title="Cancel"
-              color="rgb(0, 122, 255)"
-            />
+            <View style={{ marginRight: 8 }}>
+              <Button
+                onPress={() => navigation.navigate({ name: "Home" })}
+                title="Cancel"
+                color="rgb(0, 122, 255)"
+              />
+            </View>
           ),
           headerLeft: () => (
             <View>
               <View
-                style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginLeft: 10,
+                }}
               >
                 <Ionicons
                   name="ios-arrow-back"
@@ -68,6 +114,8 @@ function FeedsStack({ navigation }) {
   );
 }
 export default function App() {
+  console.disableYellowBox = true;
+
   return (
     <Provider store={store}>
       <NavigationContainer>
