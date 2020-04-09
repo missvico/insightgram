@@ -18,13 +18,13 @@ const FeedsStoriesContainer = ({
 
   const handleFeedChange = (moveFeed) => {
     let newIndex = feedIndex + moveFeed;
-    console.log(feedSelected.length, newIndex);
 
     changeHasPendingStories();
     if (newIndex >= 0 && newIndex < feeds[section].length) {
       setCurrentFeed((value) => feedSelected[newIndex]);
       setFeedIndex((value) => newIndex);
     } else {
+      updateFeedsUser(feedSelected);
       handleClose();
     }
   };
@@ -36,7 +36,7 @@ const FeedsStoriesContainer = ({
   };
 
   const changeHasPendingStories = () => {
-    feedSelected[feedIndex].stories.filter(
+    feeds[section][feedIndex].stories.filter(
       (story) => story.status == "not_seen"
     ).length == 0
       ? (feedSelected[feedIndex].has_pending_stories = false)

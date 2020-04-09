@@ -14,13 +14,13 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
   useEffect(() => {
     setCurrentStory(stories[storyIndex]);
     dispatch(currentStoryIndex(storyIndex));
+    changeStatus(storyIndex);
   }, [feed]);
 
   const handleStoryChange = (moveStory) => {
     let newIndex = storyIndex + moveStory;
-
+    changeStatus(newIndex);
     if (newIndex >= 0 && newIndex < stories.length) {
-      changeStatus();
       setCurrentStory((value) => stories[newIndex]);
       setStoryIndex((value) => newIndex);
       dispatch(currentStoryIndex(newIndex));
@@ -31,9 +31,9 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
     }
   };
 
-  const changeStatus = () => {
-    if (stories[storyIndex].status == "not_seen") {
-      stories[storyIndex].status = "seen";
+  const changeStatus = (index) => {
+    if (stories[index] && stories[index].status == "not_seen") {
+      stories[index].status = "seen";
     }
   };
 
