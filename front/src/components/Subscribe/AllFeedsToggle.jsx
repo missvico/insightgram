@@ -3,11 +3,12 @@ import { ScrollView, SafeAreaView, FlatList, View, Text } from "react-native";
 import { ItemText } from "./style";
 import FeedList from "../Common/FeedList/FeedList";
 import { connect } from "react-redux";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const AllFeedsToggle = ({ feeds }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <FlatList
+      {feeds ? (<FlatList
         data={feeds}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
@@ -16,7 +17,9 @@ const AllFeedsToggle = ({ feeds }) => {
             <FeedList feeds={item.feeds} />
           </View>
         )}
-      />
+      />) : (<Spinner visible={true} />)}
+
+      
     </View>
   );
 };
