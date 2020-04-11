@@ -8,21 +8,17 @@ import { currentStoryIndex } from "../../../redux/actions/feeds";
 const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
   const dispatch = useDispatch();
   const { stories, name } = feed;
-  const [storyIndex, setStoryIndex] = useState(0);
-  const [currentStory, setCurrentStory] = useState(stories[storyIndex]);
-
-  useEffect(() => {
-    setCurrentStory(stories[storyIndex]);
-    dispatch(currentStoryIndex(storyIndex));
-    changeStatus(storyIndex);
-  }, [feed]);
+  const initialIndex = searchFirstStoryPending(stories);
+  const [storyIndex, setStoryIndex] = useState(initialIndex);
+  const [currentStory, setCurrentStory] = useState(stories[initialIndex]);
 
   const handleStoryChange = (moveStory) => {
     let newIndex = storyIndex + moveStory;
+
     changeStatus(newIndex);
     if (newIndex >= 0 && newIndex < stories.length) {
-      setCurrentStory((value) => stories[newIndex]);
-      setStoryIndex((value) => newIndex);
+      setCurrentStory(stories[newIndex]);
+      setStoryIndex(newIndex);
       dispatch(currentStoryIndex(newIndex));
     } else {
       setStoryIndex(0);
@@ -45,6 +41,15 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
     play
   );
 
+  useEffect(() => {
+    let inx = stories ? searchFirstStoryPending(stories) : storyIndex;
+    setCurrentStory(stories[inx]);
+    dispatch(currentStoryIndex(inx));
+    changeStatus(inx);
+    setStoryIndex(inx);
+    return;
+  }, [feed]);
+
   return (
     <View flex={1}>
       <HeaderContainer
@@ -56,6 +61,11 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
       <Story story={currentStory} handleStoryChange={handleStoryChange} />
     </View>
   );
+};
+
+const searchFirstStoryPending = (stories) => {
+  let inx = stories.findIndex((story) => story.status == "not_seen");
+  return inx !== -1 ? inx : 0;
 };
 
 const mapStateToProps = (state) => {

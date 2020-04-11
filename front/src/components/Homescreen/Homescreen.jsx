@@ -1,8 +1,18 @@
 import React from "react";
 import { View, ScrollView, Text, SafeAreaView } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { TouchableWithoutFeedback, TouchableOpacity } from "react-native-gesture-handler";
-import { ItemText, Subscribe, SeeAllButton, SeeAllText, SubscribeTxt, Align } from "./style";
+import {
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
+import {
+  ItemText,
+  Subscribe,
+  SeeAllButton,
+  SeeAllText,
+  SubscribeTxt,
+  Align,
+} from "./style";
 import Discover from "./Discover/Discover";
 import FeedList from "../Common/FeedList/FeedList";
 import Search from "../Common/Search/Search";
@@ -10,12 +20,15 @@ import Search from "../Common/Search/Search";
 export default ({ handlePress, feeds, handleStory, handleMyFeeds }) => {
   return (
     <View backgroundColor={"white"}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View paddingTop={"13%"}>
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between", marginBottom:-10, zIndex:2 }}
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: -10,
+              zIndex: 2,
+            }}
           >
             <ItemText>My feeds</ItemText>
             <TouchableWithoutFeedback onPress={handleMyFeeds}>

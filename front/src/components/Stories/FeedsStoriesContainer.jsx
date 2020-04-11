@@ -21,10 +21,10 @@ const FeedsStoriesContainer = ({
 
     changeHasPendingStories();
     if (newIndex >= 0 && newIndex < feeds[section].length) {
-      setCurrentFeed((value) => feedSelected[newIndex]);
-      setFeedIndex((value) => newIndex);
+      setCurrentFeed(feedSelected[newIndex]);
+      setFeedIndex(newIndex);
     } else {
-      updateFeedsUser(feedSelected);
+      updateFeedsUser(feeds);
       handleClose();
     }
   };

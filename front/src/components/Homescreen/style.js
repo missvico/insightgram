@@ -26,7 +26,7 @@ export const SeeAllButton = styled.View`
 export const SeeAllText = styled.Text`
   color: #0066ff;
   font-size: 17px;
-`
+`;
 
 export const Subscribe = styled.View`
   width: 150px;
