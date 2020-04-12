@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { TabContainer } from "./style";
-import { Text, View, TouchableWithoutFeedback } from "react-native";
+import styles from "./style";
+import { View, TouchableWithoutFeedback } from "react-native";
 
 const Header = (props) => {
   const {
@@ -13,7 +13,7 @@ const Header = (props) => {
 
   return (
     <View style={{ backgroundColor: "#fff" }}>
-      <TabContainer>
+      <styles.TabContainer>
         {navigationState.routes.map((route, index) => {
           const isRouteActive = index === activeTabIndex;
           const tintColor = isRouteActive ? activeTintColor : inactiveTintColor;
@@ -24,28 +24,17 @@ const Header = (props) => {
               key={route.routeName}
             >
               <View>
-                <Text
-                  style={{
-                    fontSize: 14,
-                    color: `${isRouteActive ? "#000000" : "#A3A3A3"}`,
-                    paddingLeft: 15,
-                    paddingRight: 15,
-                  }}
+                <styles.TabText
+                  color={`${isRouteActive ? "#000000" : "#A3A3A3"}`}
                 >
                   {route.routeName}
-                </Text>
+                </styles.TabText>
               </View>
             </TouchableWithoutFeedback>
           );
         })}
-      </TabContainer>
-      <View
-        style={{
-          borderBottomColor: "#000",
-          opacity: 0.1,
-          borderBottomWidth: 1,
-        }}
-      />
+      </styles.TabContainer>
+      <styles.TabBorder />
     </View>
   );
 };

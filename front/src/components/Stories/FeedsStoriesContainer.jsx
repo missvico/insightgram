@@ -9,6 +9,8 @@ const FeedsStoriesContainer = ({
   feeds,
   updateFeedsUser,
 }) => {
+  console.log(route);
+
   const { id, section } = route.params;
   const feedSelected = feeds[section];
   const [feedIndex, setFeedIndex] = useState(

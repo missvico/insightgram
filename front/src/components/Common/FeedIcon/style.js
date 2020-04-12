@@ -1,29 +1,58 @@
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
-import { LIGHT_GREY, DARK_BLUE, WHITE } from "../../../styles";
-import { RED } from "../../../styles";
+import { WHITE, HEADER_FONT_CARD } from "../../../styles";
 
-const pt = 1.15
+const pt = 1.15;
 
 export const IconContainer = styled.View`
   margin: ${(props) => (props.size === "big" ? 3 * pt : 2 * pt)}px;
 `;
 
 export const PreviewImage = styled.Image`
-  height: ${(props) => (props.size === "big" ? 195 * pt : (props.size === "medium" ? 181 * pt : 148 * pt))}px;
-  width: ${(props) => (props.size === "big" ? 107 * pt : (props.size === "medium" ? 101 * pt : 82 * pt))}px;
+  height: ${(props) =>
+    props.size === "big"
+      ? 195 * pt
+      : props.size === "medium"
+      ? 181 * pt
+      : 148 * pt}px;
+  width: ${(props) =>
+    props.size === "big"
+      ? 107 * pt
+      : props.size === "medium"
+      ? 101 * pt
+      : 82 * pt}px;
   border-radius: ${(props) => (props.size === "big" ? 9 * pt : 9 * pt)}px;
 `;
 export const GreyBackgroud = styled.View`
-  height: ${(props) => (props.size === "big" ? 195 * pt : (props.size === "medium" ? 181 * pt : 148 * pt))}px;
-  width: ${(props) => (props.size === "big" ? 107 * pt : (props.size === "medium" ? 101 * pt : 82 * pt))}px;
+  height: ${(props) =>
+    props.size === "big"
+      ? 195 * pt
+      : props.size === "medium"
+      ? 181 * pt
+      : 148 * pt}px;
+  width: ${(props) =>
+    props.size === "big"
+      ? 107 * pt
+      : props.size === "medium"
+      ? 101 * pt
+      : 82 * pt}px;
   border-radius: ${(props) => (props.size === "big" ? 9 * pt : 9 * pt)}px;
   background-color: rgb(132, 129, 129);
 `;
 
 export const IconCard = styled.View`
-  height: ${(props) => (props.size === "big" ? 195 * pt : (props.size === "medium" ? 181 * pt : 148 * pt))}px;
-  width: ${(props) => (props.size === "big" ? 107 * pt : (props.size === "medium" ? 101 * pt : 82 * pt))}px;
+  height: ${(props) =>
+    props.size === "big"
+      ? 195 * pt
+      : props.size === "medium"
+      ? 181 * pt
+      : 148 * pt}px;
+  width: ${(props) =>
+    props.size === "big"
+      ? 107 * pt
+      : props.size === "medium"
+      ? 101 * pt
+      : 82 * pt}px;
   border-radius: ${(props) => (props.size === "big" ? 9 * pt : 9 * pt)}px;
   background-color: ${(props) =>
     props.preview ? "rgba(0,0,0, 0.5)" : "rgb(132,129,129)"};
@@ -38,15 +67,17 @@ export const IconCard = styled.View`
 `;
 
 export const Avatar = styled.Image`
-  height: ${(props) => (props.size === "big" ? 29*pt : 27 * pt)}px;
-  width: ${(props) => (props.size === "big" ? 29*pt : 27 * pt)}px;
-  border-radius: ${(props) => (props.size === "big" ? 29/2*pt : 27/2 * pt)}px;
+  height: ${(props) => (props.size === "big" ? 29 * pt : 27 * pt)}px;
+  width: ${(props) => (props.size === "big" ? 29 * pt : 27 * pt)}px;
+  border-radius: ${(props) =>
+    props.size === "big" ? (29 / 2) * pt : (27 / 2) * pt}px;
 `;
 
 export const AvatarBorderGradient = styled(LinearGradient)`
-  height: ${(props) => (props.size === "big" ? 24*pt : 32 * pt)}px;
-  width: ${(props) => (props.size === "big" ? 24*pt : 32 * pt)}px;
-  border-radius: ${(props) => (props.size === "big" ? 24/2*pt : 32/2* pt)}px;
+  height: ${(props) => (props.size === "big" ? 24 * pt : 32 * pt)}px;
+  width: ${(props) => (props.size === "big" ? 24 * pt : 32 * pt)}px;
+  border-radius: ${(props) =>
+    props.size === "big" ? (24 / 2) * pt : (32 / 2) * pt}px;
   align-items: center;
   justify-content: center;
 `;
@@ -61,9 +92,9 @@ export const AvatarBorder = styled.View`
 `;
 
 export const CardName = styled.Text`
+  font-family: ${HEADER_FONT_CARD};
   text-align: left;
   margin-top: 25%;
-  font-weight: bold;
   font-size: ${13 * pt}px;
   color: ${WHITE};
   shadow-color: #000;

@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { View, TouchableHighlight } from "react-native";
 import { Provider } from "react-redux";
-import configureStore from "./redux/index";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import * as Font from "expo-font";
+
+import configureStore from "./redux/index";
 import LoginForm from "./src/components/Login/LoginForm";
 import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
 import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 import FeedsStoriesContainer from "./src/components/Stories/FeedsStoriesContainer";
-import MyFeedsContainer from "./src/components/MyFeeds/MyFeedsContainer"
+import MyFeedsContainer from "./src/components/MyFeeds/MyFeedsContainer";
+import styles from "./src/styles/appStyles";
+import { HEADER_FONT_TITLE } from "./src/styles/index";
+
 const store = configureStore();
 const Stack = createStackNavigator();
 const RootStack = createStackNavigator();
@@ -23,6 +28,7 @@ function FeedsStack({ navigation }) {
         options={{
           title: "Insightgram",
           headerTitleAlign: "center",
+          headerTitleStyle: { fontFamily: HEADER_FONT_TITLE },
           headerStyle: {
             borderBottomColor: "#fff",
             borderBottomWidth: 0,
@@ -35,29 +41,28 @@ function FeedsStack({ navigation }) {
         options={{
           title: "My Feeds",
           headerTitleAlign: "center",
+          headerTitleStyle: { fontFamily: HEADER_FONT_TITLE },
           headerStyle: {
             borderBottomColor: "#fff",
             borderBottomWidth: 0,
           },
           headerLeft: () => (
             <View>
-              <View
-                style={{ flex: 1, flexDirection: "row", alignItems: "center", marginLeft: 10}}
-              >
+              <styles.Container>
                 <Ionicons
                   name="ios-arrow-back"
-                  color="rgb(0, 122, 255)"
+                  color="#007aff"
                   size={25}
                   onPress={() => navigation.navigate({ name: "Home" })}
                 />
-                <Button
+                <TouchableHighlight
                   onPress={() => navigation.navigate({ name: "Home" })}
-                  color="rgb(0, 122, 255)"
-                  title="Home"
-                />
-              </View>
+                >
+                  <styles.HeaderButtomText>Cancel</styles.HeaderButtomText>
+                </TouchableHighlight>
+              </styles.Container>
             </View>
-          )
+          ),
         }}
       />
       <Stack.Screen
@@ -66,36 +71,33 @@ function FeedsStack({ navigation }) {
         options={{
           title: "Subscribe",
           headerTitleAlign: "center",
+          headerTitleStyle: { fontFamily: HEADER_FONT_TITLE },
           headerStyle: {
-            borderBottomColor: "rgba(163, 163, 163, 0.3)",
+            borderBottomColor: "#a3a3a34d",
             borderBottomWidth: 0.5,
           },
           headerRight: () => (
-            <View style={{marginRight: 8}}>
-              <Button
-                onPress={() => navigation.navigate({ name: "Home" })}
-                title="Cancel"
-                color="rgb(0, 122, 255)"
-              />
-            </View>
+            <TouchableHighlight
+              onPress={() => navigation.navigate({ name: "Home" })}
+            >
+              <styles.HeaderButtomText>Cancel</styles.HeaderButtomText>
+            </TouchableHighlight>
           ),
           headerLeft: () => (
             <View>
-              <View
-                style={{ flex: 1, flexDirection: "row", alignItems: "center", marginLeft: 10}}
-              >
+              <styles.Container>
                 <Ionicons
                   name="ios-arrow-back"
-                  color="rgb(0, 122, 255)"
+                  color="#007aff"
                   size={25}
                   onPress={() => navigation.navigate({ name: "Home" })}
                 />
-                <Button
+                <TouchableHighlight
                   onPress={() => navigation.navigate({ name: "Home" })}
-                  color="rgb(0, 122, 255)"
-                  title="Home"
-                />
-              </View>
+                >
+                  <styles.HeaderButtomText>Home</styles.HeaderButtomText>
+                </TouchableHighlight>
+              </styles.Container>
             </View>
           ),
         }}
@@ -104,7 +106,29 @@ function FeedsStack({ navigation }) {
   );
 }
 export default function App() {
-  console.disableYellowBox = true 
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!fontsLoaded) {
+      loadFonts();
+    }
+  });
+
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      "SFProText-bold": require("./assets/fonts/SFProText-Bold.ttf"),
+      "SFProText-regular": require("./assets/fonts/SFProText-Regular.ttf"),
+      "SFProText-semi-bold": require("./assets/fonts/SFProText-Semibold.ttf"),
+      "SFProText-medium": require("./assets/fonts/SFProText-Medium.ttf"),
+    });
+
+    setFontsLoaded(true);
+  };
+
+  if (!fontsLoaded) {
+    return <View></View>;
+  }
+
   return (
     <Provider store={store}>
       <NavigationContainer>

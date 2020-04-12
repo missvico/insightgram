@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { HEADER_FONT_BUTTOM } from "../../styles/index";
 
 export const Title = styled.Text`
   padding-top: 60px;
@@ -15,7 +16,8 @@ export const Done = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
+  font-family: ${HEADER_FONT_BUTTOM};
   color: #fff;
-  font-size: 18px;
+  font-size: 17px;
   text-align: center;
 `;

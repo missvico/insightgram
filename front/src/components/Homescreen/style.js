@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { HEADER_FONT_GROUP_TITLE, HEADER_FONT_CARD } from "../../styles/index";
 
 export const Title = styled.Text`
   padding-top: 60px;
@@ -9,6 +10,7 @@ export const Title = styled.Text`
 `;
 
 export const ItemText = styled.Text`
+  font-family: ${HEADER_FONT_GROUP_TITLE};
   font-size: 17px;
   padding-top: 15px;
   margin-bottom: -10px;
@@ -47,6 +49,8 @@ export const Align = styled.View`
 `;
 
 export const SubscribeTxt = styled.Text`
+  font-family: ${HEADER_FONT_CARD};
+  font-size: 14px;
   margin: 5px;
   color: #fff;
   align-self: center;
