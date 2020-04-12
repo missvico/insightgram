@@ -19,13 +19,16 @@ const FeedsStoriesContainer = ({
   const handleFeedChange = (moveFeed) => {
     let newIndex = feedIndex + moveFeed;
 
-    changeHasPendingStories();
-    if (newIndex >= 0 && newIndex < feeds[section].length) {
-      setCurrentFeed(feedSelected[newIndex]);
-      setFeedIndex(newIndex);
-    } else {
-      updateFeedsUser(feeds);
+    if (section == "discover") {
       handleClose();
+    } else {
+      if (newIndex >= 0 && newIndex < feeds[section].length) {
+        changeHasPendingStories();
+        setCurrentFeed(feedSelected[newIndex]);
+        setFeedIndex(newIndex);
+      } else {
+        handleClose();
+      }
     }
   };
 
