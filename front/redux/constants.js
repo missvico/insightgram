@@ -6,3 +6,4 @@ export const SET_PLAY = "SET_PLAY";
 export const SUBSCRIBE_FEED = "SUBSCRIBE_FEED";
 export const MODIFY_FEED = "MODIFY_FEED";
 export const CLEAR_SUBSCRIBE = "CLEAR_SUBSCRIBE";
+export const SET_LOADING = "SET_LOADING";

@@ -7,6 +7,7 @@ import {
   subscribeFeeds,
   clearSubscribe,
 } from "../../../redux/actions/subscribe";
+import { setLoading } from "../../../redux/actions/loading";
 
 const SubscribeContainer = (props) => {
   const [inputValue, setInputValue] = useState("");
@@ -28,6 +29,7 @@ const SubscribeContainer = (props) => {
   };
 
   const handlePress = () => {
+    props.setLoading(true);
     subscribeFeeds(props.subscribe)
       .then(() => {
         getItemStorage("@Token").then((token) => {
@@ -36,6 +38,7 @@ const SubscribeContainer = (props) => {
       })
       .then(() => {
         props.clearSubscribe();
+        props.setLoading(false);
         props.navigation.navigate("Home");
       });
   };
@@ -45,12 +48,14 @@ const SubscribeContainer = (props) => {
       feeds={allFeeds ? allFeeds.feeds : {}}
       onChange={onChange}
       handlePress={handlePress}
+      loading={props.loading}
     />
   );
 };
 const mapStateToProps = function (state, ownProps) {
   return {
     subscribe: state.subscribe,
+    loading: state.loading,
   };
 };
 
@@ -60,6 +65,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     fetchAllFeeds: (token) => dispatch(fetchAllFeeds(token)),
     fetchFeedsByUser: (token) => dispatch(fetchFeedsByUser(token)),
     clearSubscribe: () => dispatch(clearSubscribe()),
+    setLoading: (value) => dispatch(setLoading(value)),
   };
 };
 
