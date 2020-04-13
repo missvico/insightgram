@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { View, TouchableHighlight } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -55,11 +55,11 @@ function FeedsStack({ navigation }) {
                   size={25}
                   onPress={() => navigation.navigate({ name: "Home" })}
                 />
-                <TouchableHighlight
+                <TouchableOpacity
                   onPress={() => navigation.navigate({ name: "Home" })}
                 >
                   <styles.HeaderButtomText>Cancel</styles.HeaderButtomText>
-                </TouchableHighlight>
+                </TouchableOpacity>
               </styles.Container>
             </View>
           ),
@@ -77,11 +77,11 @@ function FeedsStack({ navigation }) {
             borderBottomWidth: 0.5,
           },
           headerRight: () => (
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={() => navigation.navigate({ name: "Home" })}
             >
               <styles.HeaderButtomText>Cancel</styles.HeaderButtomText>
-            </TouchableHighlight>
+            </TouchableOpacity>
           ),
           headerLeft: () => (
             <View>
@@ -92,11 +92,11 @@ function FeedsStack({ navigation }) {
                   size={25}
                   onPress={() => navigation.navigate({ name: "Home" })}
                 />
-                <TouchableHighlight
+                <TouchableOpacity
                   onPress={() => navigation.navigate({ name: "Home" })}
                 >
                   <styles.HeaderButtomText>Home</styles.HeaderButtomText>
-                </TouchableHighlight>
+                </TouchableOpacity>
               </styles.Container>
             </View>
           ),
