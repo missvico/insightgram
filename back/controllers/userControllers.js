@@ -28,13 +28,11 @@ userControllers.loginUser = (req, res) => {
 };
 
 userControllers.subscribeFeeds = (req, res) => {
-  console.log(req.body.feeds, "SUBSCRIBE");
-  res.send(req.body.feeds);
+  res.send(req.body.ids);
 };
 
 userControllers.unsubscribeFeeds = (req, res) => {
-  console.log(req.body.feeds);
-  res.send(req.body.feeds);
+  res.send(req.body.ids);
 };
 
 module.exports = userControllers;

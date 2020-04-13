@@ -17,14 +17,22 @@ export const clearSubscribe = () => ({
 export const subscribeFeeds = (feeds) => {
   let feedsToSubscribe = filterFeeds(feeds, "subscribe");
   let feedsToUnsubscribe = filterFeeds(feeds, "unsubscribe");
-  let subscribedFeeds = axios.put(`http://${ip}/api/user/feeds/subscribe`, {
-    feeds: feedsToSubscribe,
+  let subscribedFeeds = axios.put(`http://${ip}/api/user/feeds`, {
+    ids: feedsToSubscribe,
   });
-  let unsubscribedFeeds = axios.put(`http://${ip}/api/user/feeds/unsubscribe`, {
-    feeds: feedsToUnsubscribe,
+  let unsubscribedFeeds = axios.delete(`http://${ip}/api/user/feeds`, {
+    data: {
+      ids: feedsToUnsubscribe,
+    },
   });
   return Promise.props({ subscribedFeeds, unsubscribedFeeds }).then(
     ({ subscribedFeeds, unsubscribedFeeds }) => {
+      console.log(
+        subscribedFeeds.data,
+        "SUBSCRIBE",
+        unsubscribedFeeds.data,
+        "UNSUBSCRIBE"
+      );
       return {
         subscribedFeeds: subscribedFeeds.data,
         unsubscribedFeeds: unsubscribedFeeds.data,
