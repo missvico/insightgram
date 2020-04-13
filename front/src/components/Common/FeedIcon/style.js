@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
-import { LIGHT_GREY, DARK_BLUE, WHITE } from "../../../styles";
+import { WHITE, CARD_COLOR} from "../../../styles";
 import { RED } from "../../../styles";
 
 const pt = 1.15
@@ -18,7 +18,7 @@ export const GreyBackgroud = styled.View`
   height: ${(props) => (props.size === "big" ? 195 * pt : (props.size === "medium" ? 181 * pt : 148 * pt))}px;
   width: ${(props) => (props.size === "big" ? 107 * pt : (props.size === "medium" ? 101 * pt : 82 * pt))}px;
   border-radius: ${(props) => (props.size === "big" ? 9 * pt : 9 * pt)}px;
-  background-color: rgb(132, 129, 129);
+  background-color: ${CARD_COLOR};
 `;
 
 export const IconCard = styled.View`
@@ -26,7 +26,7 @@ export const IconCard = styled.View`
   width: ${(props) => (props.size === "big" ? 107 * pt : (props.size === "medium" ? 101 * pt : 82 * pt))}px;
   border-radius: ${(props) => (props.size === "big" ? 9 * pt : 9 * pt)}px;
   background-color: ${(props) =>
-    props.preview ? "rgba(0,0,0, 0.5)" : "rgb(132,129,129)"};
+    props.preview ? "rgba(0,0,0, 0.5)" : CARD_COLOR};
   flex-direction: column;
   justify-content: space-between;
   margin: 0px;

@@ -3,11 +3,12 @@ import { ScrollView, SafeAreaView, FlatList, View, Text } from "react-native";
 import { ItemText } from "./style";
 import FeedList from "../Common/FeedList/FeedList";
 import { connect } from "react-redux";
+import {BACKGROUND} from "../../styles"
 
 const MyFeedsToggle = ({ feedsUnfiltered }) => {
   const feeds = feedsUnfiltered ? filter(feedsUnfiltered) : null;
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: BACKGROUND}}>
       {feeds ? (
         <FlatList
           data={feeds}

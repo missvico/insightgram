@@ -6,14 +6,15 @@ import { ItemText, Subscribe, SeeAllButton, SeeAllText, SubscribeTxt, Align } fr
 import Discover from "./Discover/Discover";
 import FeedList from "../Common/FeedList/FeedList";
 import Search from "../Common/Search/Search";
+import {BACKGROUND} from "../../styles"
 
 export default ({ handlePress, feeds, handleStory, handleMyFeeds }) => {
   return (
-    <View backgroundColor={"white"}>
+    <View backgroundColor={BACKGROUND}>
       <ScrollView
         showsVerticalScrollIndicator={false}
       >
-        <View paddingTop={"13%"}>
+        <View style={{paddingTop:"13%"}}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between", marginBottom:-10, zIndex:2 }}
           >
@@ -49,19 +50,10 @@ export default ({ handlePress, feeds, handleStory, handleMyFeeds }) => {
           width: "100%",
           position: "absolute",
           top: 0,
-          marginTop: -5,
-          backgroundColor: "#fff",
+          marginTop: -5
         }}
       >
         <Search />
-        <View
-          style={{
-            marginTop: 13,
-            height: 1,
-            backgroundColor: "#000",
-            opacity: 0.3,
-          }}
-        ></View>
       </View>
     </View>
   );
