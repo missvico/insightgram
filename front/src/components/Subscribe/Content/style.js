@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { TEXT } from "../../../styles";
 
 export const TabContainer = styled.View`
   width: 100%;
@@ -14,4 +15,5 @@ export const ItemText = styled.Text`
   padding-top: 15px;
   margin-bottom: -11px;
   padding-left: 16px;
+  color: ${TEXT};
 `;

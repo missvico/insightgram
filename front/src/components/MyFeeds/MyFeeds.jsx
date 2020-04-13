@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 export default ({ feeds, handleStory }) => {
   return ( 
-    <View>
+    <View >
       <Grid
         numColumns={3}
         data={feeds}
