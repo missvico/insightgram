@@ -1,41 +1,68 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
 import { Animated, StyleSheet, View, Dimensions } from "react-native";
 import { useSelector } from "react-redux";
 import Indicator from "./Indicator";
 import { FlatList } from "react-native-gesture-handler";
 import { StoryIndicator } from "./style";
+import * as Progress from "react-native-progress";
 
 const ProgressIndicator = ({ stories }) => {
   const opacity = useRef(new Animated.Value(1)).current;
   const windowWidth = Dimensions.get("window").width;
   const windowLength = Dimensions.get("window").length;
 
-  const play = useSelector((state) => state.play.value);
+  const [times, setTimings] = useState(
+    stories.reduce((acc, cur, index) => ({ ...acc, [index]: 0 }), {})
+  );
+
   const currentIndex = useSelector(
     (state) => state.feeds.currentStoryIndex.currentStoryIndex
   );
+  const stop = useSelector((state) => state.play.value);
 
   useEffect(() => {
-    Animated.timing(opacity, {
-      toValue: 1,
-      timing: 3000,
-    }).start();
-  }, [stories.pause]);
-
+    console.log(times);
+    if (currentIndex === 0)
+      setTimings(
+        stories.reduce((acc, cur, index) => ({ ...acc, [index]: 0 }), {})
+      );
+    if (stop)
+      for (let i = times[currentIndex]; i <= 2000; i++) {
+        setTimings((prevState) => ({
+          ...prevState,
+          [currentIndex]: (i * 100) / 2000 / 100,
+        }));
+      }
+  }, [currentIndex, stop, stories]);
+  console.log(currentIndex);
   return (
-    <FlatList
-      horizontal
-      data={stories}
-      renderItem={({ item, index }) => {
-        return (
-          <StoryIndicator
-            currentIndex={currentIndex}
-            index={index}
-            scale={windowWidth / stories.length}
+    <View style={{ flexDirection: "row", padding: 1 }}>
+      {stories.map((_, key) => (
+        <View style={{ margin: 1 }}>
+          <Progress.Bar
+            color="#555"
+            progress={times[key]}
+            width={windowWidth / stories.length}
           />
-        );
-      }}
-    />
+        </View>
+      ))}
+    </View>
+
+    // <FlatList
+    //   horizontal
+    //   data={stories}
+    //   keyExtractor={(item, index) => index.toString()}
+    //   renderItem={({ item, index }) => {
+    //     return (
+    //       <StoryIndicator
+    //         currentIndex={currentIndex}
+    //         index={index}
+    //         scale={windowWidth / stories.length}
+    //       />
+    //     );
+    //   }}
+    // />
     // <Animated.View>
     //   {stories.map((i, index) => {
     //         return (

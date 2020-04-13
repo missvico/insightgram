@@ -33,14 +33,19 @@ const HomescreenContainer = ({
     navigation.navigate("Stories", storyprops);
   };
 
+  const handleMyFeeds = () => {
+    navigation.navigate("MyFeeds");
+  };
+
   return (
     <View>
       {userHome && userHome.feeds ? (
         <View>
           <Homescreen
-            handlePress={handlePress}
             feeds={userHome.feeds}
+            handlePress={handlePress}
             handleStory={handleStory}
+            handleMyFeeds={handleMyFeeds}
           />
         </View>
       ) : (
