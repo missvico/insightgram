@@ -1,22 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Text, View, ScrollView, RefreshControl } from "react-native";
+import { View, ScrollView, RefreshControl } from "react-native";
 import { connect } from "react-redux";
-import { AntDesign } from "@expo/vector-icons";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import Spinner from "react-native-loading-spinner-overlay";
 
 import Homescreen from "./Homescreen";
 import { fetchFeedsByUser } from "../../../redux/actions/feeds";
 import { getItemStorage } from "../../../assets/js/AsyncStorage";
 
-const HomescreenContainer = ({
-  navigation,
-  fetchFeedsByUser,
-  homeUserStore,
-}) => {
+const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
   const [userHome, setUserHome] = useState({});
   const [refreshing, setRefreshing] = useState(false);
-  const [autoRefreshing, setAutoRefreshing] = useState(false);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -24,12 +17,10 @@ const HomescreenContainer = ({
   }, [refreshing]);
 
   const fetchInfo = () => {
-    setAutoRefreshing(true);
     getItemStorage("@Token").then((token) => {
       fetchFeedsByUser(token).then((data) => {
         setUserHome(data);
         setRefreshing(false);
-        setAutoRefreshing(false);
       });
     });
   };
@@ -54,31 +45,18 @@ const HomescreenContainer = ({
     navigation.navigate("MyFeeds");
   };
 
-  useInterval(
-    () => {
-      fetchInfo();
-    },
-    10000,
-    autoRefreshing
-  );
-
   return (
     <View>
       {userHome && userHome.feeds ? (
         <View>
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
-          >
-            <Homescreen
-              feeds={userHome.feeds}
-              handlePress={handlePress}
-              handleStory={handleStory}
-              handleMyFeeds={handleMyFeeds}
-            />
-          </ScrollView>
+          <Homescreen
+            feeds={userHome.feeds}
+            handlePress={handlePress}
+            handleStory={handleStory}
+            handleMyFeeds={handleMyFeeds}
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
         </View>
       ) : (
         <Spinner visible={true} />

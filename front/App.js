@@ -86,7 +86,7 @@ function FeedsStack({ navigation }) {
         options={{
           title: "Subscribe",
           headerTitleAlign: "center",
-          headerTitleStyle: { fontFamily: HEADER_FONT_TITLE },
+          headerTitleStyle: { color: TEXT, fontFamily: HEADER_FONT_TITLE },
           headerStyle: {
             borderBottomColor: "#a3a3a34d",
             borderBottomWidth: 0.5,

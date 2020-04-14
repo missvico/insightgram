@@ -4,6 +4,7 @@ import { View } from "react-native";
 import HeaderContainer from "./Content/Header/HeaderContainer";
 import { connect, useDispatch } from "react-redux";
 import { currentStoryIndex } from "../../../redux/actions/feeds";
+
 const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
   const dispatch = useDispatch();
   const { stories, name } = feed;

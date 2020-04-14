@@ -1,11 +1,4 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  TouchableHighlight,
-} from "react-native";
 import { Input, Button, ButtonText, ContainerForm, Title } from "./styles";
 import { PLACEHOLDER_COLOR } from "../../styles";
 

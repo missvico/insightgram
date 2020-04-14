@@ -2,8 +2,12 @@ import Styled from "styled-components";
 
 export const ToggleStory = Styled.View`
     position: absolute;
-    flex: 1;
-    flex-direction: row;
+bottom: 0;
+top: 0;
+left:0;
+right:0;
+flex: 1;
+flex-direction: row
 `;
 
 export const Touchable = Styled.View`
