@@ -4,9 +4,9 @@ import React, { useState, useEffect } from "react";
 import ProgressIndicator from "./ProgressIndicator";
 import { Header, ProgressBarContainer, TitleIconContainer,IconsContainer, TitleContainer, Title } from "./style";
 
-export default ({ name, play, handleClose, handlePlay, stories }) => {
+export default ({ name, play, handleClose, handlePlay, stories, showHeader }) => {
   return (
-  <Header>
+  <Header showHeader={showHeader}>
     <ProgressBarContainer>
       <ProgressIndicator stories={stories}/>
     </ProgressBarContainer>

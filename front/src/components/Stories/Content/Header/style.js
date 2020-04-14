@@ -11,6 +11,7 @@ height: 100px;
 width: 100%;
 background-color: rgba(0, 0, 0, 0.3);
 flex-direction: column;
+opacity: ${props => props.showHeader? 1: 0}
 `
 
 export const TitleIconContainer = Styled.View`
