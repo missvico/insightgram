@@ -1,5 +1,10 @@
 import styled from "styled-components/native";
-import { HEADER_FONT_GROUP_TITLE } from "../../styles/index";
+import {
+  HEADER_FONT_GROUP_TITLE,
+  TEXT,
+  LIGHT_BLUE,
+  WHITE,
+} from "../../styles/index";
 
 const styles = {};
 
@@ -8,8 +13,19 @@ styles.TabContainer = styled.View`
   margin-vertical: 12px;
   flex-direction: row;
   justify-content: center;
-  padding-horizontal: 10px;
-  align-items: center;
+`;
+
+styles.Title = styled.Text`
+  padding-top: 60px;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: ${TEXT};
+`;
+styles.Done = styled.TouchableOpacity`
+  background-color: ${LIGHT_BLUE};
+  height: 60px;
 `;
 
 styles.ItemText = styled.Text`
@@ -18,6 +34,12 @@ styles.ItemText = styled.Text`
   padding-top: 15px;
   margin-bottom: -11px;
   padding-left: 16px;
+`;
+
+styles.ButtonText = styled.Text`
+  color: ${WHITE};
+  font-size: 18px;
+  text-align: center;
 `;
 
 styles.TabText = styled.Text`

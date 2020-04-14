@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { loginUser, validateToken } from "../../../redux/actions/users";
 import {
   setItemStorage,
-  getItemStorage
+  getItemStorage,
 } from "../../../assets/js/AsyncStorage";
 
 const LoginForm = ({ loginUser, navigation, validateToken }) => {
@@ -14,8 +14,8 @@ const LoginForm = ({ loginUser, navigation, validateToken }) => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    getItemStorage("@Token").then(token => {
-      validateToken(token).then(response => {
+    getItemStorage("@Token").then((token) => {
+      validateToken(token).then((response) => {
         if (response == 401) {
           return;
         } else {
@@ -25,17 +25,17 @@ const LoginForm = ({ loginUser, navigation, validateToken }) => {
     });
   }, []);
 
-  const changeEmail = email => {
+  const changeEmail = (email) => {
     setEmail(email);
   };
 
-  const changePassword = password => {
+  const changePassword = (password) => {
     setPassword(password);
   };
 
   const buttonPressed = () => {
     if (email && password) {
-      loginUser(email, password).then(response => {
+      loginUser(email, password).then((response) => {
         if (response == 401) {
           Alert.alert("Email o contraseña incorrecta");
         } else {
@@ -65,7 +65,7 @@ const LoginForm = ({ loginUser, navigation, validateToken }) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     loginUser: (email, password) => dispatch(loginUser(email, password)),
-    validateToken: token => dispatch(validateToken(token))
+    validateToken: (token) => dispatch(validateToken(token)),
   };
 };
 

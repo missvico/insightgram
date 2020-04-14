@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -9,11 +9,16 @@ import * as Font from "expo-font";
 import configureStore from "./redux/index";
 import LoginForm from "./src/components/Login/LoginForm";
 import HomescreenContainer from "./src/components/Homescreen/HomescreenContainer";
-import FeedsContainer from "./src/components/Feeds/FeedsContainer";
 import FeedsStoriesContainer from "./src/components/Stories/FeedsStoriesContainer";
 import MyFeedsContainer from "./src/components/MyFeeds/MyFeedsContainer";
+import SubscribeContainer from "./src/components/Subscribe/SubscribeContainer";
+import {
+  Appearance,
+  AppearanceProvider,
+  useColorScheme,
+} from "react-native-appearance";
 import styles from "./src/styles/appStyles";
-import { HEADER_FONT_TITLE } from "./src/styles/index";
+import { BACKGROUND, TEXT, HEADER_FONT_TITLE } from "./src/styles/index";
 
 const store = configureStore();
 const Stack = createStackNavigator();
@@ -28,9 +33,14 @@ function FeedsStack({ navigation }) {
         options={{
           title: "Insightgram",
           headerTitleAlign: "center",
-          headerTitleStyle: { fontFamily: HEADER_FONT_TITLE },
+          headerTitleStyle: {
+            color: TEXT,
+            fontFamily: HEADER_FONT_TITLE,
+          },
+          transparentCard: true,
           headerStyle: {
             borderBottomColor: "#fff",
+            backgroundColor: BACKGROUND,
             borderBottomWidth: 0,
           },
         }}
@@ -41,9 +51,14 @@ function FeedsStack({ navigation }) {
         options={{
           title: "My Feeds",
           headerTitleAlign: "center",
-          headerTitleStyle: { fontFamily: HEADER_FONT_TITLE },
+          transparentCard: true,
+          headerTitleStyle: {
+            color: TEXT,
+            fontFamily: HEADER_FONT_TITLE,
+          },
           headerStyle: {
             borderBottomColor: "#fff",
+            backgroundColor: BACKGROUND,
             borderBottomWidth: 0,
           },
           headerLeft: () => (
@@ -67,7 +82,7 @@ function FeedsStack({ navigation }) {
       />
       <Stack.Screen
         name="Feeds"
-        component={FeedsContainer}
+        component={SubscribeContainer}
         options={{
           title: "Subscribe",
           headerTitleAlign: "center",
@@ -75,6 +90,7 @@ function FeedsStack({ navigation }) {
           headerStyle: {
             borderBottomColor: "#a3a3a34d",
             borderBottomWidth: 0.5,
+            backgroundColor: BACKGROUND,
           },
           headerRight: () => (
             <TouchableOpacity
@@ -105,7 +121,7 @@ function FeedsStack({ navigation }) {
     </Stack.Navigator>
   );
 }
-export default function App() {
+function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
@@ -131,13 +147,37 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <RootStack.Navigator headerMode="none" initialRouteName="Login">
-          <RootStack.Screen name="Login" component={LoginForm} />
-          <RootStack.Screen name="Stories" component={FeedsStoriesContainer} />
-          <RootStack.Screen name="FeedsStack" component={FeedsStack} />
-        </RootStack.Navigator>
-      </NavigationContainer>
+      <AppearanceProvider>
+        <NavigationContainer>
+          <RootStack.Navigator headerMode="none" initialRouteName="Login">
+            <RootStack.Screen
+              name="Login"
+              component={LoginForm}
+              options={{ transparentCard: true }}
+            />
+            <RootStack.Screen
+              name="Stories"
+              component={FeedsStoriesContainer}
+              options={{ transparentCard: true }}
+            />
+            <RootStack.Screen
+              name="FeedsStack"
+              component={FeedsStack}
+              options={{ transparentCard: true }}
+            />
+          </RootStack.Navigator>
+        </NavigationContainer>
+      </AppearanceProvider>
     </Provider>
   );
 }
+
+export default () => {
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: BACKGROUND,
+    },
+  });
+  return <App style={styles} />;
+};
