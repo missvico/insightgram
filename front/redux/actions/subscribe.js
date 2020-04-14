@@ -27,12 +27,6 @@ export const subscribeFeeds = (feeds) => {
   });
   return Promise.props({ subscribedFeeds, unsubscribedFeeds }).then(
     ({ subscribedFeeds, unsubscribedFeeds }) => {
-      console.log(
-        subscribedFeeds.data,
-        "SUBSCRIBE",
-        unsubscribedFeeds.data,
-        "UNSUBSCRIBE"
-      );
       return {
         subscribedFeeds: subscribedFeeds.data,
         unsubscribedFeeds: unsubscribedFeeds.data,

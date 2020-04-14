@@ -1,7 +1,9 @@
-import styled from "styled-components/native";
+import styled from "styled-components";
 import { TEXT, LINE_COLOR } from "../../../styles";
 
-export const TabContainer = styled.View`
+const styles = {};
+
+styles.TabContainer = styled.View`
   width: 100%;
   margin-vertical: 12px;
   flex-direction: row;
@@ -10,7 +12,7 @@ export const TabContainer = styled.View`
   align-items: center;
 `;
 
-export const ItemText = styled.Text`
+styles.ItemText = styled.Text`
   font-size: 17px;
   padding-top: 15px;
   margin-bottom: -11px;
@@ -18,15 +20,25 @@ export const ItemText = styled.Text`
   color: ${TEXT};
 `;
 
-export const Separator = styled.View`
+styles.Separator = styled.View`
   flex-direction: row;
   justify-content: center;
   height: 1px;
   background-color: ${LINE_COLOR};
 `;
 
-export const ToggleSeparator = styled.View`
+styles.ToggleSeparator = styled.View`
   width: 20%;
   height: 1px;
   background-color: ${(props) => (props.show ? TEXT : "transparent")};
 `;
+
+styles.TabText = styled.Text`
+  font-family: "SFProText-medium";
+  font-size: 14px;
+  color: ${(props) => props.color};
+  padding-left: 15px;
+  padding-right: 15px;
+`;
+
+export default styles;

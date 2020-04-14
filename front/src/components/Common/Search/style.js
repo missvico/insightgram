@@ -1,5 +1,9 @@
 import styled from "styled-components/native";
-import {INPUT_BACKGROUND, INPUT_COLOR} from "../../../styles"
+import {
+  HEADER_FONT_GROUP_TITLE,
+  INPUT_BACKGROUND,
+  INPUT_COLOR,
+} from "../../../styles/index";
 
 export const SearchContainer = styled.View`
   margin: 13px 14px 0px 18px;
@@ -12,7 +16,9 @@ export const SearchContainer = styled.View`
 `;
 
 export const Input = styled.TextInput`
+  width: 30%;
   font-size: 17px;
   padding-left: 10px;
-  color: ${INPUT_COLOR}
+  font-family: ${HEADER_FONT_GROUP_TITLE};
+  color: ${INPUT_COLOR};
 `;

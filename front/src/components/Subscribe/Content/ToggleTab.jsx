@@ -7,6 +7,7 @@ import {
   TEXT,
   LINE_COLOR,
 } from "../../../styles";
+import styles from "./style";
 
 const Header = (props) => {
   const {
@@ -20,7 +21,7 @@ const Header = (props) => {
 
   return (
     <View style={{ backgroundColor: BACKGROUND }}>
-      <TabContainer>
+      <styles.TabContainer>
         {navigationState.routes.map((route, index) => {
           const isRouteActive = index === activeTabIndex;
           const tintColor = isRouteActive ? activeTintColor : inactiveTintColor;
@@ -48,11 +49,11 @@ const Header = (props) => {
             </TouchableWithoutFeedback>
           );
         })}
-      </TabContainer>
-      <Separator>
-        <ToggleSeparator show={toggle} />
-        <ToggleSeparator show={!toggle} />
-      </Separator>
+      </styles.TabContainer>
+      <styles.Separator>
+        <styles.ToggleSeparator show={toggle} />
+        <styles.ToggleSeparator show={!toggle} />
+      </styles.Separator>
     </View>
   );
 };

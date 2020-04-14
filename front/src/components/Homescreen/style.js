@@ -1,5 +1,11 @@
 import styled from "styled-components/native";
-import {TEXT, LIGHT_BLUE, WHITE} from "../../styles"
+import {
+  HEADER_FONT_GROUP_TITLE,
+  HEADER_FONT_CARD,
+  TEXT,
+  LIGHT_BLUE,
+  WHITE,
+} from "../../styles/index";
 
 export const Title = styled.Text`
   padding-top: 60px;
@@ -7,15 +13,16 @@ export const Title = styled.Text`
   text-align: center;
   font-size: 30px;
   font-weight: bold;
-  color: ${TEXT}
+  color: ${TEXT};
 `;
 
 export const ItemText = styled.Text`
+  font-family: ${HEADER_FONT_GROUP_TITLE};
   font-size: 17px;
   padding-top: 15px;
   margin-bottom: -10px;
   padding-left: 16px;
-  color: ${TEXT}
+  color: ${TEXT};
 `;
 
 export const SeeAllButton = styled.View`
@@ -34,7 +41,7 @@ export const SeeAllText = styled.Text`
 export const Subscribe = styled.View`
   width: 150px;
   height: 40px;
-  background-color: ${LIGHT_BLUE };
+  background-color: ${LIGHT_BLUE};
   border-radius: 20px;
   align-content: flex-end;
   align-items: center;
@@ -50,6 +57,8 @@ export const Align = styled.View`
 `;
 
 export const SubscribeTxt = styled.Text`
+  font-family: ${HEADER_FONT_CARD};
+  font-size: 14px;
   margin: 5px;
   color: ${WHITE};
   align-self: center;

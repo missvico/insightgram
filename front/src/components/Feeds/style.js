@@ -1,5 +1,10 @@
 import styled from "styled-components/native";
-import {LIGHT_BLUE, WHITE, TEXT} from "../../styles"
+import {
+  HEADER_FONT_BUTTOM,
+  LIGHT_BLUE,
+  WHITE,
+  TEXT,
+} from "../../styles/index";
 
 export const Title = styled.Text`
   padding-top: 60px;
@@ -7,7 +12,7 @@ export const Title = styled.Text`
   text-align: center;
   font-size: 30px;
   font-weight: bold;
-  color: ${TEXT}
+  color: ${TEXT};
 `;
 
 export const Done = styled.TouchableOpacity`
@@ -17,6 +22,7 @@ export const Done = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
+  font-family: ${HEADER_FONT_BUTTOM};
   color: ${WHITE};
   font-size: 18px;
   text-align: center;

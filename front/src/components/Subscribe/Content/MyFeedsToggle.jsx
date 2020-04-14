@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { ScrollView, SafeAreaView, FlatList, View, Text } from "react-native";
-import { ItemText } from "./style";
+import React from "react";
+import { SafeAreaView, FlatList, View } from "react-native";
+import styles from "./style";
 import FeedList from "../../Common/FeedList/FeedList";
 import { connect } from "react-redux";
+import Spinner from "react-native-loading-spinner-overlay";
 import { BACKGROUND } from "../../../styles";
 
 const MyFeedsToggle = ({ feedsUnfiltered }) => {
@@ -15,13 +16,13 @@ const MyFeedsToggle = ({ feedsUnfiltered }) => {
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
             <View>
-              <ItemText>{item.group}</ItemText>
+              <styles.ItemText>{item.group}</styles.ItemText>
               <FeedList feeds={item.feeds} />
             </View>
           )}
         />
       ) : (
-        <Text>Loading...</Text>
+        <Spinner visible={true} />
       )}
     </SafeAreaView>
   );

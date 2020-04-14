@@ -1,10 +1,7 @@
 import React from "react";
-import { View, ScrollView, Text, SafeAreaView } from "react-native";
+import { View, ScrollView, RefreshControl } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import {
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import {
   ItemText,
   Subscribe,
@@ -18,7 +15,14 @@ import FeedList from "../Common/FeedList/FeedList";
 import Search from "../Common/Search/Search";
 import { BACKGROUND } from "../../styles";
 
-export default ({ handlePress, feeds, handleStory, handleMyFeeds }) => {
+export default ({
+  refreshing,
+  onRefresh,
+  handlePress,
+  feeds,
+  handleStory,
+  handleMyFeeds,
+}) => {
   return (
     <View backgroundColor={BACKGROUND}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -66,7 +70,23 @@ export default ({ handlePress, feeds, handleStory, handleMyFeeds }) => {
           marginTop: -5,
         }}
       >
-        <Search />
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              style={{
+                paddingTop: "13%",
+                flex: 2,
+                zIndex: 10,
+                position: "absolute",
+                top: 0,
+              }}
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
+        >
+          <Search />
+        </ScrollView>
       </View>
     </View>
   );

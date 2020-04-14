@@ -24,11 +24,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": true
+    },
+    "userInterfaceStyle": "automatic",
+    "ios": {
       "userInterfaceStyle": "automatic"
     },
     "android": {
-          "userInterfaceStyle": "automatic"
+      "userInterfaceStyle": "automatic"
     }
   }
 }

@@ -1,25 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Text } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { View, ScrollView, RefreshControl } from "react-native";
 import { connect } from "react-redux";
+import Spinner from "react-native-loading-spinner-overlay";
+
 import Homescreen from "./Homescreen";
 import { fetchFeedsByUser } from "../../../redux/actions/feeds";
-import { View } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { getItemStorage } from "../../../assets/js/AsyncStorage";
 
-const HomescreenContainer = ({
-  navigation,
-  fetchFeedsByUser,
-  homeUserStore,
-}) => {
+const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
   const [userHome, setUserHome] = useState({});
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    fetchInfo();
+  }, [refreshing]);
+
+  const fetchInfo = () => {
+    getItemStorage("@Token").then((token) => {
+      fetchFeedsByUser(token).then((data) => {
+        setUserHome(data);
+        setRefreshing(false);
+      });
+    });
+  };
 
   useEffect(() => {
     if (Object.keys(userHome).length == 0) {
-      getItemStorage("@Token").then((token) => {
-        fetchFeedsByUser(token).then((data) => setUserHome(data));
-      });
+      fetchInfo();
     } else {
       return;
     }
@@ -46,10 +54,12 @@ const HomescreenContainer = ({
             handlePress={handlePress}
             handleStory={handleStory}
             handleMyFeeds={handleMyFeeds}
+            refreshing={refreshing}
+            onRefresh={onRefresh}
           />
         </View>
       ) : (
-        <Text>Loading...</Text>
+        <Spinner visible={true} />
       )}
     </View>
   );

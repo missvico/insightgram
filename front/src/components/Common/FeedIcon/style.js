@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
-import { WHITE, CARD_COLOR} from "../../../styles";
-import { RED } from "../../../styles";
+import { WHITE, HEADER_FONT_CARD, CARD_COLOR } from "../../../styles";
 
 const pt = 1.15;
 
@@ -93,9 +92,9 @@ export const AvatarBorder = styled.View`
 `;
 
 export const CardName = styled.Text`
+  font-family: ${HEADER_FONT_CARD};
   text-align: left;
   margin-top: 25%;
-  font-weight: bold;
   font-size: ${13 * pt}px;
   color: ${WHITE};
   shadow-color: #000;
