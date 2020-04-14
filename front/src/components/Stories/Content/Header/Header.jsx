@@ -11,9 +11,16 @@ import {
   Title,
 } from "./style";
 
-export default ({ name, play, handleClose, handlePlay, stories }) => {
+export default ({
+  name,
+  play,
+  handleClose,
+  handlePlay,
+  stories,
+  showHeader,
+}) => {
   return (
-    <Header>
+    <Header showHeader={showHeader}>
       <ProgressBarContainer>
         <ProgressIndicator stories={stories} />
       </ProgressBarContainer>

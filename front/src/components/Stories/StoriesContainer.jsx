@@ -4,13 +4,22 @@ import { View } from "react-native";
 import HeaderContainer from "./Content/Header/HeaderContainer";
 import { connect, useDispatch } from "react-redux";
 import { currentStoryIndex } from "../../../redux/actions/feeds";
+import { showStoriesHeader } from "../../../redux/actions/stories";
+import { setPlay } from "../../../redux/actions/play";
 
-const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
+const StoriesContainer = ({
+  handleClose,
+  feed,
+  handleFeedChange,
+  play,
+  setPlay,
+  showStoriesHeader,
+}) => {
   const dispatch = useDispatch();
   const { stories, name } = feed;
-  const initialIndex = searchFirstStoryPending(stories);
-  const [storyIndex, setStoryIndex] = useState(initialIndex);
-  const [currentStory, setCurrentStory] = useState(stories[initialIndex]);
+  const [storyIndex, setStoryIndex] = useState(0);
+  const [currentStory, setCurrentStory] = useState(stories[storyIndex]);
+  const [wasPlayed, setWasPlayed] = useState(false);
 
   const handleStoryChange = (moveStory) => {
     let newIndex = storyIndex + moveStory;
@@ -24,6 +33,22 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
       setStoryIndex(0);
       dispatch(currentStoryIndex(0));
       handleFeedChange(moveStory);
+    }
+  };
+
+  const handleLongPress = () => {
+    showStoriesHeader(false);
+    if (play) {
+      setWasPlayed(true);
+      setPlay(!play);
+    }
+  };
+
+  const handlePressOut = () => {
+    showStoriesHeader(true);
+    if (wasPlayed) {
+      setWasPlayed(false);
+      setPlay(!play);
     }
   };
 
@@ -58,7 +83,12 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
         name={name}
         stories={stories}
       />
-      <Story story={currentStory} handleStoryChange={handleStoryChange} />
+      <Story
+        story={currentStory}
+        handleStoryChange={handleStoryChange}
+        handleLongPress={handleLongPress}
+        handlePressOut={handlePressOut}
+      />
     </View>
   );
 };
@@ -71,6 +101,7 @@ const searchFirstStoryPending = (stories) => {
 const mapStateToProps = (state) => {
   return {
     play: state.play.value,
+    showHeader: state.stories.showHeader,
   };
 };
 
@@ -94,4 +125,11 @@ function useInterval(callback, delay, isActive) {
   }, [isActive, delay]);
 }
 
-export default connect(mapStateToProps, null)(StoriesContainer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showStoriesHeader: (value) => dispatch(showStoriesHeader(value)),
+    setPlay: (value) => dispatch(setPlay(value)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoriesContainer);
