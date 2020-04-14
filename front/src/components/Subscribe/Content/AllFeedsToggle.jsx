@@ -1,6 +1,12 @@
 import React, { Component } from "react";
-import { ScrollView, SafeAreaView, FlatList, View, Text } from "react-native";
-import { ItemText } from "./style";
+import {
+  ScrollView,
+  SafleseAreaView,
+  FlatList,
+  View,
+  Text,
+} from "react-native";
+import styles from "./style";
 import FeedList from "../../Common/FeedList/FeedList";
 import { connect } from "react-redux";
 import { BACKGROUND } from "../../../styles";
@@ -13,7 +19,7 @@ const AllFeedsToggle = ({ feeds }) => {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <View>
-            <ItemText>{item.group}</ItemText>
+            <styles.ItemText>{item.group}</styles.ItemText>
             <FeedList feeds={item.feeds} />
           </View>
         )}

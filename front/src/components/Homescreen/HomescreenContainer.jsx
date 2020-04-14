@@ -65,27 +65,6 @@ const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
   );
 };
 
-function useInterval(callback, delay, isActive) {
-  const savedCallback = useRef();
-
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    let interval = null;
-    if (!isActive) {
-      interval = setInterval(tick, delay);
-    } else if (isActive) {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [isActive, delay]);
-}
-
 const mapStateToProps = (state, ownProps) => {
   return {
     homeUserStore: state.feeds.homeUser,
