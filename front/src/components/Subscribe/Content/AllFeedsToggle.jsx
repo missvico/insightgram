@@ -1,29 +1,23 @@
-import React from "react";
-import { FlatList, View } from "react-native";
-import { connect } from "react-redux";
-import Spinner from "react-native-loading-spinner-overlay";
-
-import styles from "./style";
+import React, { Component } from "react";
+import { ScrollView, SafeAreaView, FlatList, View, Text } from "react-native";
+import { ItemText } from "./style";
 import FeedList from "../../Common/FeedList/FeedList";
+import { connect } from "react-redux";
 import { BACKGROUND } from "../../../styles";
 
 const AllFeedsToggle = ({ feeds }) => {
   return (
     <View style={{ flex: 1, backgroundColor: BACKGROUND }}>
-      {feeds ? (
-        <FlatList
-          data={feeds}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <View>
-              <styles.ItemText>{item.group}</styles.ItemText>
-              <FeedList feeds={item.feeds} />
-            </View>
-          )}
-        />
-      ) : (
-        <Spinner visible={true} />
-      )}
+      <FlatList
+        data={feeds}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <View>
+            <ItemText>{item.group}</ItemText>
+            <FeedList feeds={item.feeds} />
+          </View>
+        )}
+      />
     </View>
   );
 };
