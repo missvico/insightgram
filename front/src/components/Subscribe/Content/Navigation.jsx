@@ -1,24 +1,23 @@
 import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
-import AllFeedsToggle from "./Content/AllFeedsToggle";
+import AllFeedsToggle from "./AllFeedsToggle";
 import MyFeedsToggle from "./MyFeedsToggle";
 import ToggleTab from "./ToggleTab";
-import {INACTIVE_TAB_COLOR, TEXT} from "../../styles"
 
 const ToggleFeeds = createMaterialTopTabNavigator(
   {
     ["See all"]: {
-      screen: AllFeedsToggle
+      screen: AllFeedsToggle,
     },
     ["My Feeds"]: {
-      screen: MyFeedsToggle
+      screen: MyFeedsToggle,
     },
   },
   {
     tabBarComponent: ToggleTab,
     tabBarOptions: {
-      activeTintColor: TEXT,
-      inactiveTintColor: INACTIVE_TAB_COLOR,
+      activeTintColor: "#000000",
+      inactiveTintColor: "#A3A3A3",
     },
     initialRouteName: "See all",
   }

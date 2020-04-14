@@ -64,11 +64,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-//FUNCION AUXILIAR:
-
 function useInterval(callback, delay, isActive) {
   const savedCallback = useRef();
-  // Remember the latest function.
   useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);

@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import {TEXT, LIGHT_BLUE, WHITE} from "../../styles"
 
 export const Title = styled.Text`
   padding-top: 60px;
@@ -6,6 +7,7 @@ export const Title = styled.Text`
   text-align: center;
   font-size: 30px;
   font-weight: bold;
+  color: ${TEXT}
 `;
 
 export const ItemText = styled.Text`
@@ -13,6 +15,7 @@ export const ItemText = styled.Text`
   padding-top: 15px;
   margin-bottom: -10px;
   padding-left: 16px;
+  color: ${TEXT}
 `;
 
 export const SeeAllButton = styled.View`
@@ -24,14 +27,14 @@ export const SeeAllButton = styled.View`
 `;
 
 export const SeeAllText = styled.Text`
-  color: #0066ff;
+  color: ${LIGHT_BLUE};
   font-size: 17px;
-`
+`;
 
 export const Subscribe = styled.View`
   width: 150px;
   height: 40px;
-  background-color: #0076ff;
+  background-color: ${LIGHT_BLUE };
   border-radius: 20px;
   align-content: flex-end;
   align-items: center;
@@ -48,7 +51,7 @@ export const Align = styled.View`
 
 export const SubscribeTxt = styled.Text`
   margin: 5px;
-  color: #fff;
+  color: ${WHITE};
   align-self: center;
   align-content: center;
   align-items: center;
