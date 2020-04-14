@@ -1,8 +1,16 @@
 import styled from "styled-components";
-import {INPUT_BACKGROUND, INPUT_COLOR, WHITE, LIGHT_BLUE, TEXT} from "../../styles"
+import {
+  INPUT_BACKGROUND,
+  INPUT_COLOR,
+  WHITE,
+  LIGHT_BLUE,
+  TEXT,
+  BACKGROUND,
+} from "../../styles";
 
 export const Container = styled.View`
-  padding-top: 100%;
+  flex: 1;
+  background-color: ${BACKGROUND};
 `;
 
 export const Input = styled.TextInput`
@@ -13,7 +21,7 @@ export const Input = styled.TextInput`
   width: 280px;
   border-radius: 13px;
   padding-horizontal: 10px;
-  color: ${INPUT_COLOR}
+  color: ${INPUT_COLOR};
 `;
 
 export const Button = styled.TouchableHighlight`
