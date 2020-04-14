@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Image, TouchableWithoutFeedback } from "react-native";
 import { ToggleStory, Touchable, StoryContainer } from "./style";
-export default ({ story, handleStoryChange }) => {
+export default ({ story, handleStoryChange, handleLongPress, handlePressOut}) => {
   return (
     <StoryContainer>
       <Image
@@ -9,10 +9,10 @@ export default ({ story, handleStoryChange }) => {
         source={{ uri: story.thumbnail }}
       />
       <ToggleStory>
-        <TouchableWithoutFeedback onPress={() => handleStoryChange(-1)}>
+        <TouchableWithoutFeedback onPress={() => handleStoryChange(-1)} onLongPress={handleLongPress} onPressOut={handlePressOut}>
           <Touchable flex={1}></Touchable>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => handleStoryChange(1)}>
+        <TouchableWithoutFeedback onPress={() => handleStoryChange(1)} onLongPress={handleLongPress} onPressOut={handlePressOut}> 
           <Touchable flex={2}></Touchable>
         </TouchableWithoutFeedback>
       </ToggleStory>

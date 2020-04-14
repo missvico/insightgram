@@ -5,11 +5,15 @@ import HeaderContainer from "./Content/Header/HeaderContainer";
 import { connect, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { currentStoryIndex } from "../../../redux/actions/feeds";
-const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
+import {showStoriesHeader} from "../../../redux/actions/stories";
+import { setPlay } from "../../../redux/actions/play";
+
+const StoriesContainer = ({ handleClose, feed, handleFeedChange, play, setPlay, showStoriesHeader }) => {
   const dispatch = useDispatch();
   const { stories, name } = feed;
   const [storyIndex, setStoryIndex] = useState(0);
   const [currentStory, setCurrentStory] = useState(stories[storyIndex]);
+  const [wasPlayed, setWasPlayed] = useState(false)
 
   useEffect(() => {
     setCurrentStory(stories[storyIndex]);
@@ -31,11 +35,28 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
     }
   };
 
+  const handleLongPress = () => {
+    showStoriesHeader(false)
+    if(play) {
+      setWasPlayed(true)
+      setPlay(!play)
+    }
+  }
+
+  const handlePressOut = () => {
+    showStoriesHeader(true)
+    if(wasPlayed) {
+      setWasPlayed(false)
+      setPlay(!play)
+    }
+  }
+
   const changeStatus = (index) => {
     if (stories[index] && stories[index].status == "not_seen") {
       stories[index].status = "seen";
     }
   };
+
 
   useInterval(
     () => {
@@ -53,7 +74,7 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
         name={name}
         stories={stories}
       />
-      <Story story={currentStory} handleStoryChange={handleStoryChange} />
+      <Story story={currentStory} handleStoryChange={handleStoryChange} handleLongPress={handleLongPress} handlePressOut={handlePressOut}/>
     </View>
   );
 };
@@ -61,6 +82,7 @@ const StoriesContainer = ({ handleClose, feed, handleFeedChange, play }) => {
 const mapStateToProps = (state) => {
   return {
     play: state.play.value,
+    showHeader: state.stories.showHeader
   };
 };
 
@@ -84,4 +106,11 @@ function useInterval(callback, delay, isActive) {
   }, [isActive, delay]);
 }
 
-export default connect(mapStateToProps, null)(StoriesContainer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showStoriesHeader: (value) => dispatch(showStoriesHeader(value)),
+    setPlay: (value) => dispatch(setPlay(value))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoriesContainer);

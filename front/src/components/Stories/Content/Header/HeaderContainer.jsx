@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { connect } from "react-redux";
 import { setPlay } from "../../../../../redux/actions/play";
 
-const HeaderContainer = ({ play, handleClose, setPlay, name, stories }) => {
+const HeaderContainer = ({ play, handleClose, setPlay, name, stories, showHeader}) => {
   const handlePlay = () => {
     setPlay(!play);
   };
@@ -18,6 +18,7 @@ const HeaderContainer = ({ play, handleClose, setPlay, name, stories }) => {
       handlePlay={handlePlay}
       name={name}
       stories={stories}
+      showHeader={showHeader}
     />
   );
 };
@@ -25,6 +26,7 @@ const HeaderContainer = ({ play, handleClose, setPlay, name, stories }) => {
 const mapStateToProps = (state) => {
   return {
     play: state.play.value,
+    showHeader: state.stories.showHeader
   };
 };
 
