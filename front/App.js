@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet, SafeAreaView} from "react-native";
 import { Provider } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, TransitionSpecs, CardStyleInterpolators } from "@react-navigation/stack";
 import * as Font from "expo-font";
+
 
 import configureStore from "./redux/index";
 import LoginForm from "./src/components/Login/LoginForm";
@@ -19,6 +20,8 @@ import {
 } from "react-native-appearance";
 import styles from "./src/styles/appStyles";
 import { BACKGROUND, TEXT, HEADER_FONT_TITLE } from "./src/styles/index";
+import transitionConfig from "./transitionConfig"
+import { zoomIn, zoomOut, fadeIn, fadeOut, fromLeft, fromTop } from "react-navigation-transitions";
 
 const store = configureStore();
 const Stack = createStackNavigator();
@@ -148,26 +151,32 @@ function App() {
   return (
     <Provider store={store}>
       <AppearanceProvider>
-        <NavigationContainer>
-          <RootStack.Navigator headerMode="none" initialRouteName="Login">
-            <RootStack.Screen
-              name="Login"
-              component={LoginForm}
-              options={{ transparentCard: true }}
-            />
-            <RootStack.Screen
-              name="Stories"
-              component={FeedsStoriesContainer}
-              options={{ transparentCard: true }}
-            />
-            <RootStack.Screen
-              name="FeedsStack"
-              component={FeedsStack}
-              options={{ transparentCard: true }}
-            />
-          </RootStack.Navigator>
-        </NavigationContainer>
-      </AppearanceProvider>
+          <NavigationContainer>
+            <RootStack.Navigator headerMode="none" initialRouteName="Login">
+              <RootStack.Screen
+                name="Login"
+                component={LoginForm}
+                options={{ transparentCard: true }}
+              />
+              <RootStack.Screen
+                name="Stories"
+                component={FeedsStoriesContainer}
+                options={{
+                  cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+                  transitionSpec: {
+                    open: config,
+                    close: config
+                  }
+                }}
+              />
+              <RootStack.Screen
+                name="FeedsStack"
+                component={FeedsStack}
+                options={{ transparentCard: true }}
+              />
+            </RootStack.Navigator>
+          </NavigationContainer>
+        </AppearanceProvider>
     </Provider>
   );
 }
@@ -180,4 +189,18 @@ export default () => {
     },
   });
   return <App style={styles} />;
+};
+
+
+const config = {
+  animation: 'spring',
+  config: {
+    timing: 5000,
+    stiffness: 1000,
+    damping: 500,
+    mass: 3,
+    overshootClamping: false,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
 };

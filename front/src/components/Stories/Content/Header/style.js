@@ -6,7 +6,7 @@ position:absolute;
 z-index: 2;
 top: 0px;
 left:0px;
-padding-top: 25px;
+padding-top: 37px;
 height: 100px;
 width: 100%;
 background-color: rgba(0, 0, 0, 0.3);

@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import Story from "./Content/Story/Story";
-import { View } from "react-native";
+import { View, SafeAreaView } from "react-native";
 import HeaderContainer from "./Content/Header/HeaderContainer";
 import { connect, useDispatch } from "react-redux";
 import { currentStoryIndex } from "../../../redux/actions/feeds";
 import { showStoriesHeader } from "../../../redux/actions/stories";
 import { setPlay } from "../../../redux/actions/play";
 import {setPendingStories} from "../../../redux/actions/stories"
+import {FlingGestureHandler, Directions, State} from "react-native-gesture-handler"
 
 
 const StoriesContainer = ({
@@ -30,7 +31,6 @@ const StoriesContainer = ({
       setPendingStories(feed.id, newIndex)
       setStoryIndex(newIndex);
     } else {
-      setStoryIndex(0);
       setPendingStories(feed.id, 0)
       handleFeedChange(moveStory);
     }
