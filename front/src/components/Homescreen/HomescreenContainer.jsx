@@ -38,7 +38,7 @@ const HomescreenContainer = ({ navigation, fetchFeedsByUser }) => {
   };
 
   const handleStory = (storyprops) => {
-    navigation.navigate("Stories", storyprops);
+    navigation.navigate("Stories", {origin:"Home", ...storyprops});
   };
 
   const handleMyFeeds = () => {

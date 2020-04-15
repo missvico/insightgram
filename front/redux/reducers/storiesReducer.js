@@ -2,7 +2,8 @@ import { SHOW_STORIES_HEADER, SET_PENDING_STORY } from "../constants";
 
 const initialState = {
   showHeader: true,
-  pendingStories: {}
+  pendingStories: {},
+  currentFeedIndex: -1,
 };
 
 export default (state = initialState, action) => {

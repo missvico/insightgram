@@ -8,6 +8,7 @@ import { showStoriesHeader } from "../../../redux/actions/stories";
 import { setPlay } from "../../../redux/actions/play";
 import {setPendingStories} from "../../../redux/actions/stories"
 
+
 const StoriesContainer = ({
   handleClose,
   feed,
@@ -86,6 +87,8 @@ const StoriesContainer = ({
         handleStoryChange={handleStoryChange}
         handleLongPress={handleLongPress}
         handlePressOut={handlePressOut}
+        handleClose={handleClose}
+        handleFeedChange={handleFeedChange}
       />
     </View>
   );

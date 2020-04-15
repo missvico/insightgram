@@ -9,21 +9,17 @@ const FeedsStoriesContainer = ({
   allFeeds,
   updateFeedsUser,
 }) => {
-  const { id, section } = route.params;
-  const feeds = allFeeds[section];
-  const [feedIndex, setFeedIndex] = useState(
-    searchFeedSelected(feeds, id)
-  );
-
+  const { index, section, origin } = route.params;
+  const feeds = allFeeds[section]
   const handleFeedChange = (moveFeed) => {
-    let newIndex = feedIndex + moveFeed;
+    let newIndex = index + moveFeed;
 
     if (section == "discover") {
       handleClose();
     } else {
       if (newIndex >= 0 && newIndex < feeds.length) {
         changeHasPendingStories();
-        setFeedIndex(newIndex);
+        navigation.push("Stories",{origin, section, index: newIndex})
       } else {
         handleClose();
       }
@@ -33,14 +29,14 @@ const FeedsStoriesContainer = ({
   const handleClose = () => {
     changeHasPendingStories();
     updateFeedsUser(allFeeds);
-    navigation.pop();
+    navigation.navigate(origin);
   };
 
   const changeHasPendingStories = () => {
-    feeds[feedIndex].stories.filter(
+    feeds[index].stories.filter(
       (story) => story.status == "not_seen"
     ).length == 0
-      ? (feeds[feedIndex].has_pending_stories = false)
+      ? (feeds[index].has_pending_stories = false)
       : null;
   };
 
@@ -48,14 +44,11 @@ const FeedsStoriesContainer = ({
     <StoriesContainer
       handleClose={handleClose}
       handleFeedChange={handleFeedChange}
-      feed={feeds[feedIndex]}
+      feed={feeds[index]}
     />
   );
 };
 
-const searchFeedSelected = (feedSelected, id) => {
-  return feedSelected.findIndex((feed) => feed.id === id);
-};
 
 const mapStateToProps = (state, ownProps) => {
   return {

@@ -10,6 +10,7 @@ const FeedIconContainer = ({
   section,
   size,
   addFeed,
+  userFeeds
 }) => {
   const [selected, setSelected] = useState(feed.is_suscribed);
 
@@ -27,7 +28,7 @@ const FeedIconContainer = ({
   return (
     <FeedIcon
       handlePress={
-        disableTick ? () => handleStory({ id: feed.id, section }) : handlePress
+        disableTick ? () => handleStory({ index: getFeedIndex(userFeeds[section], feed.id), section}) : handlePress
       }
       tick={selected}
       name={feed.name}
@@ -41,13 +42,20 @@ const FeedIconContainer = ({
 };
 
 const mapStateToProps = (state) => {
-  return { feedsToModify: state.subscribe.feedsToModify };
+  return {
+    feedsToModify: state.subscribe.feedsToModify,
+    userFeeds: state.feeds.homeUser.feeds
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addFeed: (feed_id, subs) => dispatch(addFeed(feed_id, subs)),
   };
+};
+
+const getFeedIndex = (feeds, id) => {
+  return feeds.findIndex((feed) => feed.id === id);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeedIconContainer);

@@ -7,7 +7,7 @@ import { BACKGROUND } from "../../styles";
 
 const MyFeedsContainer = ({ feeds, navigation }) => {
   const handleStory = (storyprops) => {
-    navigation.navigate("Stories", storyprops);
+    navigation.navigate("Stories", {origin:"MyFeeds", ...storyprops})
   };
 
   return (
