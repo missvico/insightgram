@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { ScrollView, SafeAreaView, FlatList, View, Text } from "react-native";
 import { ItemText } from "./style";
 import FeedList from "../Common/FeedList/FeedList";

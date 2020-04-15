@@ -1,25 +1,48 @@
 import React from "react";
 import { View, ScrollView, Text, SafeAreaView } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { ItemText, Subscribe, SeeAll, SubscribeTxt, Align } from "./style";
+import {
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
+import {
+  ItemText,
+  Subscribe,
+  SeeAllButton,
+  SeeAllText,
+  SubscribeTxt,
+  Align,
+} from "./style";
 import Discover from "./Discover/Discover";
 import FeedList from "../Common/FeedList/FeedList";
 import Search from "../Common/Search/Search";
 
-export default ({ handlePress, feeds, handleStory }) => {
+export default ({
+  handlePress,
+  feeds,
+  handleStory,
+  handleMyFeeds,
+  handleSearch,
+  handleTarget,
+}) => {
   return (
     <View backgroundColor={"white"}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{ marginBottom: 10 }}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View paddingTop={"13%"}>
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: -10,
+              zIndex: 2,
+            }}
           >
             <ItemText>My feeds</ItemText>
-            <SeeAll onPress={() => console.log("press")}>See all</SeeAll>
+            <TouchableWithoutFeedback onPress={handleMyFeeds}>
+              <SeeAllButton>
+                <SeeAllText>See all</SeeAllText>
+              </SeeAllButton>
+            </TouchableWithoutFeedback>
           </View>
           <FeedList
             feeds={feeds.all}
@@ -34,7 +57,7 @@ export default ({ handlePress, feeds, handleStory }) => {
       <Align>
         <TouchableWithoutFeedback onPress={handlePress}>
           <Subscribe>
-            <AntDesign name="pluscircle" size={15} color="white" />
+            <AntDesign name='pluscircle' size={15} color='white' />
             <SubscribeTxt>Subscribe</SubscribeTxt>
           </Subscribe>
         </TouchableWithoutFeedback>
@@ -50,7 +73,7 @@ export default ({ handlePress, feeds, handleStory }) => {
           backgroundColor: "#fff",
         }}
       >
-        <Search />
+        <Search handleSearch={handleSearch} handleTarget={handleTarget} />
         <View
           style={{
             marginTop: 13,

@@ -15,13 +15,17 @@ export const ItemText = styled.Text`
   padding-left: 16px;
 `;
 
-export const SeeAll = styled.Text`
+export const SeeAllButton = styled.View`
+  height: 45px;
   margin-right: 20px;
-  color: #0066ff;
-  font-size: 17px;
   padding-top: 15px;
   margin-bottom: -10px;
   padding-left: 16px;
+`;
+
+export const SeeAllText = styled.Text`
+  color: #0066ff;
+  font-size: 17px;
 `;
 
 export const Subscribe = styled.View`
@@ -38,8 +42,8 @@ export const Subscribe = styled.View`
 
 export const Align = styled.View`
   position: absolute;
-  bottom: 30px;
-  right: 20px;
+  bottom: 24px;
+  right: 24px;
 `;
 
 export const SubscribeTxt = styled.Text`

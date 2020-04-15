@@ -29,7 +29,7 @@ export default function FeedList({
               handleStory={handleStory}
               feed={item.item}
               section={section}
-              size={"big"}
+              size={"medium"}
             />
           );
         }}
