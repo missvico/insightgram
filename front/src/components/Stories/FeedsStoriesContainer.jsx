@@ -6,15 +6,14 @@ import { updateFeedsUser } from "../../../redux/actions/feeds";
 const FeedsStoriesContainer = ({
   route,
   navigation,
-  feeds,
+  allFeeds,
   updateFeedsUser,
 }) => {
   const { id, section } = route.params;
-  const feedSelected = feeds[section];
+  const feeds = allFeeds[section];
   const [feedIndex, setFeedIndex] = useState(
-    searchFeedSelected(feedSelected, id)
+    searchFeedSelected(feeds, id)
   );
-  const [currentFeed, setCurrentFeed] = useState(feedSelected[feedIndex]);
 
   const handleFeedChange = (moveFeed) => {
     let newIndex = feedIndex + moveFeed;
@@ -22,9 +21,8 @@ const FeedsStoriesContainer = ({
     if (section == "discover") {
       handleClose();
     } else {
-      if (newIndex >= 0 && newIndex < feeds[section].length) {
+      if (newIndex >= 0 && newIndex < feeds.length) {
         changeHasPendingStories();
-        setCurrentFeed(feedSelected[newIndex]);
         setFeedIndex(newIndex);
       } else {
         handleClose();
@@ -34,15 +32,15 @@ const FeedsStoriesContainer = ({
 
   const handleClose = () => {
     changeHasPendingStories();
-    updateFeedsUser(feeds);
+    updateFeedsUser(allFeeds);
     navigation.pop();
   };
 
   const changeHasPendingStories = () => {
-    feeds[section][feedIndex].stories.filter(
+    feeds[feedIndex].stories.filter(
       (story) => story.status == "not_seen"
     ).length == 0
-      ? (feedSelected[feedIndex].has_pending_stories = false)
+      ? (feeds[feedIndex].has_pending_stories = false)
       : null;
   };
 
@@ -50,7 +48,7 @@ const FeedsStoriesContainer = ({
     <StoriesContainer
       handleClose={handleClose}
       handleFeedChange={handleFeedChange}
-      feed={currentFeed}
+      feed={feeds[feedIndex]}
     />
   );
 };
@@ -61,7 +59,7 @@ const searchFeedSelected = (feedSelected, id) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    feeds: state.feeds.homeUser.feeds,
+    allFeeds: state.feeds.homeUser.feeds,
   };
 };
 

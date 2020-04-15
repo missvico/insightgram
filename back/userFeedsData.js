@@ -68,7 +68,7 @@ const data = {
             id: 7,
             thumbnail:
               "https://cdn.pixabay.com/photo/2018/07/08/14/16/cat-3523992_960_720.jpg",
-            status: "not_seen",
+            status: "seen",
           },
           {
             id: 8,
@@ -89,19 +89,19 @@ const data = {
         name: "Hamsters",
         thumbnail:
           "https://pbs.twimg.com/profile_images/898319433516687361/x7Q6lvxz_400x400.jpg",
-        has_pending_stories: true,
+        has_pending_stories: false,
         stories: [
           {
             id: 10,
             thumbnail:
               "https://cdn.pixabay.com/photo/2017/06/05/09/06/hamster-2373392_960_720.jpg",
-            status: "not_seen",
+            status: "seen",
           },
           {
             id: 11,
             thumbnail:
               "https://cdn.pixabay.com/photo/2016/04/14/17/12/hamster-1329300_960_720.jpg",
-            status: "not_seen",
+            status: "seen",
           },
         ],
       },

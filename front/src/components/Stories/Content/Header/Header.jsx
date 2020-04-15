@@ -18,11 +18,12 @@ export default ({
   handlePlay,
   stories,
   showHeader,
+  index
 }) => {
   return (
     <Header showHeader={showHeader}>
       <ProgressBarContainer>
-        <ProgressIndicator stories={stories} />
+        <ProgressIndicator stories={stories} storyIndex={index} />
       </ProgressBarContainer>
       <TitleIconContainer>
         <TitleContainer>

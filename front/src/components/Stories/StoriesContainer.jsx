@@ -6,6 +6,7 @@ import { connect, useDispatch } from "react-redux";
 import { currentStoryIndex } from "../../../redux/actions/feeds";
 import { showStoriesHeader } from "../../../redux/actions/stories";
 import { setPlay } from "../../../redux/actions/play";
+import {setPendingStories} from "../../../redux/actions/stories"
 
 const StoriesContainer = ({
   handleClose,
@@ -14,24 +15,22 @@ const StoriesContainer = ({
   play,
   setPlay,
   showStoriesHeader,
+  setPendingStories,
+  pendingStories
 }) => {
-  const dispatch = useDispatch();
   const { stories, name } = feed;
   const [storyIndex, setStoryIndex] = useState(0);
-  const [currentStory, setCurrentStory] = useState(stories[storyIndex]);
   const [wasPlayed, setWasPlayed] = useState(false);
 
   const handleStoryChange = (moveStory) => {
     let newIndex = storyIndex + moveStory;
-
     changeStatus(newIndex);
     if (newIndex >= 0 && newIndex < stories.length) {
-      setCurrentStory(stories[newIndex]);
+      setPendingStories(feed.id, newIndex)
       setStoryIndex(newIndex);
-      dispatch(currentStoryIndex(newIndex));
     } else {
       setStoryIndex(0);
-      dispatch(currentStoryIndex(0));
+      setPendingStories(feed.id, 0)
       handleFeedChange(moveStory);
     }
   };
@@ -67,11 +66,9 @@ const StoriesContainer = ({
   );
 
   useEffect(() => {
-    let inx = stories ? searchFirstStoryPending(stories) : storyIndex;
-    setCurrentStory(stories[inx]);
-    dispatch(currentStoryIndex(inx));
-    changeStatus(inx);
-    setStoryIndex(inx);
+    let storyIndex = (typeof pendingStories[feed.id] === "number")? pendingStories[feed.id] : searchFirstStoryPending(stories)
+    changeStatus(storyIndex);
+    setStoryIndex(storyIndex);
     return;
   }, [feed]);
 
@@ -82,9 +79,10 @@ const StoriesContainer = ({
         handleClose={handleClose}
         name={name}
         stories={stories}
+        index={storyIndex}
       />
       <Story
-        story={currentStory}
+        story={stories[storyIndex]}
         handleStoryChange={handleStoryChange}
         handleLongPress={handleLongPress}
         handlePressOut={handlePressOut}
@@ -102,6 +100,15 @@ const mapStateToProps = (state) => {
   return {
     play: state.play.value,
     showHeader: state.stories.showHeader,
+    pendingStories: state.stories.pendingStories
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showStoriesHeader: (value) => dispatch(showStoriesHeader(value)),
+    setPlay: (value) => dispatch(setPlay(value)),
+    setPendingStories: (feedId, storyIndex) => dispatch(setPendingStories(feedId, storyIndex))
   };
 };
 
@@ -125,11 +132,6 @@ function useInterval(callback, delay, isActive) {
   }, [isActive, delay]);
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    showStoriesHeader: (value) => dispatch(showStoriesHeader(value)),
-    setPlay: (value) => dispatch(setPlay(value)),
-  };
-};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesContainer);
