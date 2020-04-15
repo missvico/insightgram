@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  TouchableHighlight,
-} from "react-native";
 import { Input, Button, ButtonText, ContainerForm, Title } from "./styles";
+import { PLACEHOLDER_COLOR } from "../../styles";
 
 export default ({
   changeEmail,
@@ -23,12 +17,16 @@ export default ({
         onChangeText={(emailVal) => changeEmail(emailVal)}
         placeholder="Email"
         value={email}
+        placeholderTextColor={PLACEHOLDER_COLOR}
+        style={{ opacity: 0.32 }}
       />
       <Input
         secureTextEntry={true}
         onChangeText={(passwordVal) => changePassword(passwordVal)}
         placeholder="Contraseña"
         value={password}
+        placeholderTextColor={PLACEHOLDER_COLOR}
+        style={{ opacity: 0.32 }}
       />
       <Button onPress={() => buttonPressed()}>
         <ButtonText>Confirmar</ButtonText>

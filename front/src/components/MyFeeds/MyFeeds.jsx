@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { ScrollView, SafeAreaView, FlatList, View, Text } from "react-native";
+import { View } from "react-native";
 import { Grid } from "./style";
 import FeedIconContainer from "../Common/FeedIcon/FeedIconContainer";
-import { connect } from "react-redux";
 
 export default ({ feeds, handleStory }) => {
-  return ( 
+  return (
     <View>
       <Grid
         numColumns={3}
@@ -14,7 +13,7 @@ export default ({ feeds, handleStory }) => {
         renderItem={(feed) => {
           return (
             <FeedIconContainer
-            size={"big"}
+              size={"big"}
               disableTick={true}
               feed={feed.item}
               handleStory={handleStory}
@@ -24,7 +23,5 @@ export default ({ feeds, handleStory }) => {
         }}
       />
     </View>
-
   );
 };
-

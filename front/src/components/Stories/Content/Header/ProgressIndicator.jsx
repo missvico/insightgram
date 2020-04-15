@@ -3,12 +3,12 @@ import { Animated, StyleSheet, View, Dimensions } from "react-native";
 import { useSelector } from "react-redux";
 import Indicator from "./Indicator";
 import { FlatList } from "react-native-gesture-handler";
-import {StoryIndicator} from "./style"
+import { StoryIndicator } from "./style";
 
 const ProgressIndicator = ({ stories }) => {
   const opacity = useRef(new Animated.Value(1)).current;
-  const windowWidth = Dimensions.get("window").width
-  const windowLength = Dimensions.get("window").length
+  const windowWidth = Dimensions.get("window").width;
+  const windowLength = Dimensions.get("window").length;
 
   const play = useSelector((state) => state.play.value);
   const currentIndex = useSelector(
@@ -25,10 +25,16 @@ const ProgressIndicator = ({ stories }) => {
   return (
     <FlatList
       horizontal
-      data = {stories}
-      keyExtractor = {(item,index)=> index.toString()}
-      renderItem={({item, index})=>{
-        return <StoryIndicator currentIndex={currentIndex} index={index} scale={windowWidth/stories.length}/>
+      data={stories}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item, index }) => {
+        return (
+          <StoryIndicator
+            currentIndex={currentIndex}
+            index={index}
+            scale={windowWidth / stories.length}
+          />
+        );
       }}
     />
     // <Animated.View>

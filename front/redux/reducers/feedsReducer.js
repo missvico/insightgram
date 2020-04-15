@@ -14,7 +14,10 @@ export default (state = initialState, action) => {
     case SET_HOME_USER:
       return { ...state, homeUser: action.data, originData: action.originData };
     case UPDATE_HOME_DATA: {
-      return { ...state, homeUser: { ...state.homeUser, feeds: action.data } };
+      return {
+        ...state,
+        homeUser: { ...state.homeUser, feeds: action.data },
+      };
     }
     case "UPDATE_STORY_INDEX": {
       return {

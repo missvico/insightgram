@@ -1,32 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { Text } from "react-native";
+import { View } from "react-native";
 import { connect } from "react-redux";
+import Spinner from "react-native-loading-spinner-overlay";
+
 import Homescreen from "./Homescreen";
 import {
   fetchFeedsByUser,
   filterHomeFeeds,
 } from "../../../redux/actions/feeds";
-import { View } from "react-native";
 import { getItemStorage } from "../../../assets/js/AsyncStorage";
 
 const HomescreenContainer = ({
   navigation,
   fetchFeedsByUser,
+  filterHomeFeeds,
   homeUserStore,
-  filterFeeds,
 }) => {
   const [userHome, setUserHome] = useState({});
+  const [refreshing, setRefreshing] = useState(false);
   const [filteredUserHome, setFilteredUserHome] = useState({});
-  useEffect(() => {
-    if (Object.keys(userHome).length == 0) {
-      getItemStorage("@Token").then((token) => {
-        fetchFeedsByUser(token).then((data) => {
-          setUserHome(data);
-          setFilteredUserHome(JSON.parse(JSON.stringify(data)));
-        });
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    fetchInfo();
+  }, [refreshing]);
+
+  const fetchInfo = () => {
+    getItemStorage("@Token").then((token) => {
+      fetchFeedsByUser(token).then((data) => {
+        setUserHome(data);
+        setRefreshing(false);
+        setFilteredUserHome(JSON.parse(JSON.stringify(data)));
       });
+    });
+  };
+
+  useEffect(() => {
+    if (Object.keys(filteredUserHome).length == 0) {
+      fetchInfo();
+    } else {
+      return;
     }
-  }, [setUserHome]);
+  }, []);
+
+  useEffect(() => {
+    setFilteredUserHome(JSON.parse(JSON.stringify(homeUserStore)));
+  }, [homeUserStore]);
 
   const handlePress = () => {
     navigation.navigate("Feeds");
@@ -39,14 +58,14 @@ const HomescreenContainer = ({
   };
   const handleSearch = (evt, target) => {
     if (target === "home") {
-      let input = evt.nativeEvent.text;
+      let input = evt.nativeEvent.text.toLowerCase();
       let searchMyFeeds = userHome.feeds.all;
       let searchDiscoverFeeds = userHome.feeds.discover;
       let myFeeds = searchMyFeeds.filter((elemento) =>
-        elemento.name.includes(input)
+        elemento.name.toLowerCase().includes(input)
       );
       let Discover = searchDiscoverFeeds.filter((elemento) =>
-        elemento.name.includes(input)
+        elemento.name.toLowerCase().includes(input)
       );
       let newfilteredUserHome = Object.assign(
         {},
@@ -70,10 +89,12 @@ const HomescreenContainer = ({
             handleMyFeeds={handleMyFeeds}
             handleSearch={handleSearch}
             handleTarget={"home"}
+            refreshing={refreshing}
+            onRefresh={onRefresh}
           />
         </View>
       ) : (
-        <Text>Loading...</Text>
+        <Spinner visible={true} />
       )}
     </View>
   );

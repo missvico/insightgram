@@ -1,10 +1,7 @@
 import React from "react";
-import { View, ScrollView, Text, SafeAreaView } from "react-native";
+import { View, ScrollView, RefreshControl } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import {
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import {
   ItemText,
   Subscribe,
@@ -16,8 +13,11 @@ import {
 import Discover from "./Discover/Discover";
 import FeedList from "../Common/FeedList/FeedList";
 import Search from "../Common/Search/Search";
+import { BACKGROUND } from "../../styles";
 
 export default ({
+  refreshing,
+  onRefresh,
   handlePress,
   feeds,
   handleStory,
@@ -26,9 +26,9 @@ export default ({
   handleTarget,
 }) => {
   return (
-    <View backgroundColor={"white"}>
+    <View backgroundColor={BACKGROUND}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View paddingTop={"13%"}>
+        <View style={{ paddingTop: "13%" }}>
           <View
             style={{
               flexDirection: "row",
@@ -57,7 +57,7 @@ export default ({
       <Align>
         <TouchableWithoutFeedback onPress={handlePress}>
           <Subscribe>
-            <AntDesign name='pluscircle' size={15} color='white' />
+            <AntDesign name="pluscircle" size={15} color="white" />
             <SubscribeTxt>Subscribe</SubscribeTxt>
           </Subscribe>
         </TouchableWithoutFeedback>
@@ -70,18 +70,25 @@ export default ({
           position: "absolute",
           top: 0,
           marginTop: -5,
-          backgroundColor: "#fff",
         }}
       >
-        <Search handleSearch={handleSearch} handleTarget={handleTarget} />
-        <View
-          style={{
-            marginTop: 13,
-            height: 1,
-            backgroundColor: "#000",
-            opacity: 0.3,
-          }}
-        ></View>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              style={{
+                paddingTop: "13%",
+                flex: 2,
+                zIndex: 10,
+                position: "absolute",
+                top: 0,
+              }}
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
+        >
+          <Search handleSearch={handleSearch} handleTarget={handleTarget} />
+        </ScrollView>
       </View>
     </View>
   );

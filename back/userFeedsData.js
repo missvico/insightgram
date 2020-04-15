@@ -89,7 +89,7 @@ const data = {
         name: "Hamsters",
         thumbnail:
           "https://pbs.twimg.com/profile_images/898319433516687361/x7Q6lvxz_400x400.jpg",
-        has_pending_stories: false,
+        has_pending_stories: true,
         stories: [
           {
             id: 10,
@@ -102,15 +102,15 @@ const data = {
             thumbnail:
               "https://cdn.pixabay.com/photo/2016/04/14/17/12/hamster-1329300_960_720.jpg",
             status: "not_seen",
-          }
-        ]
+          },
+        ],
       },
       {
         id: 13,
         name: "Conejitos",
         thumbnail:
           "https://pbs.twimg.com/profile_images/898319433516687361/x7Q6lvxz_400x400.jpg",
-        has_pending_stories: false,
+        has_pending_stories: true,
         stories: [
           {
             id: 36,
@@ -129,9 +129,9 @@ const data = {
             thumbnail:
               "https://cdn.pixabay.com/photo/2016/03/24/12/27/bunny-1276628_960_720.jpg",
             status: "not_seen",
-          }
-        ]
-      }
+          },
+        ],
+      },
     ],
     discover: [
       {
@@ -166,7 +166,7 @@ const data = {
         name: "Leones",
         thumbnail:
           "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
-        has_pending_stories: false,
+        has_pending_stories: true,
         stories: [
           {
             id: 17,
@@ -272,7 +272,7 @@ const data = {
       {
         id: 10,
         name: "Caballos",
-        has_pending_stories: false,
+        has_pending_stories: true,
         thumbnail:
           "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
         stories: [
@@ -299,7 +299,7 @@ const data = {
       {
         id: 11,
         name: "Delfines",
-        has_pending_stories: false,
+        has_pending_stories: true,
         thumbnail:
           "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
         stories: [
@@ -326,7 +326,7 @@ const data = {
       {
         id: 12,
         name: "Tigres",
-        has_pending_stories: false,
+        has_pending_stories: true,
         thumbnail:
           "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
         stories: [
@@ -353,7 +353,7 @@ const data = {
       {
         id: 12,
         name: "Zorros",
-        has_pending_stories: false,
+        has_pending_stories: true,
         thumbnail:
           "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
         stories: [
@@ -368,7 +368,7 @@ const data = {
             status: "not_seen",
             thumbnail:
               "https://cdn.pixabay.com/photo/2017/11/02/09/36/fuchs-2910517_960_720.jpg",
-          }
+          },
         ],
       },
       {
@@ -389,7 +389,7 @@ const data = {
             status: "not_seen",
             thumbnail:
               "https://cdn.pixabay.com/photo/2018/03/22/20/47/hedgehog-3251806_960_720.jpg",
-          }
+          },
         ],
       },
     ],

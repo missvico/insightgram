@@ -8,6 +8,7 @@ import {
   fetchFeedsByUser,
 } from "../../../redux/actions/feeds";
 import { getItemStorage } from "../../../assets/js/AsyncStorage";
+import { BACKGROUND } from "../../styles";
 
 const MyFeedsContainer = ({
   feeds,
@@ -33,10 +34,10 @@ const MyFeedsContainer = ({
   };
   const handleSearch = (evt, target) => {
     if (target === "myFeeds") {
-      let input = evt.nativeEvent.text;
+      let input = evt.nativeEvent.text.toLowerCase();
       let searchMyFeeds = myFeeds.feeds.all;
       let filteredFeeds = searchMyFeeds.filter((elemento) =>
-        elemento.name.includes(input)
+        elemento.name.toLowerCase().includes(input)
       );
       let newfilteredMyFeeds = Object.assign({}, filteredMyFeeds, {
         ...(filteredMyFeeds.feeds["all"] = filteredFeeds),
@@ -47,11 +48,16 @@ const MyFeedsContainer = ({
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-      <Search handleSearch={handleSearch} handleTarget={"myFeeds"} />
-      <View style={{ height: 10 }}></View>
+    <View style={{ flex: 1, backgroundColor: BACKGROUND }}>
       {filteredMyFeeds && filteredMyFeeds.feeds ? (
-        <MyFeeds feeds={filteredMyFeeds.feeds.all} handleStory={handleStory} />
+        <View>
+          <Search handleSearch={handleSearch} handleTarget={"myFeeds"} />
+          <View style={{ height: 10 }}></View>
+          <MyFeeds
+            feeds={filteredMyFeeds.feeds.all}
+            handleStory={handleStory}
+          />
+        </View>
       ) : null}
     </View>
   );
@@ -65,7 +71,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchFeedsByUser: (token) => dispatch(fetchFeedsByUser(token)),
-
     filterHomeFeeds: (data) => dispatch(filterHomeFeeds(data)),
   };
 };

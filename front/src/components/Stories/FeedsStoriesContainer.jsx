@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import StoriesContainer from "./StoriesContainer";
 import { connect } from "react-redux";
 import { updateFeedsUser } from "../../../redux/actions/feeds";
@@ -19,13 +19,16 @@ const FeedsStoriesContainer = ({
   const handleFeedChange = (moveFeed) => {
     let newIndex = feedIndex + moveFeed;
 
-    changeHasPendingStories();
-    if (newIndex >= 0 && newIndex < feeds[section].length) {
-      setCurrentFeed((value) => feedSelected[newIndex]);
-      setFeedIndex((value) => newIndex);
-    } else {
-      updateFeedsUser(feedSelected);
+    if (section == "discover") {
       handleClose();
+    } else {
+      if (newIndex >= 0 && newIndex < feeds[section].length) {
+        changeHasPendingStories();
+        setCurrentFeed(feedSelected[newIndex]);
+        setFeedIndex(newIndex);
+      } else {
+        handleClose();
+      }
     }
   };
 

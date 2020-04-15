@@ -1,23 +1,33 @@
 import styled from "styled-components";
+import {
+  INPUT_BACKGROUND,
+  INPUT_COLOR,
+  WHITE,
+  LIGHT_BLUE,
+  TEXT,
+  BACKGROUND,
+} from "../../styles";
 
 export const Container = styled.View`
-  padding-top: 100%;
+  flex: 1;
+  background-color: ${BACKGROUND};
 `;
 
 export const Input = styled.TextInput`
   height: 35px;
-  background-color: #e6e6e6;
+  background-color: ${INPUT_BACKGROUND};
   margin-bottom: 20px;
   color: #2c3e50;
   width: 280px;
   border-radius: 13px;
   padding-horizontal: 10px;
+  color: ${INPUT_COLOR};
 `;
 
 export const Button = styled.TouchableHighlight`
   height: 35px;
   padding-top: 2%;
-  background-color: #0066ff;
+  background-color: ${LIGHT_BLUE};
   width: 280px;
   border-radius: 13px;
   padding-horizontal: 10px;
@@ -25,11 +35,12 @@ export const Button = styled.TouchableHighlight`
 `;
 
 export const ButtonText = styled.Text`
-  color: #ffffff;
+  color: ${WHITE};
   font-weight: 600;
   font-size: 15px;
   text-align: center;
 `;
+
 export const ContainerForm = styled.View`
   flex: 1;
   justify-content: center;
@@ -37,7 +48,7 @@ export const ContainerForm = styled.View`
 `;
 
 export const Title = styled.Text`
-  color: #000;
+  color: ${TEXT};
   font-size: 30px;
   font-weight: 700;
   padding-bottom: 15%;
