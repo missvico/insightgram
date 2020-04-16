@@ -46,7 +46,7 @@ export default function FeedIcon({handlePress, tick, name, hasPendingStories, th
                           source={{uri:thumbnail}}/>
                       </AvatarBorder>)}
                     {disableTick? null: <TickBorder tick={tick}>
-                      {tick? ( <AntDesign name="checkcircle" size={27} color="#007aff"/>  ): null}  
+                      {tick? ( <AntDesign name="checkcircle" size={27} color="#007aff" style={{marginTop:"2%"}}/>  ): null}  
                     </TickBorder>}
                 </TopContainer>
                 <CardName>{cardname}</CardName>

@@ -111,7 +111,6 @@ export const TickBorder = styled.View`
   border-radius: ${(27 * pt) / 2}px;
   background-color: ${(props) => (props.tick ? WHITE : "transparent")};
   border: ${1 * pt}px solid ${WHITE};
-  padding-top: 1px;
   margin-top: 4px;
   margin-right: 4px;
   align-items: center;

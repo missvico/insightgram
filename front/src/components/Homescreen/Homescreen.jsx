@@ -57,8 +57,27 @@ export default ({
 
   return (
     <View style={{ backgroundColor: BACKGROUND, height: "100%" }}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ paddingTop: "13%" }}>
+      <Search
+            handleSearch={handleSearch}
+            handleTarget={handleTarget}
+            value={value}
+          />
+      <ScrollView 
+      refreshControl={
+        <RefreshControl
+          style={{
+            paddingTop: "13%",
+            flex: 2,
+            zIndex: 10,
+            position: "absolute",
+            top: 0,
+          }}
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }
+      showsVerticalScrollIndicator={false}>
+        <View >
           <View
             style={{
               flexDirection: "row",
@@ -101,7 +120,7 @@ export default ({
           marginTop: -5,
         }}
       >
-        <ScrollView
+        {/* <ScrollView
           refreshControl={
             <RefreshControl
               style={{
@@ -121,7 +140,7 @@ export default ({
             handleTarget={handleTarget}
             value={value}
           />
-        </ScrollView>
+        </ScrollView> */}
       </View>
     </View>
   );
