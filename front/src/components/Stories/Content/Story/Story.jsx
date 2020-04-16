@@ -5,13 +5,13 @@ import {FlingGestureHandler, Directions, State} from "react-native-gesture-handl
 
 export default ({ story, handleStoryChange, handleLongPress, handlePressOut, handleClose, }) => {
   return (
-    <FlingGestureHandler 
-      direction={Directions.DOWN}
-      onHandlerStateChange={({ nativeEvent }) => {
-        if (nativeEvent.state === State.ACTIVE) {
-          handleClose()
-        }
-      }}>
+    // <FlingGestureHandler 
+    //   direction={Directions.DOWN}
+    //   onHandlerStateChange={({ nativeEvent }) => {
+    //     if (nativeEvent.state === State.ACTIVE) {
+    //       handleClose()
+    //     }
+    //   }}>
       <StoryContainer>
         <Image
           style={{ height: "100%", width: "100%" }}
@@ -26,6 +26,6 @@ export default ({ story, handleStoryChange, handleLongPress, handlePressOut, han
           </TouchableWithoutFeedback>
         </ToggleStory>
       </StoryContainer>
-    </FlingGestureHandler>
+    // </FlingGestureHandler>
   );
 };

@@ -1,8 +1,9 @@
-import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA } from "../constants";
+import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA, SET_CURRENT_FEED } from "../constants";
 const initialState = {
   feeds: {},
   homeUser: {},
   currentStoryIndex: 0,
+  currentFeedId: 0,
 };
 
 export default (state = initialState, action) => {
@@ -13,6 +14,9 @@ export default (state = initialState, action) => {
       return { ...state, homeUser: action.data };
     case UPDATE_HOME_DATA: {
       return { ...state, homeUser: { ...state.homeUser, feeds: action.data } };
+    }
+    case SET_CURRENT_FEED: {
+      return { ...state, currentFeedId: action.feedId };
     }
     case "UPDATE_STORY_INDEX": {
       return {

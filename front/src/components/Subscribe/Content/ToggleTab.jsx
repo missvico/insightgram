@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { TabContainer, Separator, ToggleSeparator } from "./style";
 import { Text, View, TouchableWithoutFeedback } from "react-native";
 import {
@@ -9,15 +9,14 @@ import {
 } from "../../../styles";
 import styles from "./style";
 
-const Header = (props) => {
+export default ToggleTab = (props) => {
   const {
     navigationState,
     navigation,
     activeTintColor,
-    inactiveTintColor,
+    inactiveTintColor
   } = props;
   const activeTabIndex = navigation.state.index;
-  const [toggle, setToggle] = useState(true);
 
   return (
     <View style={{ backgroundColor: BACKGROUND }}>
@@ -25,11 +24,11 @@ const Header = (props) => {
         {navigationState.routes.map((route, index) => {
           const isRouteActive = index === activeTabIndex;
           const tintColor = isRouteActive ? activeTintColor : inactiveTintColor;
-
+          
           return (
             <TouchableWithoutFeedback
               onPress={() => {
-                setToggle(!toggle);
+                
                 navigation.navigate(route.routeName);
               }}
               key={route.routeName}
@@ -51,10 +50,12 @@ const Header = (props) => {
         })}
       </styles.TabContainer>
       <styles.Separator>
-        <styles.ToggleSeparator show={toggle} />
-        <styles.ToggleSeparator show={!toggle} />
+        <styles.ToggleSeparator show={activeTabIndex===0} />
+        <styles.ToggleSeparator show={activeTabIndex===1} />
       </styles.Separator>
     </View>
   );
 };
-export default Header;
+
+
+

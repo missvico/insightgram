@@ -1,26 +1,31 @@
 import React, { useState } from "react";
 import StoriesContainer from "./StoriesContainer";
 import { connect } from "react-redux";
-import { updateFeedsUser } from "../../../redux/actions/feeds";
+import { updateFeedsUser, setCurrentFeedId } from "../../../redux/actions/feeds";
+
 
 const FeedsStoriesContainer = ({
   route,
   navigation,
   allFeeds,
   updateFeedsUser,
+  setCurrentFeedId
 }) => {
-  const { index, section, origin } = route.params;
+  const { index, section, origin, startStory} = route.params;
   const feeds = allFeeds[section]
-  const handleFeedChange = (moveFeed) => {
-    let newIndex = index + moveFeed;
 
+  const handleFeedChange = (moveFeed) => {
+
+    let newIndex = index + moveFeed;
     if (section == "discover") {
       handleClose();
     } else {
       if (newIndex >= 0 && newIndex < feeds.length) {
         changeHasPendingStories();
+        setCurrentFeedId(feeds[newIndex].id)
         navigation.push("Stories",{origin, section, index: newIndex})
       } else {
+        setCurrentFeedId(-1)
         handleClose();
       }
     }
@@ -29,6 +34,7 @@ const FeedsStoriesContainer = ({
   const handleClose = () => {
     changeHasPendingStories();
     updateFeedsUser(allFeeds);
+    setCurrentFeedId(-1)
     navigation.navigate(origin);
   };
 
@@ -45,6 +51,7 @@ const FeedsStoriesContainer = ({
       handleClose={handleClose}
       handleFeedChange={handleFeedChange}
       feed={feeds[index]}
+      startStory={startStory}
     />
   );
 };
@@ -59,6 +66,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     updateFeedsUser: (data) => dispatch(updateFeedsUser(data)),
+    setCurrentFeedId: (feedId) => dispatch(setCurrentFeedId(feedId)),
   };
 };
 

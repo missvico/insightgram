@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { SafeAreaView, FlatList, View } from "react-native";
 import styles from "./style";
 import FeedList from "../../Common/FeedList/FeedList";
@@ -45,5 +45,7 @@ const mapStateToProps = (state, ownProps) => {
     feedsUnfiltered: state.feeds.feeds.feeds,
   };
 };
+
+
 
 export default connect(mapStateToProps, null)(MyFeedsToggle);

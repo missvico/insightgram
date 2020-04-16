@@ -1,4 +1,4 @@
-import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA } from "../constants";
+import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA, SET_CURRENT_FEED } from "../constants";
 import axios from "axios";
 import { allFeedsUrl, ip, feedsUserUrl } from "../../config";
 
@@ -6,6 +6,11 @@ const setFeeds = (feeds) => ({
   type: SET_FEEDS,
   feeds,
 });
+
+export const setCurrentFeedId = (feedId) => ({
+  type: SET_CURRENT_FEED,
+  feedId,
+})
 
 const setHomeUser = (data) => ({
   type: SET_HOME_USER,

@@ -8,7 +8,7 @@ import { showStoriesHeader } from "../../../redux/actions/stories";
 import { setPlay } from "../../../redux/actions/play";
 import {setPendingStories} from "../../../redux/actions/stories"
 import {FlingGestureHandler, Directions, State} from "react-native-gesture-handler"
-
+import STORIES_TIME from "../../parameters"
 
 const StoriesContainer = ({
   handleClose,
@@ -18,11 +18,20 @@ const StoriesContainer = ({
   setPlay,
   showStoriesHeader,
   setPendingStories,
-  pendingStories
+  pendingStories,
+  currentFeedId
 }) => {
   const { stories, name } = feed;
   const [storyIndex, setStoryIndex] = useState(0);
   const [wasPlayed, setWasPlayed] = useState(false);
+  const [endInterval, setEndInterval] = useState(false)
+
+  useEffect(() => {
+    let index = (typeof pendingStories[feed.id] === "number")? pendingStories[feed.id] : searchFirstStoryPending(stories)
+    changeStatus(index);
+    setStoryIndex(index);
+    return;
+  }, [feed]);
 
   const handleStoryChange = (moveStory) => {
     let newIndex = storyIndex + moveStory;
@@ -32,6 +41,7 @@ const StoriesContainer = ({
       setStoryIndex(newIndex);
     } else {
       setPendingStories(feed.id, 0)
+      setEndInterval(false)
       handleFeedChange(moveStory);
     }
   };
@@ -63,15 +73,10 @@ const StoriesContainer = ({
       handleStoryChange(1);
     },
     3000,
-    play
+    play,
+    feed.id,
+    currentFeedId
   );
-
-  useEffect(() => {
-    let storyIndex = (typeof pendingStories[feed.id] === "number")? pendingStories[feed.id] : searchFirstStoryPending(stories)
-    changeStatus(storyIndex);
-    setStoryIndex(storyIndex);
-    return;
-  }, [feed]);
 
   return (
     <View flex={1}>
@@ -103,7 +108,8 @@ const mapStateToProps = (state) => {
   return {
     play: state.play.value,
     showHeader: state.stories.showHeader,
-    pendingStories: state.stories.pendingStories
+    pendingStories: state.stories.pendingStories,
+    currentFeedId: state.feeds.currentFeedId
   };
 };
 
@@ -115,26 +121,27 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-function useInterval(callback, delay, isActive) {
+function useInterval(callback, delay, isActive, feedId, currentFeedId) {
   const savedCallback = useRef();
   useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
 
+  let interval = null
   useEffect(() => {
     function tick() {
       savedCallback.current();
     }
-    let interval = null;
-    if (isActive) {
-      interval = setInterval(tick, delay);
-    } else if (!isActive) {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [isActive, delay]);
+    if (isActive && feedId === currentFeedId) {
+      interval = setInterval(tick, delay)
+    } 
+    return () => {
+      clearInterval(interval)
+    };
+  }, [isActive, delay, feedId, currentFeedId]);
 }
 
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoriesContainer);
+

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import {
   ScrollView,
   SafleseAreaView,
@@ -10,6 +10,7 @@ import styles from "./style";
 import FeedList from "../../Common/FeedList/FeedList";
 import { connect } from "react-redux";
 import { BACKGROUND } from "../../../styles";
+
 
 const AllFeedsToggle = ({ feeds }) => {
   return (
@@ -33,5 +34,7 @@ const mapStateToProps = (state, ownProps) => {
     feeds: state.feeds.feeds.feeds,
   };
 };
+
+
 
 export default connect(mapStateToProps, null)(AllFeedsToggle);

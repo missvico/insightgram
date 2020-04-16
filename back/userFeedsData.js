@@ -32,7 +32,7 @@ const data = {
     all: [
       {
         id: 2,
-        name: "Perritos",
+        name: "Nombre super largo que hay que recortar",
         thumbnail:
           "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
         has_pending_stories: true,
@@ -217,7 +217,7 @@ const data = {
       },
       {
         id: 8,
-        name: "Perezosos",
+        name: "Sloths",
         thumbnail:
           "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
         has_pending_stories: true,

@@ -163,10 +163,6 @@ function App() {
                 component={FeedsStoriesContainer}
                 options={{
                   cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-                  transitionSpec: {
-                    open: config,
-                    close: config
-                  }
                 }}
               />
               <RootStack.Screen

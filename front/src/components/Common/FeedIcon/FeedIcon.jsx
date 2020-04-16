@@ -4,6 +4,7 @@ import {IconContainer, GreyBackgroud, PreviewImage, IconCard, Avatar, AvatarBord
 import { AntDesign } from '@expo/vector-icons';
 
 export default function FeedIcon({handlePress, tick, name, hasPendingStories, thumbnail, preview, disableTick, size}) {
+  const cardname = (name.length>15)? `${name.slice(0,15)}...` : name
   return (
     <TouchableWithoutFeedback onPress={handlePress}>
       <IconContainer
@@ -30,7 +31,7 @@ export default function FeedIcon({handlePress, tick, name, hasPendingStories, th
                       {tick? ( <AntDesign name="checkcircle" size={27} color="#007aff"/>  ): null}  
                     </TickBorder>}
                 </TopContainer>
-                <CardName> {name} </CardName>
+                <CardName>{cardname}</CardName>
           </IconCard>
       </IconContainer>
     </TouchableWithoutFeedback>

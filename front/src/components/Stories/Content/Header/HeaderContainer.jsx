@@ -33,7 +33,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setPlay: (value) => dispatch(setPlay(value)),
+    setPlay: (value) => dispatch(setPlay(value)) 
   };
 };
 

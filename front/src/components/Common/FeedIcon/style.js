@@ -95,6 +95,8 @@ export const CardName = styled.Text`
   font-family: ${HEADER_FONT_CARD};
   text-align: left;
   margin-top: 25%;
+  margin-left: 4px;
+  margin-bottom: 1px;
   font-size: ${13 * pt}px;
   color: ${WHITE};
   shadow-color: #000;

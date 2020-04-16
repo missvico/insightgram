@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import FeedIcon from "./FeedIcon";
 import { addFeed } from "../../../../redux/actions/subscribe";
+import {setCurrentFeedId} from "../../../../redux/actions/feeds";
 import { connect } from "react-redux";
+
 
 const FeedIconContainer = ({
   feed,
@@ -10,7 +12,8 @@ const FeedIconContainer = ({
   section,
   size,
   addFeed,
-  userFeeds
+  userFeeds,
+  setCurrentFeedId
 }) => {
   const [selected, setSelected] = useState(feed.is_suscribed);
 
@@ -25,10 +28,15 @@ const FeedIconContainer = ({
     addFeed(feed.id, subs);
   };
 
+  const handleOpenStory = () => {
+    setCurrentFeedId(feed.id)
+    handleStory({ index: getFeedIndex(userFeeds[section], feed.id), section, startStory: 0})
+  }
+
   return (
     <FeedIcon
       handlePress={
-        disableTick ? () => handleStory({ index: getFeedIndex(userFeeds[section], feed.id), section}) : handlePress
+        disableTick ? handleOpenStory : handlePress
       }
       tick={selected}
       name={feed.name}
@@ -51,6 +59,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addFeed: (feed_id, subs) => dispatch(addFeed(feed_id, subs)),
+    setCurrentFeedId: (feedId) => dispatch(setCurrentFeedId(feedId))
   };
 };
 
