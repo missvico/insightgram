@@ -119,7 +119,7 @@ export default ({
           <Search
             handleSearch={handleSearch}
             handleTarget={handleTarget}
-            vañue={value}
+            value={value}
           />
         </ScrollView>
       </View>

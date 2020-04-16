@@ -4,7 +4,7 @@ import { Input, SearchContainer } from "./style";
 import { AntDesign } from "@expo/vector-icons";
 import { BACKGROUND, TEXT, PLACEHOLDER_COLOR } from "../../../styles";
 
-export default ({ handleSearch, handleTarget }) => {
+export default ({ handleSearch, handleTarget, value }) => {
   return (
     <View style={{ backgroundColor: BACKGROUND, paddingBottom: "1%" }}>
       <SearchContainer>
@@ -17,6 +17,7 @@ export default ({ handleSearch, handleTarget }) => {
           placeholder="Search"
           placeholderTextColor={PLACEHOLDER_COLOR}
           onChange={(evt) => handleSearch(evt, handleTarget)}
+          defaultValue={value}
         />
       </SearchContainer>
     </View>

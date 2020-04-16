@@ -19,6 +19,7 @@ const HomescreenContainer = ({
   const [userHome, setUserHome] = useState({});
   const [refreshing, setRefreshing] = useState(false);
   const [filteredUserHome, setFilteredUserHome] = useState({});
+  const [input, setInput] = useState("");
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -41,7 +42,7 @@ const HomescreenContainer = ({
     } else {
       return;
     }
-  }, [userHome]);
+  }, []);
 
   useEffect(() => {
     setFilteredUserHome(JSON.parse(JSON.stringify(homeUserStore)));
@@ -49,23 +50,26 @@ const HomescreenContainer = ({
 
   const handlePress = () => {
     navigation.navigate("Feeds");
+    setInput("");
+    fetchInfo();
   };
   const handleStory = (storyprops) => {
     navigation.navigate("Stories", storyprops);
   };
   const handleMyFeeds = () => {
     navigation.navigate("MyFeeds");
+    setInput("");
   };
   const handleSearch = (evt, target) => {
     if (target === "home") {
-      let input = evt.nativeEvent.text.toLowerCase();
+      setInput(evt.nativeEvent.text);
       let searchMyFeeds = userHome.feeds.all;
       let searchDiscoverFeeds = userHome.feeds.discover;
       let myFeeds = searchMyFeeds.filter((elemento) =>
-        elemento.name.toLowerCase().includes(input)
+        elemento.name.toLowerCase().includes(input.toLowerCase())
       );
       let Discover = searchDiscoverFeeds.filter((elemento) =>
-        elemento.name.toLowerCase().includes(input)
+        elemento.name.toLowerCase().includes(input.toLowerCase())
       );
       let newfilteredUserHome = Object.assign(
         {},
@@ -91,6 +95,7 @@ const HomescreenContainer = ({
             handleTarget={"home"}
             refreshing={refreshing}
             onRefresh={onRefresh}
+            value={input}
           />
         </View>
       ) : (
