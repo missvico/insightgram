@@ -21,6 +21,7 @@ const HomescreenContainer = ({
   const [filteredUserHome, setFilteredUserHome] = useState({});
   const [input, setInput] = useState("");
 
+
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     fetchInfo();
@@ -62,14 +63,15 @@ const HomescreenContainer = ({
   };
   const handleSearch = (evt, target) => {
     if (target === "home") {
-      setInput(evt.nativeEvent.text);
+      setInput(evt.nativeEvent.text)
+      let inputSearch = evt.nativeEvent.text;
       let searchMyFeeds = userHome.feeds.all;
       let searchDiscoverFeeds = userHome.feeds.discover;
       let myFeeds = searchMyFeeds.filter((elemento) =>
-        elemento.name.toLowerCase().includes(input.toLowerCase())
+        elemento.name.toLowerCase().includes(inputSearch.toLowerCase())
       );
       let Discover = searchDiscoverFeeds.filter((elemento) =>
-        elemento.name.toLowerCase().includes(input.toLowerCase())
+        elemento.name.toLowerCase().includes(inputSearch.toLowerCase())
       );
       let newfilteredUserHome = Object.assign(
         {},
