@@ -4,10 +4,10 @@ import styles from "./style";
 import Navigation from "./Content/Navigation";
 import Search from "../Common/Search/Search";
 
-export default ({ feeds, handlePress, loading }) => {
+export default ({ feeds, handlePress, loading, handleSearch }) => {
   return (
     <View style={{ flex: 1 }}>
-      <Search />
+      <Search handleSearch={handleSearch} handleTarget={"feeds"} />
       <Navigation feeds={feeds} />
       <styles.Done activeOpacity={1} onPress={() => handlePress()}>
         {loading ? (

@@ -13,17 +13,17 @@ const FeedIconContainer = ({
   size,
   addFeed,
   userFeeds,
-  setCurrentFeedId
+  setCurrentFeedId,
+  subscribe
 }) => {
-  const [selected, setSelected] = useState(feed.is_suscribed);
+  let selectedValue = subscribe[feed.id]? ((subscribe[feed.id]==="suscribed")? true: false): feed.is_suscribed
 
   const handlePress = () => {
-    setSelected(!selected);
-    let subs;
+    let subs
     if (feed.is_suscribed) {
-      subs = selected ? "unsubscribe" : false;
+      subs = selectedValue ? "unsubscribe" : false;
     } else {
-      subs = selected ? false : "subscribe";
+      subs = selectedValue ? false : "subscribe";
     }
     addFeed(feed.id, subs);
   };
@@ -38,7 +38,7 @@ const FeedIconContainer = ({
       handlePress={
         disableTick ? handleOpenStory : handlePress
       }
-      tick={selected}
+      tick={selectedValue}
       name={feed.name}
       hasPendingStories={feed.has_pending_stories}
       thumbnail={feed.thumbnail}
@@ -51,7 +51,7 @@ const FeedIconContainer = ({
 
 const mapStateToProps = (state) => {
   return {
-    feedsToModify: state.subscribe.feedsToModify,
+    subscribe: state.subscribe,
     userFeeds: state.feeds.homeUser.feeds
   };
 };

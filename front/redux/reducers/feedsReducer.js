@@ -2,6 +2,8 @@ import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA, SET_CURRENT_FEED } from "..
 const initialState = {
   feeds: {},
   homeUser: {},
+  originData: {},
+  originFeeds: {},
   currentStoryIndex: 0,
   currentFeedId: 0,
 };
@@ -9,11 +11,14 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_FEEDS:
-      return { ...state, feeds: action.feeds };
+      return { ...state, feeds: action.feeds, originFeeds: action.originFeeds };
     case SET_HOME_USER:
-      return { ...state, homeUser: action.data };
+      return { ...state, homeUser: action.data, originData: action.originData };
     case UPDATE_HOME_DATA: {
-      return { ...state, homeUser: { ...state.homeUser, feeds: action.data } };
+      return {
+        ...state,
+        homeUser: { ...state.homeUser, feeds: action.data },
+      };
     }
     case SET_CURRENT_FEED: {
       return { ...state, currentFeedId: action.feedId };

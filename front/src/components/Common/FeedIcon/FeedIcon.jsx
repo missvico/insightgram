@@ -1,7 +1,25 @@
-import React from 'react';
-import { View, Dimensions, TouchableWithoutFeedback,StyleSheet, Text, ImageBackground} from 'react-native';
-import {IconContainer, GreyBackgroud, PreviewImage, IconCard, Avatar, AvatarBorder,AvatarBorderGradient, TickBorder ,TopContainer , CardName} from "./style.js"
-import { AntDesign } from '@expo/vector-icons';
+import React from "react";
+import {
+  View,
+  Dimensions,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  Text,
+  ImageBackground,
+} from "react-native";
+import {
+  IconContainer,
+  GreyBackgroud,
+  PreviewImage,
+  IconCard,
+  Avatar,
+  AvatarBorder,
+  AvatarBorderGradient,
+  TickBorder,
+  TopContainer,
+  CardName,
+} from "./style.js";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function FeedIcon({handlePress, tick, name, hasPendingStories, thumbnail, preview, disableTick, size}) {
   const cardname = (name.length>15)? `${name.slice(0,15)}...` : name
@@ -38,5 +56,4 @@ export default function FeedIcon({handlePress, tick, name, hasPendingStories, th
   );
 }
 
-
-<AntDesign name="pluscircle" size={35} color="#01ADED"/>
+<AntDesign name="pluscircle" size={35} color="#01ADED" />;

@@ -5,6 +5,7 @@ import { allFeedsUrl, ip, feedsUserUrl } from "../../config";
 const setFeeds = (feeds) => ({
   type: SET_FEEDS,
   feeds,
+  originFeeds: feeds,
 });
 
 export const setCurrentFeedId = (feedId) => ({
@@ -15,6 +16,7 @@ export const setCurrentFeedId = (feedId) => ({
 const setHomeUser = (data) => ({
   type: SET_HOME_USER,
   data,
+  originData: data,
 });
 
 const updateHomeData = (data) => ({
@@ -66,4 +68,12 @@ export const updateFeedsUser = (feeds) => (dispatch) => {
 
 export const currentStoryIndex = (index) => (dispatch) => {
   dispatch(updateCurrentIndex(index));
+};
+
+export const filterHomeFeeds = (data) => (dispatch) => {
+  dispatch(setHomeUser(data));
+};
+
+export const filterSubscribeFeeds = (data) => (dispatch) => {
+  dispatch(setFeeds(data));
 };
