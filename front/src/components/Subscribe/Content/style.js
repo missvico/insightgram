@@ -49,7 +49,7 @@ styles.ViewMessage = styled.View`
 
 styles.TextMessage = styled.Text`
   font-size: 24px;
-  color: #fff;
+  color: ${TEXT};
   margin-top: 45px;
   text-align: center;
 `;

@@ -26,6 +26,7 @@ export default ({
   handleMyFeeds,
   handleSearch,
   handleTarget,
+  value,
 }) => {
   const listAll = () => {
     if (feeds.all.length !== 0) {
@@ -115,7 +116,11 @@ export default ({
             />
           }
         >
-          <Search handleSearch={handleSearch} handleTarget={handleTarget} />
+          <Search
+            handleSearch={handleSearch}
+            handleTarget={handleTarget}
+            vañue={value}
+          />
         </ScrollView>
       </View>
     </View>

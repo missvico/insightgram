@@ -41,7 +41,7 @@ const HomescreenContainer = ({
     } else {
       return;
     }
-  }, []);
+  }, [userHome]);
 
   useEffect(() => {
     setFilteredUserHome(JSON.parse(JSON.stringify(homeUserStore)));
