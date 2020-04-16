@@ -41,4 +41,17 @@ styles.TabText = styled.Text`
   padding-right: 15px;
 `;
 
+styles.ViewMessage = styled.View`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+`;
+
+styles.TextMessage = styled.Text`
+  font-size: 24px;
+  color: #fff;
+  margin-top: 45px;
+  text-align: center;
+`;
+
 export default styles;

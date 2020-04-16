@@ -66,3 +66,15 @@ export const SubscribeTxt = styled.Text`
   align-items: center;
   text-align: center;
 `;
+
+export const ViewMessage = styled.View`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+`;
+export const TextMessage = styled.Text`
+  font-size: 24px;
+  color: #fff;
+  margin-top: 45px;
+  text-align: center;
+`;

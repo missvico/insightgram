@@ -9,6 +9,8 @@ import {
   SeeAllText,
   SubscribeTxt,
   Align,
+  ViewMessage,
+  TextMessage,
 } from "./style";
 import Discover from "./Discover/Discover";
 import FeedList from "../Common/FeedList/FeedList";
@@ -25,8 +27,35 @@ export default ({
   handleSearch,
   handleTarget,
 }) => {
+  const listAll = () => {
+    if (feeds.all.length !== 0) {
+      return (
+        <FeedList
+          feeds={feeds.all}
+          disableTick={true}
+          handleStory={handleStory}
+          section={"all"}
+        />
+      );
+    } else if (!listDiscover()) {
+      return (
+        <ViewMessage>
+          <TextMessage>No se encontraron resultados</TextMessage>
+        </ViewMessage>
+      );
+    }
+  };
+
+  const listDiscover = () => {
+    if (feeds.discover.length !== 0) {
+      return <Discover feeds={feeds.discover} handleStory={handleStory} />;
+    } else {
+      return null;
+    }
+  };
+
   return (
-    <View backgroundColor={BACKGROUND}>
+    <View style={{ backgroundColor: BACKGROUND, height: "100%" }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ paddingTop: "13%" }}>
           <View
@@ -37,20 +66,19 @@ export default ({
               zIndex: 2,
             }}
           >
-            <ItemText>My feeds</ItemText>
+            {feeds.all.length !== 0 ? (
+              <ItemText>My feeds</ItemText>
+            ) : (
+              <ItemText></ItemText>
+            )}
             <TouchableWithoutFeedback onPress={handleMyFeeds}>
               <SeeAllButton>
                 <SeeAllText>See all</SeeAllText>
               </SeeAllButton>
             </TouchableWithoutFeedback>
           </View>
-          <FeedList
-            feeds={feeds.all}
-            disableTick={true}
-            handleStory={handleStory}
-            section={"all"}
-          />
-          <Discover feeds={feeds.discover} handleStory={handleStory} />
+          {listAll()}
+          {listDiscover()}
         </View>
       </ScrollView>
 
