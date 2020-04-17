@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import StoriesContainer from "./StoriesContainer";
 import { connect } from "react-redux";
 import { updateFeedsUser, setCurrentFeedId, setSeen} from "../../../redux/actions/feeds";
-
+import {sendSeenStories} from "../../../redux/actions/stories"
 
 const FeedsStoriesContainer = ({
   route,
@@ -11,7 +11,8 @@ const FeedsStoriesContainer = ({
   updateFeedsUser,
   setCurrentFeedId,
   setSeen,
-  seenFeeds
+  seenFeeds,
+  seenStories
 }) => {
   const { index, section, origin, startStory} = route.params;
   const feeds = allFeeds[section]
@@ -35,6 +36,7 @@ const FeedsStoriesContainer = ({
 
   const handleClose = () => {
     changeHasPendingStories();
+    sendSeenStories(seenStories)
     updateFeedsUser(allFeeds);
     setCurrentFeedId(-1)
     navigation.navigate(origin);
@@ -62,7 +64,8 @@ const FeedsStoriesContainer = ({
 const mapStateToProps = (state, ownProps) => {
   return {
     allFeeds: state.feeds.homeUser.feeds,
-    seenFeeds: state.feeds.seenFeeds
+    seenFeeds: state.feeds.seenFeeds,
+    seenStories: state.stories.seenStories
   };
 };
 

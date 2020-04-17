@@ -17,12 +17,12 @@ const FeedIconContainer = ({
   seenFeeds
 }) => {
   let selectedValue = subscribe[feed.id]? 
-  ((subscribe[feed.id]==="subscribe")? true: false): feed.is_suscribed
+  ((subscribe[feed.id]==="subscribe")? true: false): feed.is_subscribed
   let seen = seenFeeds[feed.id]? false: feed.has_pending_stories
 
   const handlePress = () => {
     let subs
-    if (feed.is_suscribed) {
+    if (feed.is_subscribed) {
       subs = selectedValue ? "unsubscribe" : false;
     } else {
       subs = selectedValue ? false : "subscribe";

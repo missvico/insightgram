@@ -1,4 +1,4 @@
-import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA, SET_CURRENT_FEED, SET_SEEN } from "../constants";
+import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA, SET_CURRENT_FEED, SET_SEEN, CLEAR_SEEN } from "../constants";
 const initialState = {
   feeds: {},
   homeUser: {},
@@ -29,6 +29,9 @@ export default (state = initialState, action) => {
         ...state.seenFeeds,
         ...action.feed,
       }};
+    }
+    case CLEAR_SEEN: {
+      return { ...state, seenFeeds: action.feeds};
     }
     case "UPDATE_STORY_INDEX": {
       return {

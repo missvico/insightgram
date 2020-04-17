@@ -1,4 +1,4 @@
-import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA, SET_CURRENT_FEED, SET_SEEN } from "../constants";
+import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA, SET_CURRENT_FEED, SET_SEEN, CLEAR_SEEN} from "../constants";
 import axios from "axios";
 import { allFeedsUrl, ip, feedsUserUrl } from "../../config";
 
@@ -35,10 +35,17 @@ export const setSeen = (feedId) => ({
   },
 });
 
+export const clearSeen = () => ({
+  type: CLEAR_SEEN,
+  feeds: {}
+});
+
+
+
 export const fetchAllFeeds = (token) => (dispatch) => {
   return axios({
     method: "GET",
-    url: `http://${ip + allFeedsUrl}`,
+    url: "http://ec2-18-223-211-135.us-east-2.compute.amazonaws.com:8080/feeds",
     headers: {
       "Content-Type": "application/json",
       token: token,
@@ -55,7 +62,7 @@ export const fetchAllFeeds = (token) => (dispatch) => {
 export const fetchFeedsByUser = (token) => (dispatch) => {
   return axios({
     method: "GET",
-    url: `http://${ip + feedsUserUrl}`,
+    url: "http://ec2-18-223-211-135.us-east-2.compute.amazonaws.com:8080/user/feeds",
     headers: {
       "Content-Type": "application/json",
       token: token,

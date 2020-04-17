@@ -7,6 +7,7 @@ import Homescreen from "./Homescreen";
 import {
   fetchFeedsByUser,
   filterHomeFeeds,
+  clearSeen
 } from "../../../redux/actions/feeds";
 import { getItemStorage } from "../../../assets/js/AsyncStorage";
 
@@ -15,6 +16,7 @@ const HomescreenContainer = ({
   fetchFeedsByUser,
   filterHomeFeeds,
   homeUserStore,
+  clearSeen
 }) => {
   const [userHome, setUserHome] = useState({});
   const [refreshing, setRefreshing] = useState(false);
@@ -28,6 +30,7 @@ const HomescreenContainer = ({
   }, [refreshing]);
 
   const fetchInfo = () => {
+    clearSeen()
     getItemStorage("@Token").then((token) => {
       fetchFeedsByUser(token).then((data) => {
         setUserHome(data);
@@ -45,9 +48,6 @@ const HomescreenContainer = ({
     }
   }, []);
 
-  useEffect(() => {
-    setFilteredUserHome(JSON.parse(JSON.stringify(homeUserStore)));
-  }, [homeUserStore]);
 
   const handlePress = () => {
     navigation.navigate("Feeds");
@@ -115,6 +115,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchFeedsByUser: (token) => dispatch(fetchFeedsByUser(token)),
     filterHomeFeeds: (data) => dispatch(filterHomeFeeds(data)),
+    clearSeen: ()=> dispatch(clearSeen())
   };
 };
 export default connect(

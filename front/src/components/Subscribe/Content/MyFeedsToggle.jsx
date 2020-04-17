@@ -58,7 +58,7 @@ const filter = (feeds) => {
     let filteredFeed = {};
     filteredFeed.group = feeds[i].group;
     filteredFeed.feeds = feeds[i].feeds.filter((feed) => {
-      return feed.is_suscribed;
+      return feed.is_subscribed;
     });
     if (filteredFeed.feeds.length !== 0) {
       filteredFeeds.push(filteredFeed);

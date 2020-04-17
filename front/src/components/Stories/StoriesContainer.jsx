@@ -4,9 +4,8 @@ import { View, SafeAreaView } from "react-native";
 import HeaderContainer from "./Content/Header/HeaderContainer";
 import { connect, useDispatch } from "react-redux";
 import { currentStoryIndex } from "../../../redux/actions/feeds";
-import { showStoriesHeader } from "../../../redux/actions/stories";
+import { showStoriesHeader, setSeenStory, setPendingStories} from "../../../redux/actions/stories";
 import { setPlay } from "../../../redux/actions/play";
-import {setPendingStories} from "../../../redux/actions/stories"
 import {FlingGestureHandler, Directions, State} from "react-native-gesture-handler"
 
 const StoriesContainer = ({
@@ -18,7 +17,9 @@ const StoriesContainer = ({
   showStoriesHeader,
   setPendingStories,
   pendingStories,
-  currentFeedId
+  currentFeedId,
+  setSeenStory,
+  seenStories
 }) => {
   const { stories, name } = feed;
   const [storyIndex, setStoryIndex] = useState(0);
@@ -33,6 +34,8 @@ const StoriesContainer = ({
   }, [feed]);
 
   const handleStoryChange = (moveStory) => {
+    setSeenStory(stories[storyIndex].id)
+    console.log("SEEN STORIES", seenStories)
     let newIndex = storyIndex + moveStory;
     changeStatus(newIndex);
     if (newIndex >= 0 && newIndex < stories.length) {
@@ -108,7 +111,8 @@ const mapStateToProps = (state) => {
     play: state.play.value,
     showHeader: state.stories.showHeader,
     pendingStories: state.stories.pendingStories,
-    currentFeedId: state.feeds.currentFeedId
+    currentFeedId: state.feeds.currentFeedId,
+    seenStories: state.stories.seenStories
   };
 };
 
@@ -116,7 +120,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showStoriesHeader: (value) => dispatch(showStoriesHeader(value)),
     setPlay: (value) => dispatch(setPlay(value)),
-    setPendingStories: (feedId, storyIndex) => dispatch(setPendingStories(feedId, storyIndex))
+    setPendingStories: (feedId, storyIndex) => dispatch(setPendingStories(feedId, storyIndex)),
+    setSeenStory: (storyId) => dispatch(setSeenStory(storyId))
   };
 };
 

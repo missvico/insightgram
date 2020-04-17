@@ -38,12 +38,12 @@ export default function FeedIcon({handlePress, tick, name, hasPendingStories, th
                     >
                         <Avatar
                         hasPendingStories={hasPendingStories}
-                        source={{uri:thumbnail}}/>
+                        source={{uri:"https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2"}}/>
                     </AvatarBorderGradient>):
                     (<AvatarBorder>
                           <Avatar
                           hasPendingStories={hasPendingStories}
-                          source={{uri:thumbnail}}/>
+                          source={{uri:"https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2"}}/>
                       </AvatarBorder>)}
                     {disableTick? null: <TickBorder tick={tick}>
                       {tick? ( <AntDesign name="checkcircle" size={27} color="#007aff" style={{marginTop:"2%"}}/>  ): null}  
