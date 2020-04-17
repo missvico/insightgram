@@ -1,15 +1,22 @@
-import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA } from "../constants";
+import { SET_FEEDS, SET_HOME_USER, UPDATE_HOME_DATA, SET_CURRENT_FEED, SET_SEEN } from "../constants";
 import axios from "axios";
 import { allFeedsUrl, ip, feedsUserUrl } from "../../config";
 
 const setFeeds = (feeds) => ({
   type: SET_FEEDS,
   feeds,
+  originFeeds: feeds,
 });
+
+export const setCurrentFeedId = (feedId) => ({
+  type: SET_CURRENT_FEED,
+  feedId,
+})
 
 const setHomeUser = (data) => ({
   type: SET_HOME_USER,
   data,
+  originData: data,
 });
 
 const updateHomeData = (data) => ({
@@ -19,6 +26,13 @@ const updateHomeData = (data) => ({
 const updateCurrentIndex = (data) => ({
   type: "UPDATE_STORY_INDEX",
   data,
+});
+
+export const setSeen = (feedId) => ({
+  type: SET_SEEN,
+  feed: {
+    [feedId]: true,
+  },
 });
 
 export const fetchAllFeeds = (token) => (dispatch) => {
@@ -61,4 +75,12 @@ export const updateFeedsUser = (feeds) => (dispatch) => {
 
 export const currentStoryIndex = (index) => (dispatch) => {
   dispatch(updateCurrentIndex(index));
+};
+
+export const filterHomeFeeds = (data) => (dispatch) => {
+  dispatch(setHomeUser(data));
+};
+
+export const filterSubscribeFeeds = (data) => (dispatch) => {
+  dispatch(setFeeds(data));
 };

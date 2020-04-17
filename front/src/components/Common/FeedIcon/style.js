@@ -95,6 +95,8 @@ export const CardName = styled.Text`
   font-family: ${HEADER_FONT_CARD};
   text-align: left;
   margin-top: 25%;
+  margin-left: 4px;
+  margin-bottom: 1px;
   font-size: ${13 * pt}px;
   color: ${WHITE};
   shadow-color: #000;
@@ -109,7 +111,6 @@ export const TickBorder = styled.View`
   border-radius: ${(27 * pt) / 2}px;
   background-color: ${(props) => (props.tick ? WHITE : "transparent")};
   border: ${1 * pt}px solid ${WHITE};
-  padding-top: 1px;
   margin-top: 4px;
   margin-right: 4px;
   align-items: center;
