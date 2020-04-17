@@ -38,7 +38,7 @@ const MyFeedsContainer = ({
       let searchMyFeeds = myFeeds.feeds.all;
       let filteredFeeds = searchMyFeeds.filter((elemento) =>
         elemento.name.toLowerCase().includes(input)
-      );
+      ); 
       let newfilteredMyFeeds = Object.assign({}, filteredMyFeeds, {
         ...(filteredMyFeeds.feeds["all"] = filteredFeeds),
       });

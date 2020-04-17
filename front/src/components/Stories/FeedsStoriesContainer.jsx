@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StoriesContainer from "./StoriesContainer";
 import { connect } from "react-redux";
-import { updateFeedsUser, setCurrentFeedId } from "../../../redux/actions/feeds";
+import { updateFeedsUser, setCurrentFeedId, setSeen} from "../../../redux/actions/feeds";
 
 
 const FeedsStoriesContainer = ({
@@ -9,13 +9,15 @@ const FeedsStoriesContainer = ({
   navigation,
   allFeeds,
   updateFeedsUser,
-  setCurrentFeedId
+  setCurrentFeedId,
+  setSeen,
+  seenFeeds
 }) => {
   const { index, section, origin, startStory} = route.params;
   const feeds = allFeeds[section]
 
   const handleFeedChange = (moveFeed) => {
-
+    setSeen(feeds[index].id)
     let newIndex = index + moveFeed;
     if (section == "discover") {
       handleClose();
@@ -60,6 +62,7 @@ const FeedsStoriesContainer = ({
 const mapStateToProps = (state, ownProps) => {
   return {
     allFeeds: state.feeds.homeUser.feeds,
+    seenFeeds: state.feeds.seenFeeds
   };
 };
 
@@ -67,6 +70,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     updateFeedsUser: (data) => dispatch(updateFeedsUser(data)),
     setCurrentFeedId: (feedId) => dispatch(setCurrentFeedId(feedId)),
+    setSeen: (feedId) => dispatch(setSeen(feedId))
   };
 };
 

@@ -91,11 +91,15 @@ export default ({
             ) : (
               <ItemText></ItemText>
             )}
-            <TouchableWithoutFeedback onPress={handleMyFeeds}>
+            {feeds.all.length > 3? (
+              <TouchableWithoutFeedback onPress={handleMyFeeds}>
               <SeeAllButton>
                 <SeeAllText>See all</SeeAllText>
               </SeeAllButton>
             </TouchableWithoutFeedback>
+            ) : (
+              <View style={{height:35}}></View>
+            )}
           </View>
           {listAll()}
           {listDiscover()}

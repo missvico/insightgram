@@ -4,7 +4,6 @@ import { addFeed } from "../../../../redux/actions/subscribe";
 import {setCurrentFeedId} from "../../../../redux/actions/feeds";
 import { connect } from "react-redux";
 
-
 const FeedIconContainer = ({
   feed,
   disableTick,
@@ -14,14 +13,14 @@ const FeedIconContainer = ({
   addFeed,
   userFeeds,
   setCurrentFeedId,
-  subscribe
+  subscribe,
+  seenFeeds
 }) => {
   let selectedValue = subscribe[feed.id]? 
   ((subscribe[feed.id]==="subscribe")? true: false): feed.is_suscribed
-
+  let seen = seenFeeds[feed.id]? false: feed.has_pending_stories
 
   const handlePress = () => {
-    console.log(selectedValue)
     let subs
     if (feed.is_suscribed) {
       subs = selectedValue ? "unsubscribe" : false;
@@ -43,7 +42,7 @@ const FeedIconContainer = ({
       }
       tick={selectedValue}
       name={feed.name}
-      hasPendingStories={feed.has_pending_stories}
+      hasPendingStories={seen}
       thumbnail={feed.thumbnail}
       preview={disableTick ? feed.stories[0].thumbnail : null}
       disableTick={disableTick}
@@ -55,7 +54,8 @@ const FeedIconContainer = ({
 const mapStateToProps = (state) => {
   return {
     subscribe: state.subscribe,
-    userFeeds: state.feeds.homeUser.feeds
+    userFeeds: state.feeds.homeUser.feeds,
+    seenFeeds: state.feeds.seenFeeds
   };
 };
 
