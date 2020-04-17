@@ -7,7 +7,8 @@
           "id": "1",
           "name": "Pelotita 1",
           "is_suscribed": true,
-          "thumbnail": "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2"
+          "thumbnail": "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2",
+          "preview": "https://cdn.pixabay.com/photo/2014/02/08/01/34/chihuahua-261490_960_720.jpg"
         },
         {
           "id": "2",

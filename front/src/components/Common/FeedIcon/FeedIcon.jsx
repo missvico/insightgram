@@ -9,7 +9,7 @@ export default function FeedIcon({handlePress, tick, name, hasPendingStories, th
     <TouchableWithoutFeedback onPress={handlePress}>
       <IconContainer
         size={size}>
-          {disableTick? <PreviewImage source={{uri:preview}} size={size}/>: <GreyBackgroud size={size}></GreyBackgroud>}
+          <PreviewImage source={{uri:preview}} size={size}/>
           <IconCard size={size} preview={preview}>
                 <TopContainer>
                   {hasPendingStories? 

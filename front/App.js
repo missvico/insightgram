@@ -20,7 +20,6 @@ import {
 } from "react-native-appearance";
 import styles from "./src/styles/appStyles";
 import { BACKGROUND, TEXT, HEADER_FONT_TITLE } from "./src/styles/index";
-import transitionConfig from "./transitionConfig"
 import { zoomIn, zoomOut, fadeIn, fadeOut, fromLeft, fromTop } from "react-navigation-transitions";
 
 const store = configureStore();

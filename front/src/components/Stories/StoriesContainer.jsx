@@ -8,7 +8,6 @@ import { showStoriesHeader } from "../../../redux/actions/stories";
 import { setPlay } from "../../../redux/actions/play";
 import {setPendingStories} from "../../../redux/actions/stories"
 import {FlingGestureHandler, Directions, State} from "react-native-gesture-handler"
-import STORIES_TIME from "../../parameters"
 
 const StoriesContainer = ({
   handleClose,

@@ -13,10 +13,11 @@ const FeedIconContainer = ({
   size,
   addFeed,
   userFeeds,
-  setCurrentFeedId
+  setCurrentFeedId,
+  pendingStories
 }) => {
   const [selected, setSelected] = useState(feed.is_suscribed);
-
+  const lastSeenStoryIndex = pendingStories[feed.id]? pendingStories[feed.id] : 0
   const handlePress = () => {
     setSelected(!selected);
     let subs;
@@ -42,7 +43,7 @@ const FeedIconContainer = ({
       name={feed.name}
       hasPendingStories={feed.has_pending_stories}
       thumbnail={feed.thumbnail}
-      preview={disableTick ? feed.stories[0].thumbnail : null}
+      preview={disableTick ? feed.stories[lastSeenStoryIndex].thumbnail : feed.preview}
       disableTick={disableTick}
       size={size}
     />
@@ -52,7 +53,8 @@ const FeedIconContainer = ({
 const mapStateToProps = (state) => {
   return {
     feedsToModify: state.subscribe.feedsToModify,
-    userFeeds: state.feeds.homeUser.feeds
+    userFeeds: state.feeds.homeUser.feeds,
+    pendingStories: state.stories.pendingStories
   };
 };
 
