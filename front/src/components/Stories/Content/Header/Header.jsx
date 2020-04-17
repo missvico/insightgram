@@ -9,6 +9,8 @@ import {
   IconsContainer,
   TitleContainer,
   Title,
+  Avatar,
+  TitleAvatarContainer
 } from "./style";
 
 export default ({
@@ -18,16 +20,21 @@ export default ({
   handlePlay,
   stories,
   showHeader,
+  index,
 }) => {
+  const feedName = (name.length > 23)? `${name.slice(0,23)}...`: name
   return (
     <Header showHeader={showHeader}>
       <ProgressBarContainer>
-        <ProgressIndicator stories={stories} />
+        <ProgressIndicator stories={stories} storyIndex={index} />
       </ProgressBarContainer>
       <TitleIconContainer>
-        <TitleContainer>
-          <Title>{name}</Title>
-        </TitleContainer>
+        <TitleAvatarContainer>
+        <Avatar source={{uri: "https://http2.mlstatic.com/static/org-img/homesnw/mercado-libre.png?v=2"}}/>
+          <TitleContainer>
+            <Title>{feedName}</Title>
+          </TitleContainer>
+        </TitleAvatarContainer>
         <IconsContainer>
           <TouchableOpacity onPress={handlePlay}>
             {play ? (

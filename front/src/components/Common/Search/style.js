@@ -16,7 +16,7 @@ export const SearchContainer = styled.View`
 `;
 
 export const Input = styled.TextInput`
-  width: 30%;
+  width: 100%;
   font-size: 17px;
   padding-left: 10px;
   font-family: ${HEADER_FONT_GROUP_TITLE};

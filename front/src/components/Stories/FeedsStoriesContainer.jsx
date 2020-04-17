@@ -1,32 +1,33 @@
 import React, { useState } from "react";
 import StoriesContainer from "./StoriesContainer";
 import { connect } from "react-redux";
-import { updateFeedsUser } from "../../../redux/actions/feeds";
+import { updateFeedsUser, setCurrentFeedId, setSeen} from "../../../redux/actions/feeds";
+
 
 const FeedsStoriesContainer = ({
   route,
   navigation,
-  feeds,
+  allFeeds,
   updateFeedsUser,
+  setCurrentFeedId,
+  setSeen,
+  seenFeeds
 }) => {
-  const { id, section } = route.params;
-  const feedSelected = feeds[section];
-  const [feedIndex, setFeedIndex] = useState(
-    searchFeedSelected(feedSelected, id)
-  );
-  const [currentFeed, setCurrentFeed] = useState(feedSelected[feedIndex]);
+  const { index, section, origin, startStory} = route.params;
+  const feeds = allFeeds[section]
 
   const handleFeedChange = (moveFeed) => {
-    let newIndex = feedIndex + moveFeed;
-
+    setSeen(feeds[index].id)
+    let newIndex = index + moveFeed;
     if (section == "discover") {
       handleClose();
     } else {
-      if (newIndex >= 0 && newIndex < feeds[section].length) {
+      if (newIndex >= 0 && newIndex < feeds.length) {
         changeHasPendingStories();
-        setCurrentFeed(feedSelected[newIndex]);
-        setFeedIndex(newIndex);
+        setCurrentFeedId(feeds[newIndex].id)
+        navigation.push("Stories",{origin, section, index: newIndex})
       } else {
+        setCurrentFeedId(-1)
         handleClose();
       }
     }
@@ -34,15 +35,16 @@ const FeedsStoriesContainer = ({
 
   const handleClose = () => {
     changeHasPendingStories();
-    updateFeedsUser(feeds);
-    navigation.pop();
+    updateFeedsUser(allFeeds);
+    setCurrentFeedId(-1)
+    navigation.navigate(origin);
   };
 
   const changeHasPendingStories = () => {
-    feeds[section][feedIndex].stories.filter(
+    feeds[index].stories.filter(
       (story) => story.status == "not_seen"
     ).length == 0
-      ? (feedSelected[feedIndex].has_pending_stories = false)
+      ? (feeds[index].has_pending_stories = false)
       : null;
   };
 
@@ -50,24 +52,25 @@ const FeedsStoriesContainer = ({
     <StoriesContainer
       handleClose={handleClose}
       handleFeedChange={handleFeedChange}
-      feed={currentFeed}
+      feed={feeds[index]}
+      startStory={startStory}
     />
   );
 };
 
-const searchFeedSelected = (feedSelected, id) => {
-  return feedSelected.findIndex((feed) => feed.id === id);
-};
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    feeds: state.feeds.homeUser.feeds,
+    allFeeds: state.feeds.homeUser.feeds,
+    seenFeeds: state.feeds.seenFeeds
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     updateFeedsUser: (data) => dispatch(updateFeedsUser(data)),
+    setCurrentFeedId: (feedId) => dispatch(setCurrentFeedId(feedId)),
+    setSeen: (feedId) => dispatch(setSeen(feedId))
   };
 };
 

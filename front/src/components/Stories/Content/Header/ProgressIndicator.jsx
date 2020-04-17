@@ -5,7 +5,7 @@ import Indicator from "./Indicator";
 import { FlatList } from "react-native-gesture-handler";
 import { StoryIndicator } from "./style";
 
-const ProgressIndicator = ({ stories }) => {
+const ProgressIndicator = ({ stories, storyIndex }) => {
   const opacity = useRef(new Animated.Value(1)).current;
   const windowWidth = Dimensions.get("window").width;
   const windowLength = Dimensions.get("window").length;
@@ -30,7 +30,7 @@ const ProgressIndicator = ({ stories }) => {
       renderItem={({ item, index }) => {
         return (
           <StoryIndicator
-            currentIndex={currentIndex}
+            currentIndex={storyIndex}
             index={index}
             scale={windowWidth / stories.length}
           />

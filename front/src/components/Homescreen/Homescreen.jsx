@@ -9,6 +9,8 @@ import {
   SeeAllText,
   SubscribeTxt,
   Align,
+  ViewMessage,
+  TextMessage,
 } from "./style";
 import Discover from "./Discover/Discover";
 import FeedList from "../Common/FeedList/FeedList";
@@ -22,11 +24,60 @@ export default ({
   feeds,
   handleStory,
   handleMyFeeds,
+  handleSearch,
+  handleTarget,
+  value,
 }) => {
+  const listAll = () => {
+    if (feeds.all.length !== 0) {
+      return (
+        <FeedList
+          feeds={feeds.all}
+          disableTick={true}
+          handleStory={handleStory}
+          section={"all"}
+        />
+      );
+    } else if (!listDiscover()) {
+      return (
+        <ViewMessage>
+          <TextMessage>No se encontraron resultados</TextMessage>
+        </ViewMessage>
+      );
+    }
+  };
+
+  const listDiscover = () => {
+    if (feeds.discover.length !== 0) {
+      return <Discover feeds={feeds.discover} handleStory={handleStory} />;
+    } else {
+      return null;
+    }
+  };
+
   return (
-    <View backgroundColor={BACKGROUND}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ paddingTop: "13%" }}>
+    <View style={{ backgroundColor: BACKGROUND, height: "100%" }}>
+      <Search
+            handleSearch={handleSearch}
+            handleTarget={handleTarget}
+            value={value}
+          />
+      <ScrollView 
+      refreshControl={
+        <RefreshControl
+          style={{
+            paddingTop: "13%",
+            flex: 2,
+            zIndex: 10,
+            position: "absolute",
+            top: 0,
+          }}
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }
+      showsVerticalScrollIndicator={false}>
+        <View >
           <View
             style={{
               flexDirection: "row",
@@ -35,20 +86,23 @@ export default ({
               zIndex: 2,
             }}
           >
-            <ItemText>My feeds</ItemText>
-            <TouchableWithoutFeedback onPress={handleMyFeeds}>
+            {feeds.all.length !== 0 ? (
+              <ItemText>My feeds</ItemText>
+            ) : (
+              <ItemText></ItemText>
+            )}
+            {feeds.all.length > 3? (
+              <TouchableWithoutFeedback onPress={handleMyFeeds}>
               <SeeAllButton>
                 <SeeAllText>See all</SeeAllText>
               </SeeAllButton>
             </TouchableWithoutFeedback>
+            ) : (
+              <View style={{height:35}}></View>
+            )}
           </View>
-          <FeedList
-            feeds={feeds.all}
-            disableTick={true}
-            handleStory={handleStory}
-            section={"all"}
-          />
-          <Discover feeds={feeds.discover} handleStory={handleStory} />
+          {listAll()}
+          {listDiscover()}
         </View>
       </ScrollView>
 
@@ -70,7 +124,7 @@ export default ({
           marginTop: -5,
         }}
       >
-        <ScrollView
+        {/* <ScrollView
           refreshControl={
             <RefreshControl
               style={{
@@ -85,8 +139,12 @@ export default ({
             />
           }
         >
-          <Search />
-        </ScrollView>
+          <Search
+            handleSearch={handleSearch}
+            handleTarget={handleTarget}
+            value={value}
+          />
+        </ScrollView> */}
       </View>
     </View>
   );

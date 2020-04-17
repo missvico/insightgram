@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Subscribe from "./Subscribe";
-import { fetchAllFeeds, fetchFeedsByUser } from "../../../redux/actions/feeds";
+import {
+  fetchAllFeeds,
+  fetchFeedsByUser,
+  filterSubscribeFeeds,
+} from "../../../redux/actions/feeds";
 import { getItemStorage } from "../../../assets/js/AsyncStorage";
 import {
   subscribeFeeds,
@@ -10,22 +14,41 @@ import {
 import { setLoading } from "../../../redux/actions/loading";
 
 const SubscribeContainer = (props) => {
-  const [inputValue, setInputValue] = useState("");
   const [allFeeds, setAllFeeds] = useState({});
+  const [filterAllFeeds, setFilterAllFeeds] = useState({});
 
   useEffect(() => {
     if (Object.keys(allFeeds).length == 0) {
       getItemStorage("@Token").then((token) =>
-        props.fetchAllFeeds(token).then((feeds) => setAllFeeds(feeds))
+        props.fetchAllFeeds(token).then((feeds) => {
+          setAllFeeds(feeds);
+          setFilterAllFeeds(JSON.parse(JSON.stringify(feeds)));
+        })
       );
     } else {
       return;
     }
   }, [setAllFeeds]);
 
-  const onChange = (event) => {
-    let search = event.nativeEvent.text;
-    setInputValue(search);
+  const handleSearch = (evt, target) => {
+    if (target === "feeds") {
+      let input = evt.nativeEvent.text.toLowerCase();
+      let searchFeeds = allFeeds.feeds;
+      let searchFeeds2 = [];
+      searchFeeds.forEach((group, index) => {
+        let feedsFiltrados = group.feeds.filter((feed) =>
+          feed.name.toLowerCase().includes(input)
+        );
+        if (feedsFiltrados.length > 0) {
+          searchFeeds2.push({ group: group.group, feeds: feedsFiltrados });
+        }
+      });
+      let newFilter = Object.assign({}, filterAllFeeds, {
+        ...(filterAllFeeds.feeds = searchFeeds2),
+      });
+      setFilterAllFeeds(newFilter);
+      props.filterSubscribeFeeds(filterAllFeeds);
+    }
   };
 
   const handlePress = () => {
@@ -46,9 +69,9 @@ const SubscribeContainer = (props) => {
   return (
     <Subscribe
       feeds={allFeeds ? allFeeds.feeds : {}}
-      onChange={onChange}
       handlePress={handlePress}
       loading={props.loading}
+      handleSearch={handleSearch}
     />
   );
 };
@@ -66,6 +89,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     fetchFeedsByUser: (token) => dispatch(fetchFeedsByUser(token)),
     clearSubscribe: () => dispatch(clearSubscribe()),
     setLoading: (value) => dispatch(setLoading(value)),
+    filterSubscribeFeeds: (data) => dispatch(filterSubscribeFeeds(data)),
   };
 };
 
